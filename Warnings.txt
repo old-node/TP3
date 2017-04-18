@@ -1,0 +1,210 @@
+
+
+
+C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3>git add .
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/AlResource.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/Export.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/InputSoundFile.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/Listener.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/Music.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/OutputSoundFile.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/Sound.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/SoundBuffer.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/SoundBufferRecorder.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/SoundFileFactory.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/SoundFileFactory.inl.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/SoundFileReader.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/SoundFileWriter.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/SoundRecorder.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/SoundSource.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Audio/SoundStream.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Config.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/BlendMode.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/CircleShape.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Color.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/ConvexShape.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Drawable.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Export.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Font.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Glsl.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Glsl.inl.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Glyph.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Image.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/PrimitiveType.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Rect.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Rect.inl.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/RectangleShape.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/RenderStates.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/RenderTarget.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/RenderTexture.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/RenderWindow.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Shader.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Shape.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Sprite.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Text.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Texture.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Transform.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Transformable.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/Vertex.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/VertexArray.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Graphics/View.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Main.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/Export.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/Ftp.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/Http.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/IpAddress.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/Packet.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/Socket.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/SocketHandle.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/SocketSelector.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/TcpListener.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/TcpSocket.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Network/UdpSocket.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/OpenGL.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Clock.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Err.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Export.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/FileInputStream.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/InputStream.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Lock.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/MemoryInputStream.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Mutex.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/NativeActivity.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/NonCopyable.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Sleep.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/String.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/String.inl.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Thread.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Thread.inl.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/ThreadLocal.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/ThreadLocalPtr.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/ThreadLocalPtr.inl.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Time.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Utf.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Utf.inl.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Vector2.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Vector2.inl.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Vector3.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/System/Vector3.inl.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/Context.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/ContextSettings.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/Event.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/Export.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/GlResource.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/Joystick.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/Keyboard.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/Mouse.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/Sensor.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/Touch.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/VideoMode.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/Window.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/WindowHandle.hpp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in SFML/packages/sfml-system.2.4.0.0/build/native/include/SFML/Window/WindowStyle.hpp.
+The file will have its original line endings in your working directory.

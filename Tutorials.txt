@@ -1,0 +1,11 @@
+https://www.sfml-dev.org/tutorials/2.4/start-vc.php
+
+(Fait avec NuGet) au lieu, J'ai inclu sfml system, window, et graphics.
+
+https://www.sfml-dev.org/tutorials/2.4/
+
+
+
+GitHub
+https://github.com/old-node/TP3
+http://stackoverflow.com/questions/38689570/how-to-add-all-of-the-contents-in-a-folder-to-my-github-repo
