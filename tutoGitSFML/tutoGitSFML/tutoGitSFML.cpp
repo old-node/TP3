@@ -1,13 +1,10 @@
 /* En-tête du programme
 =======================
-Programme:      laby.cpp
+Programme:      tutoGitsSFML.cpp
 Auteur:			Jean-Alain Sainton & Olivier Lemay Dostie
-Date création:	31/03/2017
-Description:	Permet de jouez dans un labyrinthe préalablement déssiner.
-.				L'utilisateur peut choisir un labyrinthe ou tous les faires un par
-.				un a la fin de la partie, le joueurs peut enregistrer son score et
-.				recommencer ou arreter. De plus, l'utilisateur peut afficher la
-.				liste des scores.*/
+Date création:	16/04/2017
+Description:	Programme des essais SFML et de connection Git pour le projet final en C++
+.				Espace .*/
 
 /* Directives au pré-processeur.
 ==============================*/
@@ -56,7 +53,7 @@ private:
 	int _propriete,
 		_durree,
 		_;
-
+	
 public:
 	//Initialisation de l'objet
 	message();
@@ -116,7 +113,7 @@ public:
 	{}
 	void fusionne()
 	{}
-	void detruit()
+	void efface()
 	{}
 	void bougeGauche()
 	{}
@@ -152,9 +149,15 @@ private:
 	
 
 public:
-	salle ();
-	~salle ();
-	void salle() 
+	salle()
+	{}
+	salle()
+	{}
+	~salle()
+	{
+
+	}
+	void init() 
 	{}
 	void load()
 	{}
@@ -184,14 +187,6 @@ public:
 	{}
 };
 
-salle ::salle ()
-{
-}
-
-salle ::~salle ()
-{
-}
-
 class indice
 {
 private:
@@ -218,6 +213,8 @@ indice::~indice()
 ===================== */
 int main() 
 {
+
+	int p = atan(1) * 4;
 	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
