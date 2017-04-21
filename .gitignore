@@ -4,6 +4,10 @@
 *.o
 *.obj
 
+#Personnnels
+*.suo
+*.opendb
+
 # Precompiled Headers
 *.gch
 *.pch
