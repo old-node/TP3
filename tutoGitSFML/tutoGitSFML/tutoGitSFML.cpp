@@ -1,10 +1,10 @@
-/* En-tête du programme
+/* En-tête du programme		(version d'Olivier) ++
 =======================
 Programme:      tutoGitsSFML.cpp
 Auteur:			Jean-Alain Sainton & Olivier Lemay Dostie
 Date création:	16/04/2017
 Description:	Programme des essais SFML et de connection Git pour le projet final en C++
-.				Espace .*/
+.				Espace de développement pour l'application.*/
 
 /* Directives au pré-processeur.
 ==============================*/
@@ -135,7 +135,8 @@ class salle
 {
 private:
 	style _format;				//
-	int _nomJoueur,				//
+	int _noNiveau,				//
+		_nomJoueur,				//
 		_noJoueur,				//
 		_points,				//
 		_nbBombe,				//

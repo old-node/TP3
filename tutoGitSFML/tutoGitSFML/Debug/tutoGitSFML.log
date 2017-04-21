@@ -1,7 +1,4 @@
 ﻿  tutoGitSFML.cpp
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(117): error C2535: 'void bloc::detruit(void)': member function already defined or declared
-  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(108): note: see declaration of 'bloc::detruit'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(154): error C2380: type(s) preceding 'salle' (constructor with return type, or illegal redefinition of current class-name?)
 c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(154): error C2535: 'salle::salle(void)': member function already defined or declared
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(152): note: see declaration of 'salle::salle'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(219): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(217): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
