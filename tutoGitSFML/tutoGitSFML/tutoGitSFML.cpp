@@ -1,4 +1,4 @@
-/* En-tête du programme
+/* En-tête du programme patatemgqjebrhgikqurgqoierhgqrotih 
 =======================
 Programme:      tutoGitsSFML.cpp
 Auteur:			Jean-Alain Sainton & Olivier Lemay Dostie
