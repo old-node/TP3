@@ -8,6 +8,8 @@ https://www.sfml-dev.org/tutorials/2.4/start-vc.php
 
 https://www.sfml-dev.org/tutorials/2.4/
 
+https://www.sfml-dev.org/tutorials/2.0/graphics-shape.php
+
 
 
 ===GitHub (Pas encore fonctionnel)
