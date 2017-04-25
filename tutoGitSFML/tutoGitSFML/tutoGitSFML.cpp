@@ -1,18 +1,13 @@
-<<<<<<< HEAD
-/* En-t�te du programme patatemgqjebrhgikqurgqoierhgqrotih 
-=======
-﻿/* En-tête du programme		(version d'Olivier) ++
+
+/* En-tete du programme		(version d'Olivier) ++
 >>>>>>> refs/remotes/origin/master
 =======================
 Programme:      tutoGitsSFML.cpp
 Auteur:			Jean-Alain Sainton & Olivier Lemay Dostie
 Date création:	16/04/2017
 Description:	Programme des essais SFML et de connection Git pour le projet final en C++
-<<<<<<< HEAD
-.				Espace .*/
-=======
-.				Espace de développement pour l'application.*/
->>>>>>> refs/remotes/origin/master
+				Espace de d�veloppement pour l'application. */
+
 
 /* Directives au pré-processeur.
 ==============================*/
@@ -377,21 +372,6 @@ public:
 class salle
 {
 private:
-<<<<<<< HEAD
-	style _format;				//
-	int _nomJoueur,				//
-		_noJoueur,				//
-		_points,				//
-		_nbBombe,				//
-		_styleBlocs,			//
-		_orientation,			//
-		_vitesseBloc,			//
-		_bloc,					//
-		_procains[PROCHAINS],	//
-		_posBlocs[200][3],		//
-		_occupation[20][20];	//
-	
-=======
 	string _nomJoueur = "Joueur";	//
 	coord _pos = initCoord(30, 30);	//
 	int _noNiveau = 1,			//
@@ -405,15 +385,11 @@ private:
 	//bloc _bloc,				//
 	//	_prochains[PROCHAINS],	//
 	//	_posBlocs[200][3],		//
->>>>>>> refs/remotes/origin/master
+
 
 public:
 	salle()
 	{}
-<<<<<<< HEAD
-	
-=======
->>>>>>> refs/remotes/origin/master
 	~salle()
 	{
 		_nomJoueur = "";
