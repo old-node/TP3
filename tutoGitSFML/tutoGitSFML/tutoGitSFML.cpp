@@ -151,8 +151,7 @@ private:
 public:
 	salle()
 	{}
-	salle()
-	{}
+	
 	~salle()
 	{
 
