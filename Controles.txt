@@ -1,0 +1,13 @@
+Tetris
+
+Contrôles:
+Flèche de gauche	- Bouger à gauche
+Flèche de droite	- Bouger à droite
+Flèche du bas 		- Dessendre plus rapidement
+Flèche du haut ou X 	- Tourner vers la droite
+Z 			- Tourner vers la gauche
+P			- Pause
+Escape ou Q		- Quitter le jeu
+M			- Sourdine
+T			- Changer la musique
+K - Option?
