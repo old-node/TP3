@@ -1,14 +1,15 @@
-/* En-tête du programme		(version d'Olivier) ++
+ï»¿/* En-tÃªte du programme		(version d'Olivier) ++
 =======================
 Programme:      tutoGitsSFML.cpp
 Auteur:			Jean-Alain Sainton & Olivier Lemay Dostie
-Date création:	16/04/2017
+Date crÃ©ation:	16/04/2017
 Description:	Programme des essais SFML et de connection Git pour le projet final en C++
-.				Espace de développement pour l'application.*/
+.				Espace de dÃ©veloppement pour l'application.*/
 
-/* Directives au pré-processeur.
+/* Directives au prÃ©-processeur.
 ==============================*/
 #include <locale>	
+#include <string>
 #include <iostream>
 #include <iomanip>
 #include <stdlib.h>	
@@ -23,17 +24,17 @@ Description:	Programme des essais SFML et de connection Git pour le projet final
 //#include <SDL_ttf.h>		//Pas inclus
 //#include <saisieSDL.h>	//Non fonctionnel si pas inclus
 #include <SFML\Graphics.hpp>
-using namespace sf;	//P-e que std serait plus approprié, mais on peut alterner
+using namespace sf;	//P-e que std serait plus appropriÃ©, mais on peut alterner
 
 
 //Constantes des objets
-const int NBCHARMAX = 30,	//Nombre de caractère maximum dans un message
+const int NBCHARMAX = 30,	//Nombre de caractÃ¨re maximum dans un message
 PROCHAINS = 3;		//Nombre de prochai bloc visible
 
 struct coord
 {
-	int x = 5,		//Coordonnée du message en x dans la fenêtre
-		y = 5;		//Coordonnée du message en y dans la fenêtre
+	int x = 5,		//CoordonnÃ©e du message en x dans la fenÃªtre
+		y = 5;		//CoordonnÃ©e du message en y dans la fenÃªtre
 };
 
 coord initCoord(int x, int y)
@@ -44,9 +45,16 @@ coord initCoord(int x, int y)
 	return point;
 }
 
+int swapCoord(coord &gauche, coord &droite)
+{
+	swap(gauche.x, droite.x);
+	swap(gauche.y, droite.y);
+	return -1;
+}
+
 //struct style
 //{
-//	coord pos,		//Coordonnées
+//	coord pos,		//CoordonnÃ©es
 //		dim;		//Dimmenssion
 //	int couleur,	//
 //		texture;	//
@@ -92,17 +100,17 @@ coord initCoord(int x, int y)
 class bloc
 {
 private:
-	coord _pos = initCoord(30, 30),	//Dans la fenêtre
+	coord _pos = initCoord(40, 20),	//Dans la fenÃªtre
+		_place = initCoord(3, 10),	//Dans la salle
 		_encrage = initCoord(2, 2);	//Point pivot du bloc
 	int _id = 0,			//
 		_styleBloc = 1,		//
 		_vitesse = 1,		//
 		_etat = 1,			//
 		_forme = 1,			//
-		_angle = 1,		//Orientation actuelle de la forme
-		_axes[4][5][5] = {
-		//Composition de la forme selon chaque angles
-						//270° vers la gauche (couché sur la droite)
+		_angle = 1,			//Orientation actuelle de la forme
+		_axes[4][5][5] = {	//Composition de la forme selon chaque angles
+			//270Â° vers la gauche (couchÃ© sur la droite)
 			{
 				{ 0,0,0,0,0 },
 				{ 0,0,0,0,0 },
@@ -110,35 +118,34 @@ private:
 				{ 0,0,0,0,0 },
 				{ 0,0,0,0,0 },
 			},
-			//Angle par défaut (debout)
-{
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-},
-//90° vers la gauche (couché sur sa gauche)
-{
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-},
-//180° sur elle-même (sur ça tête)
-{
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-	{ 0,0,0,0,0 },
-}, };
+			//Angle par dÃ©faut (debout)
+			{
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+			},
+			//90Â° vers la gauche (couchÃ© sur sa gauche)
+			{
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+			},
+			//180Â° sur elle-mÃªme (sur Ã§a tÃªte)
+			{
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+				{ 0,0,0,0,0 },
+			}, };
 
 public:
 	bloc()
 	{}
-
 	bloc(int forme, int axes[][5][5])
 	{
 		setForme(forme);
@@ -159,10 +166,9 @@ public:
 		setAngle(angle);
 		setAxes(axes);
 	}
-
 	~bloc()
 	{
-		_pos.x = _pos.y = _encrage.x = _encrage.y = _id =
+		_place.x = _place.y = _encrage.x = _encrage.y = _id =
 			_styleBloc = _forme = _vitesse = _etat = 0;
 		for (int p = 0; p < 4; p++)
 			for (int i = 0; i < 5; i++)
@@ -172,11 +178,11 @@ public:
 
 	void setPosX(coord pos)
 	{
-		_pos.x = pos.x;
+		_place.x = pos.x;
 	}
 	void setPosY(coord pos)
 	{
-		_pos.y = pos.y;
+		_place.y = pos.y;
 	}
 	void setEncrage(coord pos)
 	{
@@ -219,6 +225,10 @@ public:
 		for (int i = 0; i < 5; i++)
 			for (int j = 0; j < 5; j++)
 				_axes[angle][i][j] = profil[i][j];
+	}
+	coord getPlace()
+	{
+		return _place;
 	}
 	coord getPos()
 	{
@@ -266,16 +276,76 @@ public:
 				profil[i][j] = _axes[_angle][i][j];
 	}
 
+	void bougeX(int x, int salle[20][20])
+	{
+		bool vide = true;
+		int sens = 1;
+		coord depart = getPlace();
+		coord fin = depart;
+		fin.x += 5;
+		fin.y += 5;
+		if (x < 0)
+			sens *= swapCoord(depart, fin);
 
-	void tourneGauche()
-	{
-		if (--_angle < 0)
-			_angle = 3;
+		for (int i = depart.x; i < fin.x; i += sens)
+			for (int j = depart.y; j < fin.y; j++)
+				if (_axes[_angle][i][j] == 1)
+					if (salle[i + x][j] == 1)
+					{
+						vide = false;
+						break; break; break;
+					}
+
+		if (vide)
+			_place.x -= x;
 	}
-	void tourneDroite()
+	void bougeDroite(int salle[20][20])
 	{
-		if (++_angle > 3)
-			_angle = 0;
+
+	}
+	void tourneGauche(int salle[20][20])
+	{
+		int angle = _angle;
+		bool permi = true;
+
+		if (--angle < 0)
+			angle = 3;
+
+		for (int i = 0; permi && i < 5; i++)
+			for (int j = 0; j < 5; j++)
+			{
+				if (_axes[angle][i][j] == 1)
+					if (salle[i + _place.x][j + _place.y] == 1)
+					{
+						permi = false;
+						break;
+					}
+			}
+
+		if (permi)
+			_angle = angle;
+	}
+	void tourneDroite(int salle[20][20])
+	{
+		int angle = _angle;
+		bool permi = true;
+
+		if (++angle < 0)
+			angle = 3;
+
+		for (int i = 0; permi && i < 5; i++)
+			for (int j = 0; j < 5; j++)
+			{
+				if (_axes[angle][i][j] == 1)
+					if (salle[i + _place.x][j + _place.y] == 1)
+					{
+						permi = false;
+						break;
+					}
+			}
+
+		if (permi)
+			_angle = angle;
 	}
 
 	//void tombe()
@@ -294,70 +364,134 @@ public:
 	//{}
 	//void efface()
 	//{}
-	//void bougeGauche()
-	//{}
-	//void bougeDroite()
-	//{}
-
 };
 
-//class salle
-//{
-//private:
-//	style _format;				//
-//	int _noNiveau,				//
-//		_nomJoueur,				//
-//		_noJoueur,				//
-//		_points,				//
-//		_nbBombe,				//
-//		_styleBlocs,			//
-//		_orientation,			//
-//		_vitesseBloc,			//
-//		_bloc,					//
-//		_procains[PROCHAINS],	//
-//		_posBlocs[200][3],		//
-//		_occupation[20][20];	//
-//	
-//
-//public:
-//	salle()
-//	{}
-//	salle()
-//	{}
-//	~salle()
-//	{
-//
-//	}
-//	void init() 
-//	{}
-//	void load()
-//	{}
-//	void demare()
-//	{}
-//	void pause() 
-//	{}
-//	void menu() 
-//	{}
-//	void prochain() 
-//	{}
-//	void balaye() 
-//	{}
-//	void tetris() 
-//	{}
-//	void compresse() 
-//	{}
-//	void ferme()
-//	{}
-//	void creeObstacle()		//**
-//	{}
-//	void marcheArriere()	//**
-//	{}
-//	void tourne()			//**
-//	{}
-//	void brasse()			//**
-//	{}
-//};
-//
+class salle
+{
+private:
+	string _nomJoueur = "Joueur";	//
+	coord _pos = initCoord(30, 30);	//
+	int _noNiveau = 1,			//
+		_noJoueur = 1,			//
+		_points = 0,			//
+		_nbBombe = 1,			//
+		_styleBlocs = 1,		//
+		_orientation = 1,		//
+		_vitesseBloc = 1,		//
+		_occupation[20][20] = { 0 };//
+	//bloc _bloc,				//
+	//	_prochains[PROCHAINS],	//
+	//	_posBlocs[200][3],		//
+
+public:
+	salle()
+	{}
+	~salle()
+	{
+		_nomJoueur = "";
+		_pos.x = _pos.y = _noNiveau = _noJoueur = _points = _nbBombe =
+			_styleBlocs = _orientation = _vitesseBloc = /*_bloc = */0;
+		/*_procains[PROCHAINS] = _posBlocs[200][3] = */_occupation[20][20] = { 0 };
+	}
+
+	void setOccupation(int modification[5][5], coord pos)
+	{
+		for (int i = 0; i < 5; i++)
+			for (int j = 0; j < 5; j++)
+				_occupation[pos.x + i][pos.y + j] = modification[i][j];
+	}
+	//Othermethods:: void set() {}
+
+	string getNomJoueur()
+	{
+		return _nomJoueur;;
+	}
+	coord getPos()
+	{
+		return _pos;
+	}
+	int getNoNiveau()
+	{
+		return _noNiveau;
+	}			//
+	int getNoJoueur()
+	{
+		return _noJoueur;
+	}
+	int getPoints()
+	{
+		return _points;
+	}
+	int getNbBombe()
+	{
+		return _nbBombe;
+	}
+	int getStyleBloc()
+	{
+		return _styleBlocs;
+	}
+	int getOrientation()
+	{
+		return _orientation;
+	}
+	int getVitesse()
+	{
+		return _vitesseBloc;
+	}
+	void getOccupation(int occupation[20][20])
+	{
+		for (int i = 0; i < 20; i++)
+			for (int j = 0; j < 20; j++)
+				occupation[i][j] = _occupation[i][j];
+	}
+	bloc getBloc()
+	{
+		//return _bloc;
+	}
+	void getProchains(int prochains[PROCHAINS])
+	{
+		for (int i = 0; i < PROCHAINS; i++)
+			;//prochains[i] = _prochains[i];
+	}
+	void getPosBlocs(int posBlocs[200][3])
+	{
+		for (int i = 0; i < 200; i++)
+			//if (_posBlocs[i][0] == 0)
+			//	break;
+			for (int j = 0; j < 3; j++)
+				;//posBlocs = _posBlocs[i][j];
+	}
+
+	void init()
+	{}
+	void load()
+	{}
+	void demare()
+	{}
+	void pause()
+	{}
+	void menu()
+	{}
+	void prochain()
+	{}
+	void balaye()
+	{}
+	void tetris()
+	{}
+	void compresse()
+	{}
+	void ferme()
+	{}
+	void creeObstacle()		//**
+	{}
+	void marcheArriere()	//**
+	{}
+	void tourne()			//**
+	{}
+	void brasse()			//**
+	{}
+};
+
 //class indice
 //{
 //private:
@@ -430,13 +564,113 @@ int fonctionPosition(RectangleShape &rectangle)
 	return x;
 }
 
+struct teStruct
+{
+	int outline = 10;
+	sf::CircleShape boule;
+	sf::RectangleShape rectangle;
+	sf::RectangleShape shape;
+
+	teStruct()
+	{
+		boule.setRadius(100.f);
+		boule.setFillColor(sf::Color::Green);
+
+		rectangle.setSize(sf::Vector2f(120, 50));
+
+		shape.setSize(sf::Vector2f(100, 100));
+		shape.setFillColor(sf::Color::Green);
+		// set a 10-pixel wide orange outline
+		shape.setOutlineThickness(10);
+		shape.setOutlineColor(sf::Color(250, 150, 100));
+		// set the absolute position of the entity
+		shape.setPosition(60, 100);
+		// set the absolute scale of the entity
+		shape.setScale(4.0f, 1.6f);
+		// set the absolute rotation of the entity
+		shape.setRotation(45);
+	}
+};
+
+void testPackPlay(teStruct &test, sf::RenderWindow &window)
+{
+	window.draw(test.boule);
+	window.draw(test.shape);
+	window.draw(test.rectangle);
+
+	test.rectangle.setPosition(fonctionPosition(test.rectangle), 100);
+
+	test.shape.setOutlineThickness(test.outline *= 3);
+	// move the entity relatively to its current position
+	test.shape.move(20, 5);
+	test.boule.move(20, 5);
+
+	// retrieve the absolute position of the entity
+	sf::Vector2f position = test.shape.getPosition(); // = (15, 55)
+
+	// rotate the entity relatively to its current orientation
+	test.shape.rotate(10);
+
+	// retrieve the absolute rotation of the entity
+	float rotation = test.shape.getRotation(); // = 55
+
+	// scale the entity relatively to its current scale
+	test.shape.scale(0.8f, 0.4f);
+
+	// retrieve the absolute scale of the entity
+	sf::Vector2f scale = test.shape.getScale(); // = (2, 0.8)
+}
+
+int saisie()
+{
+	//Unknown .47 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z .20-46					1+26
+	//Num0 Num1 Num2 Num3 Num4 Num5 Num6 Num7 Num8 Num9 .0-9									10
+	//LControl RControl LShift RShift LAlt RAlt LSystem RSystem Menu .48-57						9
+	//LBracket RBracket SemiColon Comma Period Quote Slash BackSlash Tilde .58-					9
+	//^ âˆž Ã— Ã· â‰¥ â‰¤ â‰  Â± LParentesis RParentesis â€¢ $ â‚¬ Â¥ Â£ & % # @ ! ? _ < > Ã© Ã  Ã§ Ã¯ Ã¹ Ã« (MAJ) Â© Â® â„¢	
+	//Play Pause2 Previous Next Mute Sound- Sound+ MuteMic Refresh MousePadLock PlaneMode CameraLock
+	//Lock Display Contrast- Contrast+ 
+	//Equal Dash Space Return BackSpace Tab PageUp PageDown End Home Insert Delete				12
+	//Add Substract Multiply Divide Left Right Up Down											8
+	//Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 .10-19	10
+	//F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 Pause KeyCount (toujours 102?)			15+2
+	//
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Unknown))
+	{
+		//switch (switch_on)
+		//{
+		//default:
+		//	break;
+		//}
+		//return 20;
+		;
+	}
+	//else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+
+	//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+
+	//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		return -1;
+}
+
+//class MyClass {
+//public:
+//	MyClass & operator=(const MyClass &rhs);
+//}
+
 /* Programme principal.
 ===================== */
 int main()
 {
+
+	//MyClass a, b;
+	//b = a;   // Same as b.operator=(a);
+	
 	float p = atan(1) * 4;
-	int blocL[4][5][5] = {
-		//270° vers la gauche (couché sur la droite)
+	int occupations[20][20],
+		blocL[4][5][5] = {
+		//270Â° vers la gauche (couchÃ© sur la droite)
 		{
 			{ 0,0,0,0,0 },
 			{ 0,0,0,0,0 },
@@ -444,7 +678,7 @@ int main()
 			{ 0,1,0,0,0 },
 			{ 0,0,0,0,0 },
 		},
-		//Angle par défaut (debout)
+		//Angle par dÃ©faut (debout)
 		{
 			{ 0,0,0,0,0 },
 			{ 0,0,1,0,0 },
@@ -452,7 +686,7 @@ int main()
 			{ 0,0,1,1,0 },
 			{ 0,0,0,0,0 },
 		},
-		//90° vers la gauche (couché sur sa gauche)
+		//90Â° vers la gauche (couchÃ© sur sa gauche)
 		{
 			{ 0,0,0,0,0 },
 			{ 0,0,0,1,0 },
@@ -460,7 +694,7 @@ int main()
 			{ 0,0,0,0,0 },
 			{ 0,0,0,0,0 },
 		},
-		//180° sur elle-même (sur ça tête)
+		//180Â° sur elle-mÃªme (sur Ã§a tÃªte)
 		{
 			{ 0,0,0,0,0 },
 			{ 0,1,1,0,0 },
@@ -469,32 +703,24 @@ int main()
 			{ 0,0,0,0,0 },
 		}, };
 
-	bloc l(30, 30, 2, 2, 1, 1, 1, 1, 1, 1, blocL),
+	salle espace;
+	bloc l(2, 2, 30, 30, 1, 1, 1, 1, 1, 1, blocL),
 		pieces[7] = { l,l,l,l,l,l,l };
 
 	sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!");
-	sf::CircleShape boule(100.f);
-	boule.setFillColor(sf::Color::Green);
 
-	sf::RectangleShape rectangle(sf::Vector2f(120, 50));
-	rectangle.setSize(sf::Vector2f(200, 20));
-	sf::RectangleShape shape(sf::Vector2f(100, 100));
-	shape.setFillColor(sf::Color::Green);
-	// set a 10-pixel wide orange outline
-	int outline = 10;
-	shape.setOutlineThickness(outline);
-	shape.setOutlineColor(sf::Color(250, 150, 100));
-	// set the absolute position of the entity
-	shape.setPosition(60, 100);
-	// set the absolute scale of the entity
-	shape.setScale(4.0f, 1.6f);
-	// set the absolute rotation of the entity
-	shape.setRotation(45);
+	//Tests
+	teStruct test;
 
+	//Essais de blocs
 	sf::RectangleShape formeL[5][5];
 	int profil[5][5];
 	l.getProfil(profil);
-	formePiece(formeL, profil, l.getPos());
+	coord posL2 = l.getPlace();
+	posL2.x -= 3;	//bloque de -2 ou -1 Ã  2
+	espace.setOccupation(profil, posL2);
+	espace.getOccupation(occupations);
+	formePiece(formeL, profil, l.getPlace());
 
 	while (window.isOpen()) {
 
@@ -506,38 +732,15 @@ int main()
 		}
 
 		window.clear();
-		window.draw(boule);
-		window.draw(shape);
-		window.draw(rectangle);
+		testPackPlay(test, window);
 		drawPiece(window, formeL, profil);
 		window.display();
 
-		l.tourneGauche();
+
+
+		l.tourneGauche(occupations);
 		l.getProfil(profil);
-		formePiece(formeL, profil, l.getPos());
-
-		rectangle.setPosition(fonctionPosition(rectangle), 100);
-
-		shape.setOutlineThickness(outline *= 3);
-		// move the entity relatively to its current position
-		shape.move(20, 5);
-		boule.move(20, 5);
-
-
-		// retrieve the absolute position of the entity
-		sf::Vector2f position = shape.getPosition(); // = (15, 55)
-
-		// rotate the entity relatively to its current orientation
-		shape.rotate(10);
-
-		// retrieve the absolute rotation of the entity
-		float rotation = shape.getRotation(); // = 55
-
-		// scale the entity relatively to its current scale
-		shape.scale(0.8f, 0.4f);
-
-		// retrieve the absolute scale of the entity
-		sf::Vector2f scale = shape.getScale(); // = (2, 0.8)
+		formePiece(formeL, profil, l.getPlace());
 
 		sf::sleep(sf::seconds(0.3));
 	}
@@ -545,7 +748,7 @@ int main()
 	return 0;
 }
 
-/*Méthodes
+/*MÃ©thodes
 =========*/
 //
 //message::message() 
