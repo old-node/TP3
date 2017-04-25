@@ -4,6 +4,11 @@
 *.o
 *.obj
 
+#Personnnels
+*.suo
+*.opendb
+*.db
+
 # Precompiled Headers
 *.gch
 *.pch
@@ -77,3 +82,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.db
+*.db
