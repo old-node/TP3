@@ -348,15 +348,22 @@ public:
 			_angle = angle;
 	}
 
-	//void tombe()
-	//{}
+	void tombe()
+	{
+		
+	}
+	void arrete()
+	{
+		
+	}
+	void colle()
+	{
+		
+	}
+
 	//void ralenti()
 	//{}
-	//void arrete()
-	//{}
 	//void detruit()
-	//{}
-	//void colle()
 	//{}
 	//void separe()
 	//{}
@@ -627,8 +634,10 @@ int saisie()
 	//Num0 Num1 Num2 Num3 Num4 Num5 Num6 Num7 Num8 Num9 .0-9									10
 	//LControl RControl LShift RShift LAlt RAlt LSystem RSystem Menu .48-57						9
 	//LBracket RBracket SemiColon Comma Period Quote Slash BackSlash Tilde .58-					9
-	//^ ∞ × ÷ ≥ ≤ ≠ ± LParentesis RParentesis • $ € ¥ £ & % # @ ! ? _ < > é à ç ï ù ë (MAJ) © ® ™	
-	//Play Pause2 Previous Next Mute Sound- Sound+ MuteMic Refresh MousePadLock PlaneMode CameraLock
+	//^ ∞ × ÷ ≥ ≤ ≠ ± LParentesis RParentesis 
+	//• $ € ¥ £ & % # @ ! ? _ < > é à ç ï ù ë (MAJ) © ® ™	
+	//Play Pause2 Previous Next | ' " ` ° ¤ ¬ µ ` ¨ 
+	//Mute Sound- Sound+ MuteMic Refresh MousePadLock PlaneMode CameraLock
 	//Lock Display Contrast- Contrast+ 
 	//Equal Dash Space Return BackSpace Tab PageUp PageDown End Home Insert Delete				12
 	//Add Substract Multiply Divide Left Right Up Down											8
@@ -636,22 +645,6 @@ int saisie()
 	//F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 Pause KeyCount (toujours 102?)			15+2
 	//
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Unknown))
-	{
-		//switch (switch_on)
-		//{
-		//default:
-		//	break;
-		//}
-		//return 20;
-		;
-	}
-	//else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-
-	//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-
-	//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		return -1;
 }
 
 //class MyClass {
@@ -735,8 +728,6 @@ int main()
 		testPackPlay(test, window);
 		drawPiece(window, formeL, profil);
 		window.display();
-
-
 
 		l.tourneGauche(occupations);
 		l.getProfil(profil);

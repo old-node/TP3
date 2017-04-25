@@ -82,3 +82,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.suo
+*.db
+*.suo
+*.db
+*.suo
