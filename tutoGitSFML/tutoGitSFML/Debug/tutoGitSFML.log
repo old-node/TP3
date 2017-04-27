@@ -1,10 +1,38 @@
 ﻿  tutoGitSFML.cpp
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(525): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(549): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(601): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(603): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(670): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(745): warning C4305: 'argument': truncation from 'double' to 'float'
-  LINK : C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\tutoGitSFML\Debug\tutoGitSFML.exe not found or not built by the last incremental link; performing full link
-  tutoGitSFML.vcxproj -> C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\tutoGitSFML\Debug\tutoGitSFML.exe
-  tutoGitSFML.vcxproj -> C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\tutoGitSFML\Debug\tutoGitSFML.pdb (Full PDB)
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(88): error C3861: 'initRectangle': identifier not found
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(148): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(228): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(228): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(230): error C3866: destructor call missing argument list
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(318): warning C4018: '<': signed/unsigned mismatch
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(376): error C2659: '=': function as left operand
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(479): error C2663: 'bloc::init': 2 overloads have no legal conversion for 'this' pointer
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(533): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(754): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(767): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(769): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(819): warning C4244: 'initializing': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(855): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(859): error C2664: 'salle::salle(const salle &)': cannot convert argument 10 from 'const bloc [7]' to 'bloc []'
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(859): note: Conversion loses qualifiers
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(886): error C3861: 'drawPiece': identifier not found
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(889): error C2065: 'l': undeclared identifier
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(889): error C2228: left of '.tourneGauche' must have class/struct/union
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(889): note: type is 'unknown-type'
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(890): error C2065: 'l': undeclared identifier
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(890): error C2228: left of '.bougeX' must have class/struct/union
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(890): note: type is 'unknown-type'
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(891): error C2065: 'l': undeclared identifier
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(891): error C2228: left of '.getAxes' must have class/struct/union
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(891): note: type is 'unknown-type'
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(892): error C2065: 'l': undeclared identifier
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(892): error C2228: left of '.getPlace' must have class/struct/union
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(892): note: type is 'unknown-type'
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(892): error C3861: 'formePiece': identifier not found
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(894): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(915): error C2065: 'MOITIECARRE': undeclared identifier
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(915): error C2228: left of '.x' must have class/struct/union
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(915): note: type is 'unknown-type'
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(916): error C2065: 'MOITIECARRE': undeclared identifier
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(916): error C2228: left of '.y' must have class/struct/union
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(916): note: type is 'unknown-type'
