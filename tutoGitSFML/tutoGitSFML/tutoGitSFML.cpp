@@ -32,13 +32,14 @@ using namespace sf;
 //Constantes des objets
 const int NBCHARMAX = 30,	//Nombre de caractère maximum dans un message
 BLOCMAX = 5,				//Nb maximal en x et en y de carrés dans un bloc
-CENTRECARRE = 19,			//Largeur du centre des carrés
+CENTRECARRE = 18,			//Largeur du centre des carrés
 BORDURECARRE = 1;			//Largeur des bordures des carrés
 const Vector2f LARGUEURCARRE = //Largeur des carrés dans la fenêtre
 Vector2f(CENTRECARRE + BORDURECARRE * 2, CENTRECARRE + BORDURECARRE * 2),
 MILLIEUCARRE =				//Point central des carrés
 Vector2f(LARGUEURCARRE.x / 2, LARGUEURCARRE.y / 2);
-const Vector2i COIN(9, 0);	//Position par défaut des bloc dans la salle
+const Vector2i COIN(9, 0),	//Position par défaut des bloc dans la salle
+BASE(0, 0);
 
 const int PIECES[7][4][4][2] = // 7 formes, 4 angles, 4 carrés, 2 coordonnées {{{{2}*4}*4}*7} = 224? carrés o.o
 {				// Les angles sont: droite (0), debout (1), gauche (2), renverse (3)
@@ -84,9 +85,25 @@ const int PIECES[7][4][4][2] = // 7 formes, 4 angles, 4 carrés, 2 coordonnées 
 		{ { 1,2 },{ 2,2 },{ 2,3 },{ 3,3 } },
 		{ { 1,2 },{ 2,3 },{ 3,2 },{ 3,1 } } } };//	Plié (Z)
 
+RectangleShape initRectangle(Vector2f echelle, Color couleur,
+	Color couleurBord, float bordure, Vector2f pos, Vector2f origine)
+{
+	RectangleShape rectangle(LARGUEURCARRE);
+	rectangle.setScale(echelle);
+	rectangle.setFillColor(couleur);
+	rectangle.setOutlineColor(couleurBord);
+	rectangle.setOutlineThickness(bordure);
+	rectangle.setPosition(pos);
+	rectangle.setOrigin(Vector2f(
+		MILLIEUCARRE.x + origine.x,
+		MILLIEUCARRE.y + origine.y));
+	Transform test = rectangle.getTransform();
+	return rectangle;
+}
+
 //Forme rectangulaire des carrés avec les valeurs de base
 const RectangleShape RECT = initRectangle(Vector2f(1, 1),
-	Color(150, 150, 255, 100), Color(), 1, Vector2f(0, 0), Vector2f(0, 0));
+	Color(150, 150, 255, 125), Color(), 1, Vector2f(0, 0), Vector2f(0, 0));
 
 const double PI = 4 * atan(1);            // Valeur de PI
 
@@ -116,7 +133,7 @@ public:
 		etat = rang;
 	}
 	carre(Vector2f dim, Vector2i coin, int x, int y, Color couleur,
-		Color couleurBord, int bordure, float scaleX, float scaleY, int rang)
+		Color couleurBord, float bordure, float scaleX, float scaleY, int rang)
 	{
 		setVue(x, y, coin, dim, couleur, couleurBord, bordure, scaleX, scaleY);
 		etat = rang;
@@ -142,7 +159,7 @@ public:
 		setVue(forme);
 	}
 	void setVue(int x, int y, Vector2i coin, Vector2f dim, Color couleur,
-		Color couleurBord, int bordure, float scaleX, float scaleY)
+		Color couleurBord, float bordure, float scaleX, float scaleY)
 	{
 		RectangleShape forme;
 		forme.setOutlineThickness(bordure);
@@ -225,9 +242,12 @@ public:
 	~bloc()
 	{
 		_place.x = _place.y = _encrage.x = _encrage.y = _id =
-			_styleBloc = _forme = _vitesse = _etat = 0;
+			_styleBloc = _forme = _vitesse = _etat = _angle = 0;
 		for (int i = 0; i < 4; i++)
-			_tours[0].~vector;
+		{
+			_tours[i].~vector();
+			_axes[i].~vector();
+		}
 	}
 
 	////Test avec les vectors
@@ -358,27 +378,23 @@ public:
 	{
 		return _angle;
 	}
-	void getProfil(vector<carre> tours, int angle)
+	void getProfil(vector<carre> &tours, int angle)
 	{
 		tours.resize(0);
 		for (auto const &element : _tours[angle])
-			tours[i].push_back(element);
+			tours.push_back(element);
 	}
-	void getAxes(vector<Vector2i> axes[4])
+	void getAxes(vector<Vector2i> axes, int angle)
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			axes[i].resize(0);
-			for (auto &element : _tours[i])
-				axes[i].push_back = element.getPos();
-		}
+		axes.resize(0);
+		for (auto &element : _tours[angle])
+			axes.push_back(element.getPos());
 	}
-	//Bouge le bloc d'une distance en x si elle n'entre pas en conflit avec la salle
+
 	void drawBloc(RenderWindow &window)
 	{
-		for (int i = 0; i < 4; i++)
-			for (auto const &element : _tours[i])
-				window.draw(element.vue);
+		for (auto const &element : _tours[_angle])
+			window.draw(element.vue);
 	}
 	//void ralenti()
 	//{}
@@ -392,10 +408,10 @@ public:
 	//{}
 };
 
-const bloc TETRIS[7];		//Les septs pièces par défaut
+
 
 //Construit les pièces par défaut à partir des coordonnées du tableau PIECES
-void initTetris()
+bool initTetris(bloc tetris[7])
 {
 	int x = COIN.x,
 		y = COIN.y;
@@ -409,23 +425,30 @@ void initTetris()
 			for (int c = 0; c < 4; c++)
 				constructeur[a].push_back(carre(PIECES[f][a][c][0], PIECES[f][a][c][1], COIN, 0));
 
-		TETRIS[f].init(x, y, -1, 1, 1, -1, f, 1, constructeur);
+		tetris[f].init(x, y, -1, 1, 1, -1, f, 1, constructeur);
+		for (int i = 0; i < 4; i++)
+			constructeur[i].resize(0);
 	}
+	return 0;
 }
+
+bloc tetris[7];
+bool ok = initTetris(tetris);
+const bloc TETRIS[7] = { tetris[0], tetris[1], tetris[2], tetris[3], tetris[4], tetris[5], tetris[6] };
 
 class salle
 {
 private:
 	string _nomJoueur = "Joueur";	//Nom du joueur
 	Vector2f _pos = Vector2f(30, 30);//Position de la salle dans la fenêtre
+	vector<Vector2i> _occupations;	//Zones où les blocs ne doivent pas pouvoir passer (murs) 
 	int _noNiveau = 1,				//Numéro du niveau actuel du jeu
 		_noJoueur = 1,				//Si plus qu'un joueur (peut être utilisé pour enregistrer son score)
 		_points = 0,				//Score que le joueur à accumulé
 		_nbBombe = 1,				//Autre option lol
 		_styleBlocs = 1,			//textures, couleurs, etc. : nécessaire?
 		_orientation = 1,			//si on fait tourner la salle
-		_vitesseBloc = 1,			//vitesse des blocs qu'on crée par défaut
-		_occupation[20][20] = { 0 };//Zones où les blocs ne doivent pas pouvoir passer (murs) 
+		_vitesseBloc = 1;			//vitesse des blocs qu'on crée par défaut
 	bloc _typesBloc[7],				//La liste des blocs disponible
 		_actif,						//Le bloc avec lequel on joue présentement
 		_prochain;					//Le prochain bloc du jeu
@@ -442,22 +465,12 @@ public:
 		initTypesBloc();
 		placeMurs();
 	}
-	salle(Vector2f pos, int noNiveau, int orientation, int occupation[20][20], string nomJoueur,
-		int noJoueur, int points, int nbBombe, int vitesse, bloc typesBloc[7], bloc actif, bloc prochain)
+	salle(Vector2f pos, int noNiveau, int orientation, vector<Vector2i> occupation,
+		string nomJoueur, int noJoueur, int points, int nbBombe, int vitesse,
+		const bloc typesBloc[7], bloc actif, bloc prochain)
 	{
-		setPos(pos);
-		setNoNiveau(noNiveau);
-		setOrientation(orientation);
-		setOccupation(occupation);
-		setNoJoueur(noJoueur);
-		setPoints(points);
-		setNbBombe(nbBombe);
-		setVitesse(vitesse);
-		setTypesBloc(typesBloc);
-		setActif(actif);
-		setProchain(prochain);
-
-		placeMurs();
+		init(pos, noNiveau, orientation, occupation, nomJoueur,
+			noJoueur, points, nbBombe, vitesse, typesBloc, actif, prochain);
 	}
 	~salle()
 	{
@@ -480,11 +493,41 @@ public:
 	{
 		_orientation = orientation;
 	}
-	void setOccupation(int occupation[20][20])
+	void getOccupationAbsolue(vector<int> occupation, vector<Vector2i> const& axes)
 	{
-		for (int i = 0; i < 20; i++)
-			for (int j = 0; j < 20; j++)
-				_occupation[i][j] = occupation[i][j];
+		occupation.resize(0);
+		for (auto const &element : axes)
+			occupation.push_back(_occupations[element.x][element.y]);
+	}
+	void getOccupationRelative(vector<int> occupation, vector<Vector2i> const& axes, Vector2i place)
+	{
+		occupation.resize(0);
+		for (auto const &element : axes)
+			occupation.push_back(_occupations[place.x + element.x][place.y + element.y]);
+	}
+	bool checkOccupationAbsolue(vector<Vector2i> const& axes)
+	{
+		for (auto const &element : axes)
+			if (_occupations[element.x][element.y] == 1)
+				return true;
+		return false;
+	}
+	bool checkOccupationRelative(vector<Vector2i> const& axes, Vector2i place)
+	{
+		for (auto const &element : axes)
+			if(_occupations[place.x + element.x][place.y + element.y] == 1)
+				return true;
+		return false;
+	}
+	void setOccupationAbsolue(vector<Vector2i> const& axes)
+	{
+		for (auto const &element : axes)
+			_occupations[element.x][element.y] = 1;
+	}
+	void setOccupationRelative(vector<Vector2i> const& axes, Vector2i place)
+	{
+		for (auto const &element : axes)
+			_occupations[place.x + element.x][place.y + element.y] = 1;
 	}
 	void setNomJoueur(string nomJoueur)
 	{
@@ -509,9 +552,11 @@ public:
 	void initTypesBloc()
 	{
 		for (int i = 0; i < 7; i++)
+		{
 			_typesBloc[i] = TETRIS[i];
+		}
 	}
-	void setTypesBloc(bloc typesBloc[7])
+	void setTypesBloc(const bloc typesBloc[7])
 	{
 		for (int i = 0; i < 7; i++)
 			_typesBloc[i] = typesBloc[i];
@@ -529,34 +574,27 @@ public:
 	{
 		vector<carre> vide[4];
 		for (int i = 0; i < 7; i++)
-		{
 			_typesBloc[i].setTours(vide);
-		}
 	}
 	void videOccupation()
 	{
 		for (int i = 0; i < 20; i++)
 			for (int j = 0; j < 20; j++)
-				_occupation[i][j] = { 0 };
-	}
-	void setOccupation(vector<Vector2i> _axes[4], Vector2i place)
-	{
-		for (int i = 0; i < 4; i++)
-		{
-			for (auto const &element : _axes[i])
-				_occupation[place.x + element.x][place.y + element.y] = 1;
-		}
+				_occupations[i][j] = { 0 };
 	}
 	//Other methods:: void set() {}
 
 	void placeMurs()
 	{
 		for (int i = 0; i < 20; i++)
-			_occupation[i][19] = 1;
+		{
+			_occupations[0][i] = 1;
+			_occupations[i][19] = 1;
+		}
 		for (int i = 0; i < 20; i++)
 		{
-			_occupation[0][i] = 1;
-			_occupation[19][i] = 1;
+
+			_occupations[19][i] = 1;
 		}
 	}
 	string getNomJoueur()
@@ -595,12 +633,13 @@ public:
 	{
 		return _vitesseBloc;
 	}
-	void getOccupation(int occupation[20][20])
+	void getOccupation(vector<Vector2i> & occupation)
 	{
-		for (int i = 0; i < 20; i++)
+		occupation.resize(0);
+		for (auto const &element : _occupations)
 			for (int j = 0; j < 20; j++)
-				occupation[i][j] = _occupation[i][j];
-		sckjaehlds
+				occupation[i].push_back(_occupations[i][j]);
+		}
 	}
 	bloc getBloc()
 	{
@@ -611,7 +650,25 @@ public:
 		return _prochain;
 	}
 
-	void init(int noNiveau)
+	void init(Vector2f pos, int noNiveau, int orientation, vector<Vector2i> occupation,
+		string nomJoueur, int noJoueur, int points, int nbBombe, int vitesse,
+		const bloc typesBloc[7], bloc actif, bloc prochain)
+	{
+		setPos(pos);
+		setNoNiveau(noNiveau);
+		setOrientation(orientation);
+		setOccupationAbsolue(occupation);
+		setNoJoueur(noJoueur);
+		setPoints(points);
+		setNbBombe(nbBombe);
+		setVitesse(vitesse);
+		setTypesBloc(typesBloc);
+		setActif(actif);
+		setProchain(prochain);
+
+		placeMurs();
+	}
+	void init2(int noNiveau)
 	{
 		videOccupation();
 		placeMurs();
@@ -644,58 +701,69 @@ public:
 	void brasse()			//**
 	{}
 
-	void bougeX(int deplacement)
+	void bougeX(int X)
 	{
 		int x = _actif.getPlace().x,
 			y = _actif.getPlace().y,
 			angle = _actif.getAngle();
 		vector<carre>profil[4];
 		_actif.getProfil(profil[angle], angle);
-		//[_actif.getAngle()]
+
 		for (auto const &element : profil[angle])
-			if (_occupation[x + element._i + deplacement][y + element._j] == 1)
+			if (_occupation[x + element._i + X][y + element._j] == 1)
 				return;
 
-		_actif.setPosX(x + deplacement);
+		_actif.setPosX(x + X);
 		for (int i = 0; i < 4; i++)
 			for (auto &element : profil[i])
-				element.setPos(element._i + deplacement, element._j);
+				element.setPos(element._i + X, element._j, _actif.getPlace());
 		_actif.setTours(profil);
 	}
 	//Bouge le bloc d'une distance en y si elle n'entre pas en conflit avec la salle
-	bool bougeY(int y)
+	bool bougeY(int Y)
 	{
-		for (auto const &element : _axes[_angle])
-			if (_occupation[_place.x + element.x][_place.y + element.y + y] == 1)
+		int x = _actif.getPlace().x,
+			y = _actif.getPlace().y,
+			angle = _actif.getAngle();
+		vector<carre>profil[4];
+		_actif.getProfil(profil[angle], angle);
+
+		for (auto const &element : profil[angle])
+			if (_occupation[x + element._i][y + element._j + Y] == 1)
 				return false;
 
-		_place.y += y;
+		_actif.setPosX(y + Y);
 		for (int i = 0; i < 4; i++)
-			for (auto &element : _tours[i])
-				element.setPos(element._i, element._j + y, _place);
-		setTours(_tours);
+			for (auto &element : profil[i])
+				element.setPos(element._i, element._j + Y, _actif.getPlace());
+		_actif.setTours(profil);
 		return true;
 	}
 	void tourneGauche()
 	{
-		int angle = _angle;
+		int angle = _actif.getAngle();
 		if (--angle < 0)
 			angle = 3;
 
-		for (auto const &element : _axes[angle])
-			if (_occupation[_place.x + element.x][_place.y + element.y] == 1)
-				return;
-
-		_actif.setAngle(angle);
+		tourne(angle);
 	}
 	void tourneDroite()
 	{
 		int angle = _actif.getAngle();
-		if (++angle > 3)
-			angle = 0;
+		if (--angle < 0)
+			angle = 3;
 
-		for (auto const &element : _axes[angle])
-			if (_occupation[_place.x + element.x][_place.y + element.y] == 1)
+		tourne(angle);
+	}
+	void tourne(int angle)
+	{
+		int x = _actif.getPlace().x,
+			y = _actif.getPlace().y;
+		vector<Vector2i>profil;
+		_actif.getAxes(profil, angle);
+
+		for (auto const &element : profil)
+			if (_occupation[x + element.x][y + element.y] == 1)
 				return;
 
 		_actif.setAngle(angle);
@@ -856,24 +924,27 @@ int main()
 	//}
 
 	float p = atan(1) * 4;
-	int occupations[20][20];
+	vector<Vector2i> occupations;
 	bloc actif = TETRIS[rand() % (7) + 1];
 	bloc prochain = TETRIS[rand() % (7) + 1];
-	salle espace(Vector2f(30, 30), 1, 1, occupations, "Joueur", 1, 0, 0, 1, TETRIS, actif, prochain);
+	salle espace;
+	espace.init(Vector2f(30, 30), 1, 1, occupations, "Joueur", 1, 0, 0, 1, TETRIS, actif, prochain);
+
+	//Vector2f(30, 30), 1, 1, occupations, "Joueur", 1, 0, 0, 1, TETRIS, actif, prochain.
 
 	//Tests
 	teStruct test;
 
 	//Essais de blocs
-	carre formeX();
-	vector<Vector2i> profil[BLOCMAX*BLOCMAX];
-	espace.getBloc().getAxes(profil);
-	bloc dud = espace.getBloc();
-	Vector2i posDud = dud.getPlace();
-	posDud.x -= 3;	//bloque de -2 ou -1 à 2
-	espace.setOccupation(profil, posDud);
+	bloc active = espace.getBloc();
+	int angle = active.getAngle();
+	vector<Vector2i> profil;
+	Vector2i posDud = active.getPlace();
+	posDud.x -= 3;	//bloque de -2 ou -1 à 2 ?
+	active.getAxes(profil, angle);
+
+	espace.setOccupationRelative(profil, posDud);
 	espace.getOccupation(occupations);
-	//formePiece(formeX, profil, l.getPlace());
 
 	while (window.isOpen())
 	{
@@ -889,11 +960,10 @@ int main()
 		espace.getBloc().drawBloc(window);
 		window.display();
 
-		espace.tourne
-			.tourneGauche(occupations);
-		l.bougeX(1, occupations);
-		l.getAxes(profil);
-		formePiece(formeX, profil, l.getPlace());
+		espace.tourneGauche();
+		espace.bougeX(1);
+		//_actif.setTours(profil);.getAxes(profil)
+		espace.setActif(espace.getBloc());
 
 		sleep(seconds(0.3));
 	}
@@ -905,19 +975,3 @@ int main()
 ==========*/
 
 // Première fonction.
-
-RectangleShape initRectangle(Vector2f echelle, Color couleur,
-	Color couleurBord, float bordure, Vector2f pos, Vector2f origine)
-{
-	RectangleShape rectangle(LARGUEURCARRE);
-	rectangle.setScale(echelle);
-	rectangle.setFillColor(couleur);
-	rectangle.setOutlineColor(couleurBord);
-	rectangle.setOutlineThickness(bordure);
-	rectangle.setPosition(pos);
-	rectangle.setOrigin(Vector2f(
-		MOITIECARRE.x + origine.x,
-		MOITIECARRE.y + origine.y));
-	Transform test = rectangle.getTransform();
-	return rectangle;
-}
