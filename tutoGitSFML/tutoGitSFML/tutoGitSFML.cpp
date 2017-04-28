@@ -1052,7 +1052,7 @@ int choixMenu(RenderWindow &windowMenu, /*Music &music, */string &nomJoueur)
 	}
 }
 
-void afficherMenu(/*Music &music, */string &nomJoueur)
+void afficherMenu(Music &music, string &nomJoueur)
 {
 	RenderWindow windowMenu(VideoMode(1000, 800), "TETRIS v1.2");
 	Texture texture;
@@ -1158,7 +1158,23 @@ void afficherMenu(/*Music &music, */string &nomJoueur)
 int main()
 {
 	srand(time_t(NULL));		//Trouve une source aléatoire
-	RenderWindow window(VideoMode(1000, 800), "SFML works!");
+	RenderWindow window(VideoMode(1000, 800), "TETRIS v1.2");
+	
+	string nomJoueur = "Nouveau Joueur";
+	setlocale(LC_CTYPE, "fra");
+
+	Music music;
+	music.stop();
+	music.openFromFile("music3.ogg");
+	afficherMenu(music, nomJoueur);
+	if (music.getStatus() == false)
+		music.play();
+		int i = 0;
+
+	Texture texture;
+	if (!texture.loadFromFile("Tetris-Background.jpg"));
+	Sprite background(texture);
+	window.draw(background);
 
 	Time moment;
 	unsigned seed = time(0);
@@ -1226,7 +1242,7 @@ int main()
 			}
 			else if (event.key.code == Keyboard::Escape)
 			{
-				//afficherMenu(/*music, */nomJoueur);
+				afficherMenu(music, nomJoueur);
 			}
 			else if (event.key.code == Keyboard::Z)
 			{
@@ -1288,18 +1304,7 @@ int main()
 			break;
 		}
 
-	//Music music;
-	//music.stop();
-	//music.openFromFile("music3.ogg");
-	//afficherMenu(music, nomJoueur);
-	if (/*music.getStatus() == */false)
-		//music.play();
-		int i = 0;
-
-	Texture texture;
-	if (!texture.loadFromFile("Tetris-Background.jpg"));
-	Sprite background(texture);
-	window.draw(background);
+	
 	//piece = espace.prochain();
 
 	//pieceActive = piece;
@@ -1527,19 +1532,6 @@ int main()
 	sleep(seconds(0.3));
 }
 
-//bloc l(2, 2, 30, 30, 1, 1, 1, 1, 1, 1, blocL);
-//bloc t(2, 2, 30, 30, 2, 1, 1, 1, 1, 1, blocT);
-//bloc Carrer(2, 2, 30, 30, 3, 1, 1, 1, 1, 1, blocCarrer);
-//bloc ligne(2, 2, 30, 30, 3, 1, 1, 1, 1, 1, blocLigne);
-//bloc lInverser(2, 2, 30, 30, 4, 1, 1, 1, 1, 1, blocLInverser);
-//bloc Z(2, 2, 30, 30, 5, 1, 1, 1, 1, 1, blocZ);
-//bloc ZInverser(2, 2, 30, 30, 6, 1, 1, 1, 1, 1, blocZInverser);
-//bloc pieces[7] = { l,l,l,l,l,l,l };
-//bloc blocActif = { 2, 2, 30, 30, 1, 1, 1, 1, 1, 1, blocL };
-//bloc blocSuivant = { 2, 2, 30, 30, 1, 1, 1, 1, 1, 1, blocL };
-//string nomJoueur = "Nouveau Joueur";
-//setlocale(LC_CTYPE, "fra");
-//RenderWindow window(VideoMode(1000, 800), "TETRIS v1.2");
 
 /*Fonctions*/
 /*=========*/
