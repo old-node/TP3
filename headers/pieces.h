@@ -35,7 +35,7 @@ const Vector2i COIN(9, 0),	//Position par défaut des bloc dans la salle
 BASE(0, 0);					//Valeur par défaut de certaines composantes
 double PI = atan(1) * 4;	//pi
 
-							//Les coordonnées de chaque carrés de chaque angles des 7 pièces par défaut du jeu
+//Les coordonnées de chaque carrés de chaque angles des 7 pièces par défaut du jeu
 const int PIECES[7][4][4][2] =
 {		// 7 formes, 4 angles, 4 carrés, 2 coordonnées {{{{2}*4}*4}*7} = 224? carrés o.o
 	{	// Les angles sont: droite (0), debout (1), gauche (2), renverse (3)
