@@ -201,7 +201,7 @@ public:
 	void getAxes(vector<Vector2i> axes, int angle);
 
 	//Dessine le bloc
-	void drawBloc(RenderWindow &window);
+	void drawBloc(RenderWindow &window, int angle);
 };
 
 /* Fonctions pour les clocs */
@@ -320,8 +320,8 @@ void carre::setPos(int x, int y, Vector2i coin)
 		y >= 0 && y < BLOCMAX);
 	_i = x; _j = y;
 	vue.setPosition(Vector2f(
-		_i * (MILLIEUCARRE.x * 2) + coin.x,
-		_j * (MILLIEUCARRE.y * 2) + coin.y));
+	(_i + coin.x) * LARGUEURCARRE.x,
+	(_j + coin.y) * LARGUEURCARRE.y));
 }
 
 // 
@@ -405,13 +405,22 @@ void bloc::setPos(Vector2i pos)
 // 
 void bloc::setPosX(int x)
 {
-	_place.x = x;
+	_place.x += x;
+	for (auto & element : _tours[_angle])
+	{
+		element.setPos(element._i, element._j, _place);
+	}
 }
 
 // 
 void bloc::setPosY(int y)
 {
-	_place.y = y;
+	_place.y += y;
+	for (auto & element : _tours[_angle])
+	{
+		element.setPos(element._i, element._j, _place);
+	}
+	
 }
 
 // 
@@ -559,9 +568,11 @@ void bloc::getAxes(vector<Vector2i> axes, int angle)
 }
 
 // 
-void bloc::drawBloc(RenderWindow &window)
+void bloc::drawBloc(RenderWindow &window, int angle)
 {
-	for (auto const &element : _tours[_angle])
+	vector<carre> profil;
+	getProfil(profil, angle);
+	for (auto const &element : profil)
 		window.draw(element.vue);
 }
 
@@ -633,7 +644,7 @@ public:
 
 	// Change les attributs de la salle
 	void modifierInterface(RenderWindow &window,
-		RectangleShape forme[][5], int profil[][5], string nomJoueur);
+		bloc pieceSuivante, vector<Vector2i> profil, string nomJoueur);
 	void initTypesBloc();
 	void setTypesBloc(const bloc typesBloc[7]);
 	void setPos(Vector2f pos);
@@ -648,9 +659,9 @@ public:
 	void setProchain(bloc prochain);
 	void setOccupationAbsolue(vector<Vector2i> const& axes);
 	void setOccupationRelative(vector<Vector2i> const& axes, Vector2i place);
-	int actif();
+	//int actif();
 	int prochain();
-	
+
 	// Récupérations des attributs de la salle
 	string getNomJoueur();
 	Vector2f getPos();
@@ -682,7 +693,7 @@ public:
 	void tetris();
 	void compresse();
 	void ferme();
-	
+
 	// Déplacements et transformations du bloc actif
 	void bougeX(int X);
 	bool bougeY(int Y);
@@ -842,7 +853,7 @@ void salle::placeMurs()
 
 // 
 void salle::modifierInterface(RenderWindow &window,
-	RectangleShape forme[][5], int profil[][5], string nomJoueur)
+	bloc pieceSuivante, vector<Vector2i> profil, string nomJoueur)
 {
 	RectangleShape interfacePieceSuivante(Vector2f(150, 150));
 	RectangleShape afficherPieceSuivante(Vector2f(300, 750));
@@ -861,33 +872,6 @@ void salle::modifierInterface(RenderWindow &window,
 	interfacePieceSuivante.setPosition(740, 75);
 	window.draw(interfacePieceSuivante);
 
-	/*drawPiece(window, forme, profil);*/
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			if (profil[i][j] == 1)
-			{
-				window.draw(forme[i][j]);
-			}
-		}
-	}
-	//formePiece(forme, profil, { 750,85 });
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			if (profil[i][j] == 1)
-			{
-				forme[i][j].setSize(Vector2f(24, 24));
-				forme[i][j].setPosition(745 + i * 26, 80 + j * 26);
-				forme[i][j].setFillColor(Color::Red);
-				forme[i][j].setOutlineThickness(1);
-				forme[i][j].setOutlineColor(Color(0, 0, 0));
-				window.draw(forme[i][j]);
-			}
-		}
-	}
 
 
 	text.setString("Prochaine piece"); 	// choix de la chaîne de caractères à afficher
@@ -936,6 +920,7 @@ void salle::modifierInterface(RenderWindow &window,
 	textAide.setStyle(Text::Bold); 	// choix du style du texte
 	textAide.setPosition(700, 550);		// position du texte
 	window.draw(textAide);
+	
 }
 
 // 
@@ -1028,11 +1013,11 @@ void salle::setOccupationRelative(vector<Vector2i> const& axes, Vector2i place)
 		_occupations[place.x + element.x][place.y + element.y] = 1;
 }
 
-// 
-int salle::actif()
-{
-	return 1;
-}
+//// 
+//int salle::actif()
+//{
+//	return 1;
+//}
 
 // 
 int salle::prochain()
@@ -1222,14 +1207,18 @@ bool salle::bougeY(int Y)
 	int x = _actif.getPlace().x,
 		y = _actif.getPlace().y,
 		angle = _actif.getAngle();
-	vector<carre>profil[4];
-	_actif.getProfil(profil[angle], angle);
+	vector<carre>profil;
 
-	for (auto const &element : profil[angle])
+	_actif.getProfil(profil, angle);
+
+
+	for (auto const &element : profil)
+	{ 
 		if (_occupations[x + element._i][y + element._j + Y] == 1)
 			return false;
+	}
 
-	_actif.setPosX(y + Y);
+	_actif.setPosY(y + Y);
 	return true;
 }
 
