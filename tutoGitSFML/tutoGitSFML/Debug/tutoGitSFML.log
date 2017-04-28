@@ -1,13 +1,13 @@
 ﻿  tutoGitSFML.cpp
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(363): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(363): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(474): warning C4018: '<': signed/unsigned mismatch
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(74): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(412): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(425): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(427): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(477): warning C4244: 'initializing': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(513): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(554): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(372): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(372): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(482): warning C4018: '<': signed/unsigned mismatch
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(632): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(645): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(647): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(384): warning C4244: 'initializing': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(448): warning C4305: 'argument': truncation from 'double' to 'float'
+  LINK : C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\tutoGitSFML\Debug\tutoGitSFML.exe not found or not built by the last incremental link; performing full link
   tutoGitSFML.vcxproj -> C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\tutoGitSFML\Debug\tutoGitSFML.exe
   tutoGitSFML.vcxproj -> C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\tutoGitSFML\Debug\tutoGitSFML.pdb (Full PDB)
