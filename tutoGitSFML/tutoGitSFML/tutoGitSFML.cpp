@@ -665,7 +665,8 @@ public:
 	int prochain()
 	{
 		srand(time(NULL));
-		int numBlock = rand() % 6 + 1;
+		int numBlock;
+		numBlock = rand() % 6;
 		return numBlock;
 	}
 	void balaye()
@@ -1411,7 +1412,7 @@ void afficherMenu(Music &music, string &nomJoueur)
 		btnCommencer.setOutlineColor(sf::Color::Red);
 		btnCommencer.setPosition(350, 150);
 
-		if (!texture.loadFromFile("image.jpg", sf::IntRect(0, 0, 200, 100)));
+		if (!texture.loadFromFile("Tetris-Background_2.jpg", sf::IntRect(0, 0, 200, 100)));
 		btnCommencer.setTexture(&texture);
 		texture.setSmooth(true);
 
@@ -1436,7 +1437,7 @@ void afficherMenu(Music &music, string &nomJoueur)
 		btnOption.setPosition(350, 300);
 
 		texture.~Texture();
-		if (!texture.loadFromFile("image.jpg", sf::IntRect(200, 500, 300, 100)));
+		if (!texture.loadFromFile("Tetris-Background_2.jpg", sf::IntRect(0, 100, 200, 100)));
 
 		btnOption.setTexture(&texture);
 		texture.setSmooth(true);
@@ -1453,7 +1454,7 @@ void afficherMenu(Music &music, string &nomJoueur)
 		btnScore.setOutlineColor(sf::Color::Red);
 		btnScore.setPosition(350, 450);
 	
-		if (!texture.loadFromFile("image.jpg", sf::IntRect(300, 300, 300, 100)));
+		if (!texture.loadFromFile("Tetris-Background_2.jpg", sf::IntRect(0, 200, 200, 100)));
 
 		btnScore.setTexture(&texture);
 		texture.setSmooth(true);
@@ -1471,7 +1472,7 @@ void afficherMenu(Music &music, string &nomJoueur)
 		btnQuitter.setOutlineColor(sf::Color::Red);
 		btnQuitter.setPosition(350, 600);
 
-		if (!texture.loadFromFile("image.jpg", sf::IntRect(100, 500, 300, 100)));
+		if (!texture.loadFromFile("Tetris-Background_2.jpg", sf::IntRect(0, 300, 200, 100)));
 
 		btnQuitter.setTexture(&texture);
 		texture.setSmooth(true);
@@ -1966,7 +1967,7 @@ int main()
 			blocActif.setId(1);
 			blocActif.setAxes(blocL);
 
-			piece = 8;
+			
 			break;
 
 		case 2:
@@ -1979,7 +1980,7 @@ int main()
 			blocActif.setId(2);
 			blocActif.setAxes(blocT);
 
-			piece = 8;
+			
 			break;
 		case 3:
 			Carrer.getProfil(profil);
@@ -1989,7 +1990,7 @@ int main()
 			blocActif.setId(3);
 			blocActif.setAxes(blocCarrer);
 
-			piece = 8;
+			
 			break;
 		case 4:
 			ligne.getProfil(profil);
@@ -2001,7 +2002,7 @@ int main()
 			blocActif.setId(4);
 			blocActif.setAxes(blocLigne);
 
-			piece = 8;
+			
 			break;
 		case 5:
 			lInverser.getProfil(profil);
@@ -2013,7 +2014,7 @@ int main()
 			blocActif.setId(5);
 			blocActif.setAxes(blocLInverser);
 
-			piece = 8;
+			
 			break;
 		case 6:
 			Z.getProfil(profil);
@@ -2024,18 +2025,17 @@ int main()
 			blocActif.setId(6);
 			blocActif.setAxes(blocZ);
 
-			piece = 8;
+			
 			break;
 		case 7:
 			ZInverser.getProfil(profil);
-
 			posZinverser2.x -= 3;
 			espace.setOccupation(profil, posZinverser2);
 			formePiece(formeZInverser, profil, ZInverser.getPlace());
 			blocActif.setId(7);
 			blocActif.setAxes(blocZInverser);
 
-			piece = 8;
+			
 			break;
 		default:
 			break;
@@ -2046,8 +2046,8 @@ int main()
 		posActif2.x = -3;
 		espace.setOccupation(profil, posActif2);
 		formePiece(formeActif, profil, blocActif.getPlace());
-		
 		window.display();
+		
 		do
 		{
 			prochainePiece = espace.prochain();
@@ -2061,61 +2061,68 @@ int main()
 				l.getProfil(profil);
 				blocSuivant.setId(1);
 				blocSuivant.setAxes(blocL);
+				formePiece(pieceSuivante, profil, l.getPlace());
 				espace.modifierInterface(window, formeL, profil, nomJoueur);
-				piece = 8;
+				
 				break;
 			case 2:
 				t.getProfil(profil);
 				blocSuivant.setId(2);
 				blocSuivant.setAxes(blocT);
+				formePiece(pieceSuivante, profil, t.getPlace());
 				espace.modifierInterface(window, formeT, profil, nomJoueur);
-				piece = 8;
+				
 				break;
 			case 3:
 				Carrer.getProfil(profil);
 				blocSuivant.setId(3);
 				blocSuivant.setAxes(blocCarrer);
+				formePiece(pieceSuivante, profil, Carrer.getPlace());
 				espace.modifierInterface(window, formeCarrer, profil, nomJoueur);
-				piece = 8;
+				
 				break;
 			case 4:
 				ligne.getProfil(profil);
 				blocSuivant.setId(4);
 				blocSuivant.setAxes(blocLigne);
+				formePiece(pieceSuivante, profil, ligne.getPlace());
 				espace.modifierInterface(window, formeLigne, profil, nomJoueur);
-				piece = 8;
+				
 				break;
 			case 5:
 				lInverser.getProfil(profil);
 				blocSuivant.setId(5);
 				blocSuivant.setAxes(blocLInverser);
+				formePiece(pieceSuivante, profil, lInverser.getPlace());
 				espace.modifierInterface(window, formeLInverser, profil, nomJoueur);
-				piece = 8;
+				
 				break;
 			case 6:
 				Z.getProfil(profil);
 				blocSuivant.setId(6);
 				blocSuivant.setAxes(blocZ);
+				formePiece(pieceSuivante, profil, Z.getPlace());
 				espace.modifierInterface(window, formeZ, profil, nomJoueur);
-				piece = 8;
+				
 				break;
 			case 7:
 				ZInverser.getProfil(profil);
+				formePiece(pieceSuivante, profil, ZInverser.getPlace());
+				espace.modifierInterface(window, formeZInverser, profil, nomJoueur);
 				blocSuivant.setId(7);
 				blocSuivant.setAxes(blocZInverser);
-				espace.modifierInterface(window, formeZInverser, profil, nomJoueur);
-				piece = 8;
+			
+				
 				break;
 			default:
 				break;
 			}
-			blocSuivant.getProfil(profil);
-			posSuivant2.x = -3;
-			espace.setOccupation(profil, posSuivant2);
-			formePiece(pieceSuivante, profil, blocSuivant.getPlace());
+			espace.modifierInterface(window, pieceSuivante, profil, nomJoueur);
+			
+			posSuivant2.x -= 3;
 			
 
-			
+			window.display();
 			
 
 			//testPackPlay(test, window);
@@ -2132,9 +2139,10 @@ int main()
 			posy = blocActif.getY();
 			blocActif.setPosX(debut);
 			blocActif.setPosY(debut);
+
 			espace.afficherInterface(window);
 			espace.modifierInterface(window, pieceSuivante, profil, nomJoueur);
-		
+			window.display();
 			do {
 				posx = blocActif.getX();
 				posy = blocActif.getY();
@@ -2149,8 +2157,7 @@ int main()
 				formePiece(formeActif, profil, blocActif.getPlace());
 				espace.afficherInterface(window);
 				espace.modifierInterface(window, pieceSuivante, profil, nomJoueur);
-				
-
+			
 				drawPiece(window, formeActif, profil);
 				formePiece(formeActif, profil, blocActif.getPlace());
 
@@ -2164,12 +2171,7 @@ int main()
 				nbY++;
 				window.display();
 				sf::sleep(sf::seconds(0.2));
-			
-				
-				
-				
-				
-				
+
 
 			} while (nbY < 18);
 			
