@@ -82,6 +82,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.suo
 *.db
-*.db
-~$ontrat.doc
