@@ -15,10 +15,10 @@ Description:	Programme des essais SFML et de connection Git pour le projet final
 #include <date.h>
 #include <rectangle.h>
 #include <saisieSecurisee.h>
+#include <pieces.h>			//Celui-ci
 
 #include <locale>			
-#include <string>			
-#include <sstream>			
+#include <string>					
 #include <iostream>			
 #include <iomanip>			
 #include <stdlib.h>			//Pk déjà?
@@ -29,419 +29,12 @@ Description:	Programme des essais SFML et de connection Git pour le projet final
 using namespace std;
 using namespace sf;
 
-//Constantes des objets
-const int NBCHARMAX = 30,	//Nombre de caractère maximum dans un message
-BLOCMAX = 5,				//Nb maximal en x et en y de carrés dans un bloc
-CENTRECARRE = 18,			//Largeur du centre des carrés
-BORDURECARRE = 1;			//Largeur des bordures des carrés
-const Vector2f LARGUEURCARRE = //Largeur des carrés dans la fenêtre
-Vector2f(CENTRECARRE + BORDURECARRE * 2, CENTRECARRE + BORDURECARRE * 2),
-MILLIEUCARRE =				//Point central des carrés
-Vector2f(LARGUEURCARRE.x / 2, LARGUEURCARRE.y / 2);
-const Vector2i COIN(9, 0),	//Position par défaut des bloc dans la salle
-BASE(0, 0);
-
-const int PIECES[7][4][4][2] = // 7 formes, 4 angles, 4 carrés, 2 coordonnées {{{{2}*4}*4}*7} = 224? carrés o.o
-{				// Les angles sont: droite (0), debout (1), gauche (2), renverse (3)
-	{
-		{ { 1,2 },{ 2,2 },{ 3,2 },{ 3,1 } },
-		{ { 2,1 },{ 2,2 },{ 2,3 },{ 1,1 } },
-		{ { 1,2 },{ 2,2 },{ 3,2 },{ 1,3 } },
-		{ { 2,1 },{ 2,2 },{ 2,3 },{ 3,3 } }
-	},	// Sept (L)
-	{
-		{ { 1,2 },{ 2,2 },{ 3,2 },{ 3,3 } },
-		{ { 2,1 },{ 2,2 },{ 2,3 },{ 3,1 } },
-		{ { 1,2 },{ 2,2 },{ 3,2 },{ 1,1 } },
-		{ { 2,1 },{ 2,2 },{ 2,3 },{ 1,3 } }
-	},	// Pendu (Mirroir du Sept)
-	{
-		{ { 2,2 },{ 2,3 },{ 3,2 },{ 3,3 } },
-		{ { 2,2 },{ 2,3 },{ 3,2 },{ 3,3 } },
-		{ { 2,2 },{ 2,3 },{ 3,2 },{ 3,3 } },
-		{ { 2,2 },{ 2,3 },{ 3,2 },{ 3,3 } }
-	},	// Carré
-	{
-		{ { 1,2 },{ 2,2 },{ 3,2 },{ 4,2 } },
-		{ { 2,1 },{ 2,2 },{ 2,3 },{ 2,0 } },
-		{ { 1,2 },{ 2,2 },{ 3,2 },{ 0,2 } },
-		{ { 2,1 },{ 2,2 },{ 2,3 },{ 2,4 } }
-	},	// Ligne
-	{
-		{ { 1,2 },{ 2,1 },{ 2,2 },{ 2,3 } },
-		{ { 1,2 },{ 2,2 },{ 2,3 },{ 3,2 } },
-		{ { 2,1 },{ 2,2 },{ 2,3 },{ 3,2 } },
-		{ { 1,2 },{ 2,1 },{ 2,2 },{ 3,2 } }
-	},	// Plateau
-	{
-		{ { 2,2 },{ 2,3 },{ 3,2 },{ 1,3 } },
-		{ { 2,1 },{ 2,2 },{ 3,2 },{ 3,3 } },
-		{ { 2,2 },{ 2,3 },{ 3,2 },{ 1,3 } },
-		{ { 2,1 },{ 2,2 },{ 3,2 },{ 3,3 } }
-	},	//	Croche (S)
-	{
-		{ { 1,2 },{ 2,2 },{ 2,3 },{ 3,3 } },
-		{ { 1,2 },{ 2,3 },{ 3,2 },{ 3,1 } },
-		{ { 1,2 },{ 2,2 },{ 2,3 },{ 3,3 } },
-		{ { 1,2 },{ 2,3 },{ 3,2 },{ 3,1 } } } };//	Plié (Z)
-
-RectangleShape initRectangle(Vector2f echelle, Color couleur,
-	Color couleurBord, float bordure, Vector2f pos, Vector2f origine)
-{
-	RectangleShape rectangle(LARGUEURCARRE);
-	rectangle.setScale(echelle);
-	rectangle.setFillColor(couleur);
-	rectangle.setOutlineColor(couleurBord);
-	rectangle.setOutlineThickness(bordure);
-	rectangle.setPosition(pos);
-	rectangle.setOrigin(Vector2f(
-		MILLIEUCARRE.x + origine.x,
-		MILLIEUCARRE.y + origine.y));
-	Transform test = rectangle.getTransform();
-	return rectangle;
-}
-
-//Forme rectangulaire des carrés avec les valeurs de base
-const RectangleShape RECT = initRectangle(Vector2f(1, 1),
-	Color(150, 150, 255, 125), Color(), 1, Vector2f(0, 0), Vector2f(0, 0));
-
-const double PI = 4 * atan(1);            // Valeur de PI
-
-/*Un des carrés d'un bloc ou dans la salle.
-=========================================*/
-struct carre
-{
-private:
-	Color _couleur = RECT.getFillColor(),
-		_couleurBord = RECT.getOutlineColor();
-public:
-	int _i = 2, _j = 2;				//Les coordonnées du carré dans le bloc
-	RectangleShape vue = RECT;		//La forme SFML du carré
-	int etat = 0;					//L'état du carré (selon son utilisation)
-
-	// (Dim)menssion du bloc, (coin) de la salle, (x & y) coordonées du carré dans le bloc
-	carre() {}
-	carre(int x, int y, Vector2i coin, int rang)
-	{
-		setPos(x, y, coin);
-		etat = rang;
-	}
-	carre(RectangleShape forme, int x, int y, Vector2i coin, int rang)
-	{
-		setVue(forme);
-		setPos(x, y, coin);
-		etat = rang;
-	}
-	carre(Vector2f dim, Vector2i coin, int x, int y, Color couleur,
-		Color couleurBord, float bordure, float scaleX, float scaleY, int rang)
-	{
-		setVue(x, y, coin, dim, couleur, couleurBord, bordure, scaleX, scaleY);
-		etat = rang;
-	}
-	~carre()
-	{
-		setVue(RectangleShape());
-		_i = _j = etat = 0;
-	}
-
-	void setVue(RectangleShape forme)
-	{
-		vue = forme;
-		_couleur = forme.getFillColor();
-		_couleurBord = forme.getOutlineColor();
-	}
-	void setVue(RectangleShape forme, int x, int y,
-		Vector2i coin, Vector2f dim, Color couleur)
-	{
-		setPos(x, y, coin);
-		forme.setSize(Vector2f(dim.x, dim.y));
-		forme.setFillColor(couleur);
-		setVue(forme);
-	}
-	void setVue(int x, int y, Vector2i coin, Vector2f dim, Color couleur,
-		Color couleurBord, float bordure, float scaleX, float scaleY)
-	{
-		RectangleShape forme;
-		forme.setOutlineThickness(bordure);
-		forme.setOutlineColor(couleurBord);
-		forme.setScale(scaleX, scaleY);
-		setVue(forme, x, y, coin, dim, couleur);
-	}
-	//Change la position du carré dans la salle
-	void setPos(int x, int y, Vector2i coin)
-	{
-		assert(x >= 0 && x < BLOCMAX &&
-			y >= 0 && y < BLOCMAX);
-		_i = x; _j = y;
-		vue.setPosition(Vector2f(
-			_i * (MILLIEUCARRE.x * 2) + coin.x,
-			_j * (MILLIEUCARRE.y * 2) + coin.y));
-	}
-	Vector2i getPos()
-	{
-		return Vector2i(_i, _j);
-	}
-
-	void cache()
-	{
-		vue.setFillColor(Color::Transparent);
-		vue.setOutlineColor(Color::Transparent);
-	}
-	void montre()
-	{
-		vue.setFillColor(_couleur);
-		vue.setOutlineColor(_couleurBord);
-	}
-};
-
-class bloc
-{
-private:
-	Vector2f _encrage = Vector2f(
-		MILLIEUCARRE.x * BLOCMAX,
-		MILLIEUCARRE.y * BLOCMAX);	//Point pivot du bloc
-	Vector2i _place = Vector2i(9, 0);	//Endroit situé dans la salle
-	int _id = 0,			//
-		_styleBloc = 0,		//
-		_vitesse = 0,		//
-		_etat = 0,			//
-		_forme = 0,			//
-		_angle = 0;			//Orientation actuelle de la forme
-	vector<carre> _tours[4]{//Profil de la forme contenant tout les carrés
-		{vector<carre>(4)}, {vector<carre>(4)},
-		{vector<carre>(4)}, {vector<carre>(4)} };
-	vector<Vector2i> _axes[4]{//Coordonnées du profil de la forme : nécessaire?
-		{ vector<Vector2i>(4) },{ vector<Vector2i>(4) },
-		{ vector<Vector2i>(4) },{ vector<Vector2i>(4) } };
-
-public:
-	bloc() {
-		carre central(2, 2, _place, 1);
-		//{ { vector<carre>(1),
-		//	vector<int>(1),
-		//	vector<int>(1),
-		//	vector<int>(1), } }
-		//array<vector<carre>, 4> tourTest = {};
-		//tourTest.push_back(vector<carre>(5));		//
-		//tourTest.push_back(vector<double>(6, 4));	//Ajoute une ligne de 3 cases (4) dans le vector
-		//tourTest[0].push_back(8);	// Ajoute une case (8) à la première ligne
-		//double i = tourTest.at(1).size();
-		//tourTest.at(1).at(tourTest.at(1).size() - 1) = 9;
-		//vector<array<carre, 4>> *_tours = { new vector<array<carre, 4>>(4, central) };
-		//_tours.at(0) =
-	}
-	bloc(int forme, vector<carre> tours[4])
-	{
-		init(forme, tours);
-	}
-	bloc(int x, int y, int i, int j, int id, int styleBloc, int vitesse,
-		int etat, int forme, int angle, vector<carre> tours[4])
-	{
-		init(x, y, id, styleBloc, vitesse, etat, forme, angle, tours);
-	}
-	~bloc()
-	{
-		_place.x = _place.y = _encrage.x = _encrage.y = _id =
-			_styleBloc = _forme = _vitesse = _etat = _angle = 0;
-		for (int i = 0; i < 4; i++)
-		{
-			_tours[i].~vector();
-			_axes[i].~vector();
-		}
-	}
-
-	////Test avec les vectors
-	//void create(vector<RectangleShape> a)
-	//{
-	//	a.push_back(RectangleShape(Vector2f(100, 100)));
-	//	//vector<RectangleShape>::iterator tempIt = a.end();
-	//	a.end()->setFillColor(sf::Color::White);
-	//};
-
-	void init(int forme, vector<carre> tours[4])
-	{
-		setForme(forme);
-		setTours(tours);
-	}
-	void init(int x, int y, int id, int styleBloc, int vitesse,
-		int etat, int forme, int angle, vector<carre> tours[4])
-	{
-		setPos(Vector2i(x, y));
-		setId(id);
-		setStyleBloc(styleBloc);
-		setVitesse(vitesse);
-		setEtat(etat);
-		setForme(forme);
-		setAngle(angle);
-		setTours(tours);
-	}
-	void setPos(Vector2i pos)
-	{
-		_place = pos;
-	}
-	void setPosX(int x)
-	{
-		_place.x = x;
-	}
-	void setPosY(int y)
-	{
-		_place.y = y;
-	}
-	void setEncrage(Vector2f pos)
-	{
-		_encrage.x = pos.x + MILLIEUCARRE.x * BLOCMAX;
-		_encrage.y = pos.y + MILLIEUCARRE.y * BLOCMAX;
-	}
-	void setId(int id)
-	{
-		_id = id;
-	}
-	void setStyleBloc(int styleBloc)
-	{
-		_styleBloc = styleBloc;
-	}
-	void setForme(int forme)
-	{
-		_forme = forme;
-	}
-	void setVitesse(int vitesse)
-	{
-		_vitesse = vitesse;
-	}
-	void setEtat(int etat)
-	{
-		_etat = etat;
-	}
-	void setAngle(int angle)
-	{
-		_angle = angle;
-	}
-	void setTours(vector<carre> tours[4])
-	{
-		//Chage profils
-		for (int i = 0; i < 4; i++)
-		{
-			//carre().~carre	?
-			_tours[i].resize(0);
-			//Ajoute des carrés au profils
-			for (auto const &element : tours[i])
-				_tours[i].push_back(element);
-		}
-	}
-	void ajouteCube(carre cube, int angle, int x, int y)
-	{
-		cube.setPos(x, y, _place);
-		_tours[angle].push_back(cube);
-	}
-	void remplaceCube(carre cube, int angle, int position, int x, int y)
-	{
-		if (position < _tours[angle].size() && position >= 0)
-		{
-			cube.setPos(x, y, _place);
-			_tours[angle].assign(position, cube);
-		}
-	}
-	void enleveCube(int angle)
-	{
-		//Est-ce vraiment le dernier qu'on veut enlever?
-		_tours[angle].pop_back();
-	}
-	Vector2i getPlace()
-	{
-		return _place;
-	}
-	Vector2f getEncrage()
-	{
-		return _encrage;
-	}
-	int getId()
-	{
-		return _id;
-	}
-	int getStyleBloc()
-	{
-		return _styleBloc;
-	}
-	int getForme()
-	{
-		return _forme;
-	}
-	int getVitesse()
-	{
-		return _vitesse;
-	}
-	int getEtat()
-	{
-		return _etat;
-	}
-	int getAngle()
-	{
-		return _angle;
-	}
-	void getProfil(vector<carre> &tours, int angle)
-	{
-		tours.resize(0);
-		for (auto const &element : _tours[angle])
-			tours.push_back(element);
-	}
-	void getAxes(vector<Vector2i> axes, int angle)
-	{
-		axes.resize(0);
-		for (auto &element : _tours[angle])
-			axes.push_back(element.getPos());
-	}
-
-	void drawBloc(RenderWindow &window)
-	{
-		for (auto const &element : _tours[_angle])
-			window.draw(element.vue);
-	}
-	//void ralenti()
-	//{}
-	//void detruit()
-	//{}
-	//void separe()
-	//{}
-	//void fusionne()
-	//{}
-	//void efface()
-	//{}
-};
-
-
-
-//Construit les pièces par défaut à partir des coordonnées du tableau PIECES
-bool initTetris(bloc tetris[7])
-{
-	int x = COIN.x,
-		y = COIN.y;
-	vector<carre> constructeur[4]{//Profil de la forme contenant tout les carrés
-		{ vector<carre>(0) },{ vector<carre>(0) },
-		{ vector<carre>(0) },{ vector<carre>(0) } };
-
-	for (int f = 0; f < 7; f++)
-	{
-		for (int a = 0; a < 4; a++)
-			for (int c = 0; c < 4; c++)
-				constructeur[a].push_back(carre(PIECES[f][a][c][0], PIECES[f][a][c][1], COIN, 0));
-
-		tetris[f].init(x, y, -1, 1, 1, -1, f, 1, constructeur);
-		for (int i = 0; i < 4; i++)
-			constructeur[i].resize(0);
-	}
-	return 0;
-}
-
-bloc tetris[7];
-bool ok = initTetris(tetris);
-const bloc TETRIS[7] = { tetris[0], tetris[1], tetris[2], tetris[3], tetris[4], tetris[5], tetris[6] };
-
 class salle
 {
 private:
 	string _nomJoueur = "Joueur";	//Nom du joueur
 	Vector2f _pos = Vector2f(30, 30);//Position de la salle dans la fenêtre
-	vector<Vector2i> _occupations;	//Zones où les blocs ne doivent pas pouvoir passer (murs) 
+	int _occupations[20][20] = {0};	//Zones où les blocs ne doivent pas pouvoir passer (murs) 
 	int _noNiveau = 1,				//Numéro du niveau actuel du jeu
 		_noJoueur = 1,				//Si plus qu'un joueur (peut être utilisé pour enregistrer son score)
 		_points = 0,				//Score que le joueur à accumulé
@@ -515,7 +108,7 @@ public:
 	bool checkOccupationRelative(vector<Vector2i> const& axes, Vector2i place)
 	{
 		for (auto const &element : axes)
-			if(_occupations[place.x + element.x][place.y + element.y] == 1)
+			if (_occupations[place.x + element.x][place.y + element.y] == 1)
 				return true;
 		return false;
 	}
@@ -586,15 +179,14 @@ public:
 
 	void placeMurs()
 	{
-		for (int i = 0; i < 20; i++)
+		for (int y = 0; y < 20; y++)
 		{
-			_occupations[0][i] = 1;
-			_occupations[i][19] = 1;
+			_occupations[19][y] = 1;
 		}
-		for (int i = 0; i < 20; i++)
+		for (int x = 0; x < 20; x++)
 		{
-
-			_occupations[19][i] = 1;
+			_occupations[x][19] = 1;
+			_occupations[x][0] = 1;
 		}
 	}
 	string getNomJoueur()
@@ -636,11 +228,12 @@ public:
 	void getOccupation(vector<Vector2i> & occupation)
 	{
 		occupation.resize(0);
-		for (auto const &element : _occupations)
+		for (int i = 0; i < 20; i++)
 			for (int j = 0; j < 20; j++)
-				occupation[i].push_back(_occupations[i][j]);
-		}
+				if (_occupations[i][j] == 1)
+					occupation.push_back(Vector2i(i, j));
 	}
+
 	bloc getBloc()
 	{
 		return _actif;
@@ -706,18 +299,14 @@ public:
 		int x = _actif.getPlace().x,
 			y = _actif.getPlace().y,
 			angle = _actif.getAngle();
-		vector<carre>profil[4];
-		_actif.getProfil(profil[angle], angle);
+		vector<carre>profil;
+		_actif.getProfil(profil, angle);
 
-		for (auto const &element : profil[angle])
-			if (_occupation[x + element._i + X][y + element._j] == 1)
+		for (auto const &element : profil)
+			if (_occupations[x + element._i + X][y + element._j] == 1)
 				return;
 
 		_actif.setPosX(x + X);
-		for (int i = 0; i < 4; i++)
-			for (auto &element : profil[i])
-				element.setPos(element._i + X, element._j, _actif.getPlace());
-		_actif.setTours(profil);
 	}
 	//Bouge le bloc d'une distance en y si elle n'entre pas en conflit avec la salle
 	bool bougeY(int Y)
@@ -729,14 +318,10 @@ public:
 		_actif.getProfil(profil[angle], angle);
 
 		for (auto const &element : profil[angle])
-			if (_occupation[x + element._i][y + element._j + Y] == 1)
+			if (_occupations[x + element._i][y + element._j + Y] == 1)
 				return false;
 
 		_actif.setPosX(y + Y);
-		for (int i = 0; i < 4; i++)
-			for (auto &element : profil[i])
-				element.setPos(element._i, element._j + Y, _actif.getPlace());
-		_actif.setTours(profil);
 		return true;
 	}
 	void tourneGauche()
@@ -763,7 +348,7 @@ public:
 		_actif.getAxes(profil, angle);
 
 		for (auto const &element : profil)
-			if (_occupation[x + element.x][y + element.y] == 1)
+			if (_occupations[x + element.x][y + element.y] == 1)
 				return;
 
 		_actif.setAngle(angle);
@@ -783,101 +368,10 @@ public:
 };
 
 
-//Prototypes des fonctions
-////
+/*Prototypes des fonctions*/
+/*========================*/
+int saisie();
 
-
-struct teStruct
-{
-	int outline = 10;
-	CircleShape boule;
-	RectangleShape rectangle;
-	RectangleShape shape;
-
-	teStruct()
-	{
-		boule.setRadius(100.f);
-		boule.setFillColor(Color::Green);
-
-		rectangle.setSize(Vector2f(120, 50));
-
-		shape.setSize(Vector2f(100, 100));
-		shape.setFillColor(Color::Green);
-		// set a 10-pixel wide orange outline
-		shape.setOutlineThickness(10);
-		shape.setOutlineColor(Color(250, 150, 100));
-		// set the absolute position of the entity
-		shape.setPosition(60, 100);
-		// set the absolute scale of the entity
-		shape.setScale(4.0f, 1.6f);
-		// set the absolute rotation of the entity
-		shape.setRotation(45);
-	}
-};
-
-void testPackPlay(teStruct &test, RenderWindow &window)
-{
-	window.draw(test.boule);
-	window.draw(test.shape);
-	window.draw(test.rectangle);
-
-	static bool retour = false;
-	int x = test.rectangle.getPosition().x;
-	if (retour)
-	{
-		x -= 200;
-		if (x < 10)
-			retour = false;
-	}
-	else
-	{
-		x += 200;
-		if (x > 800)
-			retour = true;
-	}
-	test.rectangle.setPosition(x, 100);
-
-	test.shape.setOutlineThickness(test.outline *= 3);
-	// move the entity relatively to its current position
-	test.shape.move(20, 5);
-	test.boule.move(20, 5);
-
-	// retrieve the absolute position of the entity
-	Vector2f position = test.shape.getPosition(); // = (15, 55)
-
-	// rotate the entity relatively to its current orientation
-	test.shape.rotate(10);
-
-	// retrieve the absolute rotation of the entity
-	float rotation = test.shape.getRotation(); // = 55
-
-	// scale the entity relatively to its current scale
-	test.shape.scale(0.8f, 0.4f);
-
-	// retrieve the absolute scale of the entity
-	Vector2f scale = test.shape.getScale(); // = (2, 0.8)
-}
-
-int saisie()
-{
-	//A B C D E F G H I J K L M N O P Q R S T U V W X Y Z .20-46					1+26
-	//Num0 Num1 Num2 Num3 Num4 Num5 Num6 Num7 Num8 Num9 .0-9									10
-	//Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 .10-19	10
-	//LControl RControl LShift RShift LAlt RAlt LSystem RSystem .47-56						9
-	//LBracket RBracket Slash BackSlash //LParentesis RParentesis .58-							9
-	//Equal Dash Space Return BackSpace Tab PageUp PageDown End Home Insert Delete				12
-	//Add Substract Multiply Divide Left Right Up Down											8
-	//F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 Pause KeyCount (toujours 102?)			15+2
-	//
-	////Tilde SemiColon Comma Period Quote Unknown .-1 
-	////• $ € ¥ £ & % # @ ! ? _ < > é à ç ï ù ë (MAJ?) 
-	////© ® ™ | ' " ` ° ¤ ¬ µ ` ¨ ^ ∞ × ÷ ≥ ≤ ≠ ± 
-	////Menu Play Pause2 Previous Next PrtSc Fn Window (System?) CapsLock
-	////Mute Sound- Sound+ MuteMic Refresh MousePadLock PlaneMode CameraLock
-	////Lock Display Contrast- Contrast+ 
-
-	return 1;
-}
 
 /* Programme principal.
 ===================== */
@@ -913,24 +407,11 @@ int main()
 	//FPS.setString(ss.str());
 	//window.draw(FPS);
 
-	//vector<RectangleShape> exemple;
-	//std::vector<carre> allAsteroids; //List of asteroid CLASS OBJECTS
-	//allAsteroids.push_back(carre()); //New asteroid CLASS OBJECT
-	//for (std::vector<carre>::iterator it = allAsteroids.begin(); it != allAsteroids.end(); ++it) { //Creating asteroids
-	//	it->carre(exemple);
-	//}
-	//for (vector<ConvexShape>::iterator it = exemple.begin(); it != exemple.end(); ++it) {
-	//	window.draw(*it);
-	//}
-
-	float p = atan(1) * 4;
 	vector<Vector2i> occupations;
 	bloc actif = TETRIS[rand() % (7) + 1];
 	bloc prochain = TETRIS[rand() % (7) + 1];
 	salle espace;
 	espace.init(Vector2f(30, 30), 1, 1, occupations, "Joueur", 1, 0, 0, 1, TETRIS, actif, prochain);
-
-	//Vector2f(30, 30), 1, 1, occupations, "Joueur", 1, 0, 0, 1, TETRIS, actif, prochain.
 
 	//Tests
 	teStruct test;
@@ -962,7 +443,6 @@ int main()
 
 		espace.tourneGauche();
 		espace.bougeX(1);
-		//_actif.setTours(profil);.getAxes(profil)
 		espace.setActif(espace.getBloc());
 
 		sleep(seconds(0.3));
@@ -971,7 +451,27 @@ int main()
 	return 0;
 }
 
-/*Fonctions
-==========*/
-
+/*Fonctions*/
+/*=========*/
 // Première fonction.
+int saisie()
+{
+	//A B C D E F G H I J K L M N O P Q R S T U V W X Y Z .20-46					1+26
+	//Num0 Num1 Num2 Num3 Num4 Num5 Num6 Num7 Num8 Num9 .0-9									10
+	//Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 .10-19	10
+	//LControl RControl LShift RShift LAlt RAlt LSystem RSystem .47-56						9
+	//LBracket RBracket Slash BackSlash //LParentesis RParentesis .58-							9
+	//Equal Dash Space Return BackSpace Tab PageUp PageDown End Home Insert Delete				12
+	//Add Substract Multiply Divide Left Right Up Down											8
+	//F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 Pause KeyCount (toujours 102?)			15+2
+	//
+	////Tilde SemiColon Comma Period Quote Unknown .-1 
+	////• $ € ¥ £ & % # @ ! ? _ < > é à ç ï ù ë (MAJ?) 
+	////© ® ™ | ' " ` ° ¤ ¬ µ ` ¨ ^ ∞ × ÷ ≥ ≤ ≠ ± 
+	////Menu Play Pause2 Previous Next PrtSc Fn Window (System?) CapsLock
+	////Mute Sound- Sound+ MuteMic Refresh MousePadLock PlaneMode CameraLock
+	////Lock Display Contrast- Contrast+ 
+
+	return 1;
+}
+

@@ -149,6 +149,7 @@
     <ClCompile Include="tutoGitSFML.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\headers\pieces.h" />
     <ClInclude Include="..\..\headers\saisieSecurisee.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
