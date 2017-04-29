@@ -1,35 +1,19 @@
-<<<<<<< HEAD
 /* En-tête du fichier
-======================
-Fichier:		pieces.h
-Auteur:         Olivier Lemay Dostie
-Date création:  27/04/2017
-Description:    header pour le TP3 de C++ pour la création de carrés, de blocs et
-.				de salles de jeu pour une version personnalisé de Tetris */
-
-/*Directives au pré-processeur.
-=======
-/* En-tÃªte du fichier
 ======================
 Fichier:	pieces.h
 Auteur:		Olivier Lemay Dostie
-Date crÃ©ation:	27/04/2017
-Description:	header pour le TP3 de C++ pour la crÃ©ation de carrÃ©s, de blocs et
-.		de salles de jeu pour une version personnalisÃ© de Tetris */
+Date création:	27/04/2017
+Description:	header pour le TP3 de C++ pour la création de carrés, de blocs et
+.		de salles de jeu pour une version personnalisé de Tetris */
 
-/*Directives au prÃ©-processeur.
->>>>>>> refs/remotes/origin/master
+/*Directives au pré-processeur.
 ==========================*/
 #pragma once
 #include <locale>			
 #include <string>			
 #include <iostream>			
 #include <iomanip>			
-<<<<<<< HEAD
 #include <stdlib.h>			//Pk déjà?
-=======
-#include <stdlib.h>			//Pk dÃ©jÃ ?
->>>>>>> refs/remotes/origin/master
 #include <assert.h>			
 #include <vector>			
 #include <math.h>			
@@ -39,7 +23,6 @@ using namespace sf;
 
 /*Constantes des objets*/
 /*=====================*/
-<<<<<<< HEAD
 const int NBCHARMAX = 30,	//Nombre de caractère maximum dans un message
 BLOCMAX = 5,				//Nb maximal en x et en y de carrés dans un bloc
 CENTREDECARRE = 18,			//Largeur du centre des carrés
@@ -52,26 +35,9 @@ const Vector2i COIN(9, 0),	//Position par défaut des bloc dans la salle
 BASE(0, 0);					//Valeur par défaut de certaines composantes
 double PI = atan(1) * 4;	//pi
 
-//Les coordonnées de chaque carrés de chaque angles des 7 pièces par défaut du jeu
+							//Les coordonnées de chaque carrés de chaque angles des 7 pièces par défaut du jeu
 const int PIECES[7][4][4][2] =
 {		// 7 formes, 4 angles, 4 carrés, 2 coordonnées {{{{2}*4}*4}*7} = 224? carrés o.o
-=======
-const int NBCHARMAX = 30,	//Nombre de caractÃ¨re maximum dans un message
-BLOCMAX = 5,				//Nb maximal en x et en y de carrÃ©s dans un bloc
-CENTREDECARRE = 18,			//Largeur du centre des carrÃ©s
-BORDUREDECARRE = 1;			//Largeur des bordures des carrÃ©s
-const Vector2f LARGUEURCARRE = //Largeur des carrÃ©s dans la fenÃªtre
-Vector2f(CENTREDECARRE + BORDUREDECARRE * 2, CENTREDECARRE + BORDUREDECARRE * 2),
-MILLIEUCARRE =				//Point central des carrÃ©s
-Vector2f(LARGUEURCARRE.x / 2, LARGUEURCARRE.y / 2);
-const Vector2i COIN(9, 0),	//Position par dÃ©faut des bloc dans la salle
-BASE(0, 0);					//Valeur par dÃ©faut de certaines composantes
-double PI = atan(1) * 4;	//pi
-
-//Les coordonnÃ©es de chaque carrÃ©s de chaque angles des 7 piÃ¨ces par dÃ©faut du jeu
-const int PIECES[7][4][4][2] =
-{		// 7 formes, 4 angles, 4 carrÃ©s, 2 coordonnÃ©es {{{{2}*4}*4}*7} = 224? carrÃ©s o.o
->>>>>>> refs/remotes/origin/master
 	{	// Les angles sont: droite (0), debout (1), gauche (2), renverse (3)
 		{ { 1,2 },{ 2,2 },{ 3,2 },{ 3,1 } },
 		{ { 2,1 },{ 2,2 },{ 2,3 },{ 1,1 } },
@@ -89,11 +55,7 @@ const int PIECES[7][4][4][2] =
 		{ { 2,2 },{ 2,3 },{ 3,2 },{ 3,3 } },
 		{ { 2,2 },{ 2,3 },{ 3,2 },{ 3,3 } },
 		{ { 2,2 },{ 2,3 },{ 3,2 },{ 3,3 } }
-<<<<<<< HEAD
 	},	// Carré
-=======
-	},	// CarrÃ©
->>>>>>> refs/remotes/origin/master
 	{
 		{ { 1,2 },{ 2,2 },{ 3,2 },{ 4,2 } },
 		{ { 2,1 },{ 2,2 },{ 2,3 },{ 2,0 } },
@@ -116,7 +78,6 @@ const int PIECES[7][4][4][2] =
 		{ { 1,2 },{ 2,2 },{ 2,3 },{ 3,3 } },
 		{ { 1,2 },{ 2,3 },{ 3,2 },{ 3,1 } },
 		{ { 1,2 },{ 2,2 },{ 2,3 },{ 3,3 } },
-<<<<<<< HEAD
 		{ { 1,2 },{ 2,3 },{ 3,2 },{ 3,1 } } } };//	Plié (Z)
 
 RectangleShape initRectangle(Vector2f echelle, Color couleur,
@@ -126,22 +87,10 @@ const RectangleShape RECT = initRectangle(Vector2f(1, 1),
 	Color(150, 150, 255, 125), Color(), 1, Vector2f(0, 0), Vector2f(0, 0));
 
 /*Un des carrés d'un bloc ou d'une salle*/
-=======
-		{ { 1,2 },{ 2,3 },{ 3,2 },{ 3,1 } } } };//	PliÃ© (Z)
-
-RectangleShape initRectangle(Vector2f echelle, Color couleur,
-	Color couleurBord, float bordure, Vector2f pos, Vector2f origine);
-//Forme rectangulaire des carrÃ©s avec les valeurs de base
-const RectangleShape RECT = initRectangle(Vector2f(1, 1),
-	Color(150, 150, 255, 125), Color(), 1, Vector2f(0, 0), Vector2f(0, 0));
-
-/*Un des carrÃ©s d'un bloc ou d'une salle*/
->>>>>>> refs/remotes/origin/master
 /*======================================*/
 struct carre
 {
 private:
-<<<<<<< HEAD
 	Color _couleur = RECT.getFillColor(),	//Couleur du carré avant d'être mi transparent
 		_couleurBord = RECT.getOutlineColor();//Couleur de la bordure avant d'être mi transparent
 public:
@@ -150,16 +99,6 @@ public:
 	int etat = 0;					//L'état du carré (selon son utilisation)
 
 									// (Dim)menssion du bloc, (x & y) coordonées du carré dans le bloc, (coin) de la salle
-=======
-	Color _couleur = RECT.getFillColor(),	//Couleur du carrÃ© avant d'Ãªtre mi transparent
-		_couleurBord = RECT.getOutlineColor();//Couleur de la bordure avant d'Ãªtre mi transparent
-public:
-	int _i = 2, _j = 2;				//Les coordonnÃ©es du carrÃ© dans le bloc
-	RectangleShape vue = RECT;		//La forme SFML du carrÃ©
-	int etat = 0;					//L'Ã©tat du carrÃ© (selon son utilisation)
-
-									// (Dim)menssion du bloc, (x & y) coordonÃ©es du carrÃ© dans le bloc, (coin) de la salle
->>>>>>> refs/remotes/origin/master
 									// Initialisateurs
 	carre() {}
 	carre(int x, int y, Vector2i coin, int rang);
@@ -169,11 +108,7 @@ public:
 	// Destructeurs
 	~carre();
 
-<<<<<<< HEAD
 	// Change les propriétés du rectangle
-=======
-	// Change les propriÃ©tÃ©s du rectangle
->>>>>>> refs/remotes/origin/master
 	void setVue(RectangleShape forme);
 	void setVue(RectangleShape forme, int x, int y,
 		Vector2i coin, Vector2f dim, Color couleur);
@@ -182,17 +117,10 @@ public:
 	void cache();
 	void montre();
 
-<<<<<<< HEAD
 	// Change la position du carré dans la salle
 	void setPos(int x, int y, Vector2i coin);
 
 	//Retourne la position du carré dans la salle
-=======
-	// Change la position du carrÃ© dans la salle
-	void setPos(int x, int y, Vector2i coin);
-
-	//Retourne la position du carrÃ© dans la salle
->>>>>>> refs/remotes/origin/master
 	Vector2i getPos();
 };
 
@@ -202,28 +130,17 @@ private:
 	Vector2f _encrage = Vector2f(
 		MILLIEUCARRE.x * BLOCMAX,
 		MILLIEUCARRE.y * BLOCMAX);	//Point pivot du bloc
-<<<<<<< HEAD
 	Vector2i _place = Vector2i(1, 9);//Endroit situé dans la salle
-=======
-	Vector2i _place = Vector2i(1, 9);//Endroit situÃ© dans la salle
->>>>>>> refs/remotes/origin/master
 	int _id = 0,			//
 		_styleBloc = 0,		//
 		_vitesse = 0,		//
 		_etat = 0,			//
 		_forme = 0,			//
 		_angle = 0;			// Orientation actuelle de la forme
-<<<<<<< HEAD
 	vector<carre> _tours[4]{// Profil de la forme contenant tout les carrés
 		{ vector<carre>(4) },{ vector<carre>(4) },
 		{ vector<carre>(4) },{ vector<carre>(4) } };
 	//vector<Vector2i> _axes[4]{		//Coordonnées du profil de la forme : nécessaire?
-=======
-	vector<carre> _tours[4]{// Profil de la forme contenant tout les carrÃ©s
-		{ vector<carre>(4) },{ vector<carre>(4) },
-		{ vector<carre>(4) },{ vector<carre>(4) } };
-	//vector<Vector2i> _axes[4]{		//CoordonnÃ©es du profil de la forme : nÃ©cessaire?
->>>>>>> refs/remotes/origin/master
 	//	{ vector<Vector2i>(4) },{ vector<Vector2i>(4) },
 	//	{ vector<Vector2i>(4) },{ vector<Vector2i>(4) } };
 
@@ -241,11 +158,7 @@ public:
 	void init2(int x, int y, int id, int styleBloc, int vitesse,
 		int etat, int forme, int angle, vector<carre> tours[4]);
 
-<<<<<<< HEAD
 	//Coordonnées
-=======
-	//CoordonnÃ©es
->>>>>>> refs/remotes/origin/master
 	void setPos(Vector2i pos);
 	void setPosX(int x);
 	void setPosY(int y);
@@ -268,10 +181,7 @@ public:
 	void enleveCube(int angle);
 
 	////Transforme les attributs du bloc
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/master
 	//void ralenti();
 	//void detruit();
 	//void separe();
@@ -291,26 +201,16 @@ public:
 	void getAxes(vector<Vector2i> axes, int angle);
 
 	//Dessine le bloc
-<<<<<<< HEAD
-	void drawBloc(RenderWindow &window);
-};
-
-/* Fonctions */
-/* ========= */
-//Forme un carré selon les critères du jeu
-=======
 	void drawBloc(RenderWindow &window, int angle);
 };
 
 /* Fonctions pour les clocs */
 /* ========= */
-//Forme un carrÃ© selon les critÃ¨res du jeu
->>>>>>> refs/remotes/origin/master
+//Forme un carré selon les critères du jeu
 RectangleShape initRectangle(Vector2f echelle, Color couleur,
 	Color couleurBord, float bordure, Vector2f pos, Vector2f origine)
 {
 	RectangleShape rectangle(LARGUEURCARRE);
-<<<<<<< HEAD
 	rectangle.setScale(echelle);			//Transforme ses dimmensions selon une échelle
 	rectangle.setFillColor(couleur);		//Couleur principale
 	rectangle.setOutlineColor(couleurBord);	//Couleur de la bordure
@@ -324,30 +224,11 @@ RectangleShape initRectangle(Vector2f echelle, Color couleur,
 }
 
 //Construit les pièces par défaut à partir des coordonnées du tableau PIECES
-=======
-	rectangle.setScale(echelle);			//Transforme ses dimmensions selon une Ã©chelle
-	rectangle.setFillColor(couleur);		//Couleur principale
-	rectangle.setOutlineColor(couleurBord);	//Couleur de la bordure
-	rectangle.setOutlineThickness(bordure);	//Ã‰paisseur de la bordure
-	rectangle.setPosition(pos);				//Position dans l'Ã©cran
-	rectangle.setOrigin(Vector2f(			//Point d'encrage du carrÃ©
-		MILLIEUCARRE.x + origine.x,
-		MILLIEUCARRE.y + origine.y));
-	Transform test = rectangle.getTransform();//Class qui mÃ©morise les transformations effectuÃ©s
-	return rectangle;
-}
-
-//Construit les piÃ¨ces par dÃ©faut Ã  partir des coordonnÃ©es du tableau PIECES
->>>>>>> refs/remotes/origin/master
 bool initTetris(bloc tetris[7])
 {
 	int x = COIN.x,
 		y = COIN.y;
-<<<<<<< HEAD
 	vector<carre> constructeur[4]{//Profil de la forme contenant tout les carrés
-=======
-	vector<carre> constructeur[4]{//Profil de la forme contenant tout les carrÃ©s
->>>>>>> refs/remotes/origin/master
 		{ vector<carre>(0) },{ vector<carre>(0) },
 		{ vector<carre>(0) },{ vector<carre>(0) } };
 
@@ -364,7 +245,6 @@ bool initTetris(bloc tetris[7])
 	return 0;
 }
 
-<<<<<<< HEAD
 bloc tetris[7];		// Liste de sept blocs à initialiser selon des formes
 bool ok = initTetris(tetris);
 // Les septs blocs par défauts du jeu: Sept(L), Pendu (Mirroir du Sept), Carré, Ligne, Plateau (T), Croche (S), Plié (Z)
@@ -372,15 +252,6 @@ const bloc TETRIS[7] = { tetris[0], tetris[1], tetris[2], tetris[3], tetris[4], 
 
 
 /* Méthodes des carrés */
-=======
-bloc tetris[7];		// Liste de sept blocs Ã  initialiser selon des formes
-bool ok = initTetris(tetris);
-// Les septs blocs par dÃ©fauts du jeu: Sept(L), Pendu (Mirroir du Sept), CarrÃ©, Ligne, Plateau (T), Croche (S), PliÃ© (Z)
-const bloc TETRIS[7] = { tetris[0], tetris[1], tetris[2], tetris[3], tetris[4], tetris[5], tetris[6] };
-
-
-/* MÃ©thodes des carrÃ©s */
->>>>>>> refs/remotes/origin/master
 /* =================== */
 
 // 
@@ -398,11 +269,7 @@ carre::carre(RectangleShape forme, int x, int y, Vector2i coin, int rang)
 	etat = rang;
 }
 
-<<<<<<< HEAD
 // Instancie un carré avec toutes les attributs qu'il peut contenir
-=======
-// Instancie un carrÃ© avec toutes les attributs qu'il peut contenir
->>>>>>> refs/remotes/origin/master
 carre::carre(Vector2f dim, Vector2i coin, int x, int y, Color couleur,
 	Color couleurBord, float bordure, float scaleX, float scaleY, int rang)
 {
@@ -410,11 +277,7 @@ carre::carre(Vector2f dim, Vector2i coin, int x, int y, Color couleur,
 	etat = rang;
 }
 
-<<<<<<< HEAD
 // Destructeur de carrés
-=======
-// Destructeur de carrÃ©s
->>>>>>> refs/remotes/origin/master
 carre::~carre()
 {
 	setVue(RectangleShape());
@@ -450,24 +313,15 @@ void carre::setVue(int x, int y, Vector2i coin, Vector2f dim, Color couleur,
 	setVue(forme, x, y, coin, dim, couleur);
 }
 
-<<<<<<< HEAD
 // Change la position du carré dans la salle
-=======
-// Change la position du carrÃ© dans la salle
->>>>>>> refs/remotes/origin/master
 void carre::setPos(int x, int y, Vector2i coin)
 {
 	assert(x >= 0 && x < BLOCMAX &&
 		y >= 0 && y < BLOCMAX);
 	_i = x; _j = y;
 	vue.setPosition(Vector2f(
-<<<<<<< HEAD
-		_i * (MILLIEUCARRE.x * 2) + coin.x,
-		_j * (MILLIEUCARRE.y * 2) + coin.y));
-=======
-	(_i + coin.x) * LARGUEURCARRE.x,
-	(_j + coin.y) * LARGUEURCARRE.y));
->>>>>>> refs/remotes/origin/master
+		(_i + coin.x) * LARGUEURCARRE.x,
+		(_j + coin.y) * LARGUEURCARRE.y));
 }
 
 // 
@@ -491,26 +345,15 @@ void carre::montre()
 }
 
 
-<<<<<<< HEAD
 /*Méthodes des blocs*/
 /*==================*/
 
 // Instancie un bloc par défaut
-=======
-/*MÃ©thodes des blocs*/
-/*==================*/
-
-// Instancie un bloc par dÃ©faut
->>>>>>> refs/remotes/origin/master
 bloc::bloc() {
 	//central(2, 2, _place, 1);
 }
 
-<<<<<<< HEAD
 // Instancie un bloc selon une forme spécifique
-=======
-// Instancie un bloc selon une forme spÃ©cifique
->>>>>>> refs/remotes/origin/master
 bloc::bloc(int forme, vector<carre> tours[4])
 {
 	init(forme, tours);
@@ -562,30 +405,22 @@ void bloc::setPos(Vector2i pos)
 // 
 void bloc::setPosX(int x)
 {
-<<<<<<< HEAD
-	_place.x = x;
-=======
 	_place.x += x;
 	for (auto & element : _tours[_angle])
 	{
 		element.setPos(element._i, element._j, _place);
 	}
->>>>>>> refs/remotes/origin/master
 }
 
 // 
 void bloc::setPosY(int y)
 {
-<<<<<<< HEAD
-	_place.y = y;
-=======
 	_place.y += y;
 	for (auto & element : _tours[_angle])
 	{
 		element.setPos(element._i, element._j, _place);
 	}
-	
->>>>>>> refs/remotes/origin/master
+
 }
 
 // 
@@ -638,11 +473,7 @@ void bloc::setTours(vector<carre> tours[4])
 	for (int i = 0; i < 4; i++)
 	{
 		_tours[i].resize(0);
-<<<<<<< HEAD
 		//Ajoute des carrés au profils
-=======
-		//Ajoute des carrÃ©s au profils
->>>>>>> refs/remotes/origin/master
 		for (auto const &element : tours[i])
 			_tours[i].push_back(element);
 	}
@@ -737,17 +568,11 @@ void bloc::getAxes(vector<Vector2i> axes, int angle)
 }
 
 // 
-<<<<<<< HEAD
-void bloc::drawBloc(RenderWindow &window)
-{
-	for (auto const &element : _tours[_angle])
-=======
 void bloc::drawBloc(RenderWindow &window, int angle)
 {
 	vector<carre> profil;
 	getProfil(profil, angle);
 	for (auto const &element : profil)
->>>>>>> refs/remotes/origin/master
 		window.draw(element.vue);
 }
 
@@ -777,12 +602,6 @@ void bloc::drawBloc(RenderWindow &window, int angle)
 //}
 
 
-<<<<<<< HEAD
-/*Autres cossins à tests*/
-/*======================*/
-
-struct teStruct	// Crée des formes pour les manipuler
-=======
 /* Objet salle pour afficher ouvrir, jouer et manipuler le jeu principal*/
 /* ===================================================================== */
 class salle
@@ -791,17 +610,17 @@ private:
 	string _nomJoueur = "Joueur";	//Nom du joueur
 	RectangleShape _boite;
 	RectangleShape _information;
-	Vector2f _pos = Vector2f(30, 30);//Position de la salle dans la fenÃªtre
-	int _occupations[20][20] = { 0 };	//Zones oÃ¹ les blocs ne doivent pas pouvoir passer (murs) 
-	int _noNiveau = 1,				//NumÃ©ro du niveau actuel du jeu
-		_noJoueur = 1,				//Si plus qu'un joueur (peut Ãªtre utilisÃ© pour enregistrer son score)
-		_points = 0,				//Score que le joueur Ã  accumulÃ©
+	Vector2f _pos = Vector2f(30, 30);//Position de la salle dans la fenêtre
+	int _occupations[20][20] = { 0 };	//Zones où les blocs ne doivent pas pouvoir passer (murs) 
+	int _noNiveau = 1,				//Numéro du niveau actuel du jeu
+		_noJoueur = 1,				//Si plus qu'un joueur (peut être utilisé pour enregistrer son score)
+		_points = 0,				//Score que le joueur à accumulé
 		_nbBombe = 1,				//Autre option lol
-		_styleBlocs = 1,			//textures, couleurs, etc. : nÃ©cessaire?
+		_styleBlocs = 1,			//textures, couleurs, etc. : nécessaire?
 		_orientation = 1,			//si on fait tourner la salle
-		_vitesseBloc = 1;			//vitesse des blocs qu'on crÃ©e par dÃ©faut
+		_vitesseBloc = 1;			//vitesse des blocs qu'on crée par défaut
 	bloc _typesBloc[7],				//La liste des blocs disponible
-		_actif,						//Le bloc avec lequel on joue prÃ©sentement
+		_actif,						//Le bloc avec lequel on joue présentement
 		_prochain;					//Le prochain bloc du jeu
 
 public:
@@ -825,7 +644,7 @@ public:
 
 	// Change les attributs de la salle
 	void modifierInterface(RenderWindow &window,
-		bloc pieceSuivante, vector<Vector2i> profil, string nomJoueur);
+		bloc pieceSuivante, vector<Vector2i> profil, string nomJoueur, int lvl, int score);
 	void initTypesBloc();
 	void setTypesBloc(const bloc typesBloc[7]);
 	void setPos(Vector2f pos);
@@ -843,7 +662,7 @@ public:
 	//int actif();
 	int prochain();
 
-	// RÃ©cupÃ©rations des attributs de la salle
+	// Récupérations des attributs de la salle
 	string getNomJoueur();
 	Vector2f getPos();
 	int getNoNiveau();
@@ -867,7 +686,7 @@ public:
 	void tourne();
 	void brasse();
 
-	// ContrÃ´les principales
+	// Contrôles principales
 	void pause();
 	void menu();
 	void balaye();
@@ -875,7 +694,7 @@ public:
 	void compresse();
 	void ferme();
 
-	// DÃ©placements et transformations du bloc actif
+	// Déplacements et transformations du bloc actif
 	void bougeX(int X);
 	bool bougeY(int Y);
 	void tourneGauche();
@@ -889,7 +708,7 @@ public:
 	void afficherInterface(RenderWindow &window);
 };
 
-/*MÃ©thodes des salles*/
+/*Méthodes des salles*/
 /*===================*/
 
 // Instanciations
@@ -903,19 +722,20 @@ public:
 // 
 salle::salle()
 {
-	_boite.setSize(Vector2f(600, 763));
-
+	_boite.setSize(Vector2f(600, 650));
+	_boite.setFillColor(Color::Transparent);
 	_boite.setOutlineThickness(10);
 	_boite.setOutlineColor(Color::Red);
-	_boite.setPosition(20, 20);
+	_boite.setPosition(20, 125);
 	Texture texture;
 	if (!texture.loadFromFile("Tetris-Background_3.jpg", IntRect(50, 25, 300, 100)));
 	_boite.setTexture(&texture);
-	_information.setTexture(&texture);
-	_information.setSize(Vector2f(300, 760));
-	_information.setOutlineThickness(10);
-	_information.setOutlineColor(Color::Red);
-	_information.setPosition(650, 20);
+
+	//_information.setTexture(&texture);
+	//_information.setSize(Vector2f(300, 300));
+	//_information.setOutlineThickness(10);
+	//_information.setOutlineColor(Color::Red);
+	//_information.setPosition(650, 125);
 }
 
 // 
@@ -1034,74 +854,101 @@ void salle::placeMurs()
 
 // 
 void salle::modifierInterface(RenderWindow &window,
-	bloc pieceSuivante, vector<Vector2i> profil, string nomJoueur)
+	bloc pieceSuivante, vector<Vector2i> profil, string nomJoueur, int lvl, int score)
 {
 	RectangleShape interfacePieceSuivante(Vector2f(150, 150));
 	RectangleShape afficherPieceSuivante(Vector2f(300, 750));
 	Font font;
-	font.loadFromFile("font_arial.ttf"); // choix de la police Ã  utiliser
+	font.loadFromFile("font_arial.ttf"); // choix de la police à utiliser
 	Text text;
 	text.setFont(font);
+	
+	interfacePieceSuivante.setFillColor(Color::Black);
+	interfacePieceSuivante.setOutlineThickness(10);
+	interfacePieceSuivante.setOutlineColor(Color::Red);
+	interfacePieceSuivante.setPosition(740, 125);
+	window.draw(interfacePieceSuivante);
+
 	afficherPieceSuivante.setFillColor(Color::White);
 	afficherPieceSuivante.setOutlineThickness(10);
 	afficherPieceSuivante.setOutlineColor(Color::Red);
 	afficherPieceSuivante.setPosition(685, 25);
-	window.draw(afficherPieceSuivante);
-	interfacePieceSuivante.setFillColor(Color::Black);
-	interfacePieceSuivante.setOutlineThickness(10);
-	interfacePieceSuivante.setOutlineColor(Color::Red);
-	interfacePieceSuivante.setPosition(740, 75);
-	window.draw(interfacePieceSuivante);
+	/*window.draw(afficherPieceSuivante);*/
+	
+	Text textNom;
+	textNom.setFont(font);  // choix de la police à utiliser				
+	textNom.setString(nomJoueur); // choix de la chaîne de caractères à afficher
+	textNom.setCharacterSize(24); //choix de la taille des caractères exprimée en pixels, pas en points !
+	textNom.setColor(Color::White);    // choix de la couleur du texte
+	textNom.setStyle(Text::Underlined); 	// choix du style du texte
+	textNom.setPosition(725, 70);		// position du texte
+	window.draw(textNom);
 
-
-
-	text.setString("Prochaine piece"); 	// choix de la chaÃ®ne de caractÃ¨res Ã  afficher
-	text.setCharacterSize(24); // choix de la taille des caractÃ¨res exprimÃ©e en pixels, pas en points !						 
+	text.setString("Prochaine piece"); 	// choix de la chaîne de caractères à afficher
+	text.setCharacterSize(32); // choix de la taille des caractères exprimée en pixels, pas en points !						 
 	text.setColor(Color::Black);   // choix de la couleur du texte
 	text.setStyle(Text::Bold); 	// choix du style du texte
 	text.setPosition(720, 25);		// position du texte
 	window.draw(text);
 	Text textLevel;
-	textLevel.setFont(font);  // choix de la police Ã  utiliser				
-	textLevel.setString("Votre level : "); // choix de la chaÃ®ne de caractÃ¨res Ã  afficher
-	textLevel.setCharacterSize(24); //choix de la taille des caractÃ¨res exprimÃ©e en pixels, pas en points !
-	textLevel.setColor(Color::Black);    // choix de la couleur du texte
+	textLevel.setFont(font);  // choix de la police à utiliser				
+	textLevel.setString("Level : "); // choix de la chaîne de caractères à afficher
+	textLevel.setCharacterSize(32); //choix de la taille des caractères exprimée en pixels, pas en points !
+	textLevel.setColor(Color::White);    // choix de la couleur du texte
 	textLevel.setStyle(Text::Bold); 	// choix du style du texte
 	textLevel.setPosition(700, 300);		// position du texte
 	window.draw(textLevel);
-	Text textNom;
-	textLevel.setFont(font);  // choix de la police Ã  utiliser				
-	textLevel.setString(nomJoueur); // choix de la chaÃ®ne de caractÃ¨res Ã  afficher
-	textLevel.setCharacterSize(24); //choix de la taille des caractÃ¨res exprimÃ©e en pixels, pas en points !
-	textLevel.setColor(Color::Black);    // choix de la couleur du texte
-	textLevel.setStyle(Text::Bold); 	// choix du style du texte
-	textLevel.setPosition(700, 350);		// position du texte
-	window.draw(textLevel);
-	Text textLigne;
-	textLigne.setFont(font);  // choix de la police Ã  utiliser				
-	textLigne.setString("Nombre de ligne \nReussi : "); // choix de la chaÃ®ne de caractÃ¨res Ã  afficher
-	textLigne.setCharacterSize(24); //choix de la taille des caractÃ¨res exprimÃ©e en pixels, pas en points !
-	textLigne.setColor(Color::Black);    // choix de la couleur du texte
-	textLigne.setStyle(Text::Bold); 	// choix du style du texte
-	textLigne.setPosition(700, 400);		// position du texte
-	window.draw(textLigne);
-	Text textScore;
-	textScore.setFont(font);  // choix de la police Ã  utiliser				
-	textScore.setString("Score : "); // choix de la chaÃ®ne de caractÃ¨res Ã  afficher
-	textScore.setCharacterSize(24); //choix de la taille des caractÃ¨res exprimÃ©e en pixels, pas en points !
-	textScore.setColor(Color::Black);    // choix de la couleur du texte
-	textScore.setStyle(Text::Bold); 	// choix du style du texte
-	textScore.setPosition(700, 500);		// position du texte
-	window.draw(textScore);
-	Text textAide;
-	textAide.setFont(font);  // choix de la police Ã  utiliser				
-	textAide.setString("     Commande \n Z : Tourne a gauche \n X : Tourne a droite \n P : Pause \n M : Mute \n T : Prochaine musique \n Q : Unmute \n Esc : Menu"); // choix de la chaÃ®ne de caractÃ¨res Ã  afficher
-	textAide.setCharacterSize(24); //choix de la taille des caractÃ¨res exprimÃ©e en pixels, pas en points !
-	textAide.setColor(Color::Black);    // choix de la couleur du texte
-	textAide.setStyle(Text::Bold); 	// choix du style du texte
-	textAide.setPosition(700, 550);		// position du texte
-	window.draw(textAide);
 	
+	Text nbLevel;
+	nbLevel.setFont(font);  // choix de la police à utiliser
+	std::string nblvl = std::to_string(lvl);
+	
+	nbLevel.setString(nblvl); // choix de la chaîne de caractères à afficher
+	nbLevel.setCharacterSize(32); //choix de la taille des caractères exprimée en pixels, pas en points !
+	nbLevel.setColor(Color::White);    // choix de la couleur du texte
+	nbLevel.setStyle(Text::Bold); 	// choix du style du texte
+	nbLevel.setPosition(810, 300);		// position du texte
+	window.draw(nbLevel);
+
+	//Text textLigne;
+	//textLigne.setFont(font);  // choix de la police à utiliser				
+	//textLigne.setString("Nombre de ligne \nReussi : "); // choix de la chaîne de caractères à afficher
+	//textLigne.setCharacterSize(24); //choix de la taille des caractères exprimée en pixels, pas en points !
+	//textLigne.setColor(Color::Black);    // choix de la couleur du texte
+	//textLigne.setStyle(Text::Bold); 	// choix du style du texte
+	//textLigne.setPosition(700, 300);		// position du texte
+	//window.draw(textLigne);
+
+	Text textScore;
+	textScore.setFont(font);  // choix de la police à utiliser				
+	textScore.setString("Score : "); // choix de la chaîne de caractères à afficher
+	textScore.setCharacterSize(32); //choix de la taille des caractères exprimée en pixels, pas en points !
+	textScore.setColor(Color::White);    // choix de la couleur du texte
+	textScore.setStyle(Text::Bold); 	// choix du style du texte
+	textScore.setPosition(700, 350);		// position du texte
+	window.draw(textScore);
+
+	Text nbrScore;
+	nbrScore.setFont(font);  // choix de la police à utiliser
+	std::string nbScore = std::to_string(score);
+
+	nbrScore.setString(nbScore); // choix de la chaîne de caractères à afficher
+	nbrScore.setCharacterSize(32); //choix de la taille des caractères exprimée en pixels, pas en points !
+	nbrScore.setColor(Color::White);    // choix de la couleur du texte
+	nbrScore.setStyle(Text::Bold); 	// choix du style du texte
+	nbrScore.setPosition(810, 350);		// position du texte
+	window.draw(nbrScore);
+
+	Text textAide;
+	textAide.setFont(font);  // choix de la police à utiliser				
+	textAide.setString("Commande : \nZ : Pivoter à gauche \nX : Pivoter à droite \nP : Pause \nM : Mute \nT : Prochaine musique \nQ : Unmute \nEsc : Menu"); // choix de la chaîne de caractères à afficher
+	textAide.setCharacterSize(28); //choix de la taille des caractères exprimée en pixels, pas en points !
+	textAide.setColor(Color::White);    // choix de la couleur du texte
+	textAide.setStyle(Text::Bold); 	// choix du style du texte
+	textAide.setPosition(690, 400);		// position du texte
+	window.draw(textAide);
+	if (!font.loadFromFile("font_arial.ttf"));
+	text.setFont(font);
 }
 
 // 
@@ -1208,7 +1055,7 @@ int salle::prochain()
 	return numBlock;
 }
 
-// RÃ©cupÃ©rations des attributs de la salle
+// Récupérations des attributs de la salle
 
 // 
 string salle::getNomJoueur()
@@ -1338,7 +1185,7 @@ void salle::tourne()			//**
 void salle::brasse()			//**
 {}
 
-// ContrÃ´les principales
+// Contrôles principales
 
 // 
 void salle::pause()
@@ -1364,7 +1211,7 @@ void salle::compresse()
 void salle::ferme()
 {}
 
-/* DÃ©placements et transformations du bloc actif */
+/* Déplacements et transformations du bloc actif */
 
 // Bouge le bloc d'une distance en x si elle n'entre pas en conflit avec la salle
 void salle::bougeX(int X)
@@ -1394,7 +1241,7 @@ bool salle::bougeY(int Y)
 
 
 	for (auto const &element : profil)
-	{ 
+	{
 		if (_occupations[x + element._i][y + element._j + Y] == 1)
 			return false;
 	}
@@ -1467,11 +1314,10 @@ void salle::afficherInterface(RenderWindow &window)
 
 
 
-/*Autres cossins Ã  tests*/
+/*Autres cossins à tests*/
 /*======================*/
 
-struct teStruct	// CrÃ©e des formes pour les manipuler
->>>>>>> refs/remotes/origin/master
+struct teStruct	// Crée des formes pour les manipuler
 {
 	int outline = 10;
 	CircleShape boule;
@@ -1541,8 +1387,4 @@ void testPackPlay(teStruct &test, RenderWindow &window)
 
 	// retrieve the absolute scale of the entity
 	Vector2f scale = test.shape.getScale(); // = (2, 0.8)
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> refs/remotes/origin/master
