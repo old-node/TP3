@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="tutoGitSFML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -29,5 +26,8 @@
     <ClInclude Include="..\..\headers\pieces.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
