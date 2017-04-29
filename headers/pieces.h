@@ -23,19 +23,19 @@ using namespace sf;
 
 /*Constantes des objets*/
 /*=====================*/
-const int NBCHARMAX = 30,	//Nombre de caractère maximum dans un message
-BLOCMAX = 5,				//Nb maximal en x et en y de carrés dans un bloc
-CENTREDECARRE = 18,			//Largeur du centre des carrés
-BORDUREDECARRE = 1;			//Largeur des bordures des carrés
-const Vector2f LARGUEURCARRE = //Largeur des carrés dans la fenêtre
-Vector2f(CENTREDECARRE + BORDUREDECARRE * 2, CENTREDECARRE + BORDUREDECARRE * 2),
-MILLIEUCARRE =				//Point central des carrés
-Vector2f(LARGUEURCARRE.x / 2, LARGUEURCARRE.y / 2);
-const Vector2i COIN(9, 0),	//Position par défaut des bloc dans la salle
-BASE(0, 0);					//Valeur par défaut de certaines composantes
-double PI = atan(1) * 4;	//pi
+const int NBCHARMAX = 30;		// Nb de caractère maximum dans un message
+const int BLOCMAX = 5;			// Nb maximal en x et en y de carrés dans un bloc
+const int CENTREDECARRE = 18;	// Largeur du centre des carrés
+const int BORDUREDECARRE = 1;	// Largeur des bordures des carrés
+const Vector2f LARGUEURCARRE =	// Largeur des carrés dans la fenêtre
+/**/		Vector2f(CENTREDECARRE + BORDUREDECARRE * 2, CENTREDECARRE + BORDUREDECARRE * 2);
+const Vector2f MILLIEUCARRE =	// Point central des carrés
+/**/		Vector2f(LARGUEURCARRE.x / 2, LARGUEURCARRE.y / 2);
+const Vector2i COIN(9, 0);		// Position par défaut des bloc dans la salle
+const Vector2i BASE(0, 0);		// Valeur par défaut de certaines composantes
+const double PI = atan(1) * 4;	// pi
 
-//Les coordonnées de chaque carrés de chaque angles des 7 pièces par défaut du jeu
+// Les coordonnées de chaque carrés de chaque angles des 7 pièces par défaut du jeu
 const int PIECES[7][4][4][2] =
 {		// 7 formes, 4 angles, 4 carrés, 2 coordonnées {{{{2}*4}*4}*7} = 224? carrés o.o
 	{	// Les angles sont: droite (0), debout (1), gauche (2), renverse (3)
@@ -320,8 +320,8 @@ void carre::setPos(int x, int y, Vector2i coin)
 		y >= 0 && y < BLOCMAX);
 	_i = x; _j = y;
 	vue.setPosition(Vector2f(
-	(_i + coin.x) * LARGUEURCARRE.x,
-	(_j + coin.y) * LARGUEURCARRE.y));
+		(_i + coin.x) * LARGUEURCARRE.x,
+		(_j + coin.y) * LARGUEURCARRE.y));
 }
 
 // 
@@ -420,7 +420,7 @@ void bloc::setPosY(int y)
 	{
 		element.setPos(element._i, element._j, _place);
 	}
-	
+
 }
 
 // 
@@ -920,7 +920,7 @@ void salle::modifierInterface(RenderWindow &window,
 	textAide.setStyle(Text::Bold); 	// choix du style du texte
 	textAide.setPosition(700, 550);		// position du texte
 	window.draw(textAide);
-	
+
 }
 
 // 
@@ -1213,7 +1213,7 @@ bool salle::bougeY(int Y)
 
 
 	for (auto const &element : profil)
-	{ 
+	{
 		if (_occupations[x + element._i][y + element._j + Y] == 1)
 			return false;
 	}

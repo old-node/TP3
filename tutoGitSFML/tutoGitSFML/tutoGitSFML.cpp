@@ -75,30 +75,6 @@ int main()
 	unsigned seed = time(0);
 	Clock tempsEcoule;
 
-	/* Création d'une police */
-	//Font font;
-	//if (!font.loadFromFile("arial.ttf"))
-	//	return 1;
-	//Text FPS("0", font, 25);
-	//FPS.setOrigin(-10, -10);
-	//FPS.setColor(Color::Red);
-	/* Test FPS à inclure dans la boucle */
-	//static int cptImage = 0;
-	//static int fps = 0;
-	//cptImage++;
-	//moment = tempsEcoule.getElapsedTime();
-	//if (moment.asMilliseconds() > 999)
-	//{
-	//	fps = cptImage;
-	//	cptImage = 0;
-	//	tempsEcoule.restart();
-	//}
-	//stringstream ss;
-	//ss << fps;
-	//FPS.setString(ss.str());
-	//window.draw(FPS);
-
-
 	vector<Vector2i> occupations;
 	bloc actif = TETRIS[rand() % (7) + 1];
 	bloc prochain = TETRIS[rand() % (7) + 1];
@@ -106,7 +82,10 @@ int main()
 	espace.init(Vector2f(30, 30), 1, 1, occupations, "Joueur", 1, 0, 0, 1, TETRIS, actif, prochain);
 
 	//Tests
-	teStruct test;
+	//teStruct test;
+	RectangleShape f(Vector2f(100,100));
+	f.setFillColor(Color(120,210,100,130));
+
 
 	//Essais de blocs
 	bloc active = espace.getBloc();
@@ -135,6 +114,9 @@ int main()
 		
 		int posy, posx;
 		int nbY = 0;
+
+		
+		
 		//coord debut;
 		//debut.x = 205;
 		//debut.y = 0;
@@ -153,10 +135,10 @@ int main()
 			if (!texture.loadFromFile("Tetris-Background.jpg"));
 			Sprite background(texture);
 			window.draw(background);
-
-
+			
 			espace.afficherInterface(window);
 			espace.modifierInterface(window, prochain, profil, nomJoueur);
+			window.draw(f);
 			active.drawBloc(window, active.getAngle());
 			
 			/*blocActif.getProfil(profil);
@@ -168,13 +150,16 @@ int main()
 			{
 			case 2:
 				active.setPosY(1);
-
+				f.move(Vector2f(0, 20));					/////
 				break;
 			case 4:
 				active.setPosX(-1);
+				f.move(Vector2f(-20, 0));					/////
 				break;
 			case 5:
 				active.setPosX(1);
+				f.move(Vector2f(20, 0));					/////
+
 				break;
 			default:
 				break;
