@@ -64,7 +64,8 @@ int main()
 		music.play();
 	int i = 0;
 
-
+	//if (!texture.loadFromFile("Tetris-Background.jpg"));
+	//Sprite background(texture);
 
 	Texture texture;
 	if (!texture.loadFromFile("Tetris-Background.jpg"));
@@ -88,21 +89,17 @@ int main()
 
 
 	//Essais de blocs
-	bloc active = espace.getBloc();
-	int angle = active.getAngle();
+	//bloc active = espace.getBloc();
+	//int angle = active.getAngle();
 	vector<Vector2i> profil;
 	
 	espace.getOccupation(occupations);
 
 	Event event;
 
-
 	int piece, pieceActive;
-
 	piece = espace.prochain();
-
 	pieceActive = piece;
-	
 	actif = espace.getBloc();
 
 	window.display();
@@ -115,56 +112,48 @@ int main()
 		int posy, posx;
 		int nbY = 0;
 
-		
-		
-		//coord debut;
-		//debut.x = 205;
-		//debut.y = 0;
-		//posx = blocActif.getX();
-		//posy = blocActif.getY();
-		//blocActif.setPosX(debut);
-		//blocActif.setPosY(debut);
 		espace.afficherInterface(window);
 		espace.modifierInterface(window, prochain, profil, nomJoueur);
+		
 		int mouvement;
 		do {
-			/*posx = blocActif.getX();
-			posy = blocActif.getY();
-*/
-		
-			if (!texture.loadFromFile("Tetris-Background.jpg"));
-			Sprite background(texture);
+			mouvement = saisie(window, music, nomJoueur, i);
+
+			switch (mouvement)
+			{
+			case 8:	// Haut
+				espace.tourneDroite();
+				//espace.bouge(0, -1);
+				f.move(Vector2f(0, -20));					/////
+				break;
+			case 5:	// Bas
+				espace.bouge(0, 1);
+				f.move(Vector2f(0, 20));					/////
+				break;
+			case 4:	// Gauche
+				espace.bouge(-1, 0);
+				f.move(Vector2f(-20, 0));					/////
+			case 6:	// Droite
+				espace.bouge(1, 0);
+				f.move(Vector2f(20, 0));					/////
+				break;
+			case 0:	
+				espace.tourneGauche();
+				break;
+			case 1:
+				
+				break;
+			default:
+				break;
+			}
+			
 			window.draw(background);
 			
 			espace.afficherInterface(window);
 			espace.modifierInterface(window, prochain, profil, nomJoueur);
 			window.draw(f);
-			active.drawBloc(window, active.getAngle());
-			
-			/*blocActif.getProfil(profil);
-			formePiece(formeActif, profil, blocActif.getPlace());*/ 
-		
-			mouvement = saisie(window, music, nomJoueur, i);
+			espace.getBloc().draw(window);
 
-			switch (mouvement)
-			{
-			case 2:
-				active.setPosY(1);
-				f.move(Vector2f(0, 20));					/////
-				break;
-			case 4:
-				active.setPosX(-1);
-				f.move(Vector2f(-20, 0));					/////
-				break;
-			case 5:
-				active.setPosX(1);
-				f.move(Vector2f(20, 0));					/////
-
-				break;
-			default:
-				break;
-			}
- 
 			nbY++;
 			window.display();
 			sleep(seconds(0));
@@ -235,20 +224,19 @@ int saisie(RenderWindow &window, Music &music, string &nomJoueur, int &i)
 			}
 			else if (event.key.code == Keyboard::Escape)
 			{
-
 				afficherMenu(window, music, nomJoueur);
 			}
 			else if (event.key.code == Keyboard::Z)
 			{
-				return 6;
+				return 0;
 			}
 			else if (event.key.code == Keyboard::Down)
 			{
-				return 2;
+				return 5;
 			}
 			else if (event.key.code == Keyboard::X || event.key.code == Keyboard::Up)
 			{
-				return 7;
+				return 8;
 			}
 			else if (event.key.code == Keyboard::Left)
 			{
@@ -256,7 +244,7 @@ int saisie(RenderWindow &window, Music &music, string &nomJoueur, int &i)
 			}
 			else if (event.key.code == Keyboard::Right)
 			{
-				return 5;
+				return 6;
 			}
 			else if (event.key.code == Keyboard::Pause)
 			{

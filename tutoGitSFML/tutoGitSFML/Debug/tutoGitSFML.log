@@ -1,36 +1,40 @@
 ﻿  tutoGitSFML.cpp
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(373): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(373): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(492): warning C4018: '<': signed/unsigned mismatch
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(731): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(776): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(879): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\carre.h(47): warning C4244: 'argument': conversion from 'const int' to 'const float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\carre.h(95): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\bloc.h(192): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\bloc.h(192): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\bloc.h(323): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\bloc.h(347): warning C4018: '<': signed/unsigned mismatch
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(159): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(206): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(307): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(887): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(315): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(895): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(323): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(903): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(331): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(911): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(339): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(919): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(347): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(1025): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(1328): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(1341): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(1343): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(75): warning C4244: 'initializing': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(70): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(135): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(97): warning C4101: 'event': unreferenced local variable
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(115): warning C4101: 'posy': unreferenced local variable
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(115): warning C4101: 'posx': unreferenced local variable
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(340): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(351): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(451): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(752): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(765): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\headers\pieces.h(767): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(76): warning C4244: 'initializing': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(71): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(98): warning C4101: 'event': unreferenced local variable
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(112): warning C4101: 'posy': unreferenced local variable
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(112): warning C4101: 'posx': unreferenced local variable
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(328): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(339): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(344): warning C4996: 'sf::Text::setColor': was declared deprecated
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
 c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(356): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(368): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(367): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
 c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(379): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
@@ -40,62 +44,59 @@ c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tut
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
 c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(415): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(427): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(468): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(480): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(479): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(491): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(498): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(510): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(509): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(521): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(524): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(536): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(531): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(543): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(538): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(550): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(553): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(565): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(560): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(572): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(567): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(579): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(582): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(594): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(589): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(601): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(596): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(608): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(605): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(612): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(617): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(624): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(642): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(654): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(650): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(739): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(744): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(755): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(662): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(751): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(756): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(759): warning C4996: 'sf::Text::setColor': was declared deprecated
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(763): warning C4996: 'sf::Text::setColor': was declared deprecated
+  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
 c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(767): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
 c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(771): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
 c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(775): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(779): warning C4996: 'sf::Text::setColor': was declared deprecated
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(778): warning C4996: 'sf::Text::setColor': was declared deprecated
   c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(783): warning C4996: 'sf::Text::setColor': was declared deprecated
-  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(787): warning C4996: 'sf::Text::setColor': was declared deprecated
-  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(790): warning C4996: 'sf::Text::setColor': was declared deprecated
-  c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: see declaration of 'sf::Text::setColor'
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(784): warning C4390: ';': empty controlled statement found; is this the intent?
 c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(796): warning C4390: ';': empty controlled statement found; is this the intent?
 c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(808): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(820): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(831): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(734): warning C4715: 'choixMenu': not all control paths return a value
-c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(693): warning C4715: 'menuOption': not all control paths return a value
-  LINK : C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\tutoGitSFML\Debug\tutoGitSFML.exe not found or not built by the last incremental link; performing full link
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(819): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(722): warning C4715: 'choixMenu': not all control paths return a value
+c:\users\o l d\desktop\1_etudes\2s\168_c++\exams\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(681): warning C4715: 'menuOption': not all control paths return a value
   tutoGitSFML.vcxproj -> C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\tutoGitSFML\Debug\tutoGitSFML.exe
   tutoGitSFML.vcxproj -> C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\tutoGitSFML\Debug\tutoGitSFML.pdb (Full PDB)

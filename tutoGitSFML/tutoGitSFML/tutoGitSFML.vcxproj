@@ -148,6 +148,8 @@
     <ClCompile Include="tutoGitSFML.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\headers\bloc.h" />
+    <ClInclude Include="..\..\headers\carre.h" />
     <ClInclude Include="..\..\headers\pieces.h" />
     <ClInclude Include="..\..\headers\saisieSecurisee.h" />
   </ItemGroup>
