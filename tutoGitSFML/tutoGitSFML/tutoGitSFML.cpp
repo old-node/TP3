@@ -89,7 +89,7 @@ int main()
 			score = 0;
 		}
 	} while (reponse != 1);
-	
+
 	window2.close();
 
 	RenderWindow window(VideoMode(1000, 800), "TETRIS Jeu");
@@ -147,7 +147,7 @@ int main()
 			Sprite background(texture);
 			window.draw(background);
 
-		
+
 			espace.afficherInterface(window);
 			espace.modifierInterface(window, prochain, profil, joueur.nomJoueur, joueur.level, joueur.score);
 			active.drawBloc(window, active.getAngle());
@@ -156,7 +156,7 @@ int main()
 			titreTetris(window, font, 150, 20, 60);
 			nbY++;
 			window.display();
-		
+
 
 			switch (mouvement)
 			{
@@ -311,27 +311,25 @@ void enregistrerScore(RenderWindow &window, joueur &joueur) {
 			vieuxscore.open("score.txt", ifstream::out | ifstream::trunc);
 			vieuxscore.close();
 
-			trierInsertion( listeNomJoueur, scoreMax, cptJoueur);
+			trierInsertion(listeNomJoueur, scoreMax, cptJoueur);
 
 			/*char nomJoueurTemp[20];
 			int scoreJoueur[20];
 			int i, j;
 			for (i = 1; i < conteur; ++i) {
-				int elem = scoreMax[i];
-				for (j = i; j > 0; j--) {
-					if (elem < scoreMax[j - 1])
-						break;
-					else
-					{
-						scoreMax[j+1] = scoreMax[j];
-						strcpy_s(nomJoueurTemp, 20, listeNomJoueur[j]);
-						strcpy_s(listeNomJoueur[j], 20, listeNomJoueur[j - 1]);
-						strcpy_s(listeNomJoueur[j - 1], 20, nomJoueurTemp);
-					}
-
-
-				}
-				scoreMax[j+1] = elem;
+			int elem = scoreMax[i];
+			for (j = i; j > 0; j--) {
+			if (elem < scoreMax[j - 1])
+			break;
+			else
+			{
+			scoreMax[j+1] = scoreMax[j];
+			strcpy_s(nomJoueurTemp, 20, listeNomJoueur[j]);
+			strcpy_s(listeNomJoueur[j], 20, listeNomJoueur[j - 1]);
+			strcpy_s(listeNomJoueur[j - 1], 20, nomJoueurTemp);
+			}
+			}
+			scoreMax[j+1] = elem;
 			}*/
 
 
