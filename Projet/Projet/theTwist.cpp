@@ -13,7 +13,7 @@ Description:	Projet final en C++. Version personalisé du jeu Tetris en SFML.
 #include <stdlib.h>	
 #include <math.h>	//permet de trouver le minimun ou le maximum entre 2 valeurs
 #include <locale>	
-#include <pieces.h>	
+#include <salle.h>	
 using namespace std;
 
 
