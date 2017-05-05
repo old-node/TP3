@@ -22,6 +22,7 @@ using namespace sf;
 /* Prototype des fonctions */
 ///======================= */
 class salle;
+const int LRGPOLICE = 24;
 const int NBPIECE = 7;					// Nombre de pièces accessibles au jeu
 bool initPieces(bloc * blocsJeu[NBPIECE], const Vector2i pieces[NBPIECE][4][4]);
 int alleatoire(const int & max, const int & indice);
@@ -349,79 +350,78 @@ void salle::initStatistiques(RenderWindow & window, bloc pieceSuivante, string n
 	font.loadFromFile("font_arial.ttf");// Choix de la police à utiliser
 	Text text;
 	text.setFont(font);
-	Vector2f posAffiche = Vector2f(DIMSALLE.x + 30, 30);
-	RectangleShape boiteStatistiques(Vector2f(300, DIMSALLE.y + 30));
-	RectangleShape fenetrePiecesSuivante(Vector2f(DIMCARRE.x * (MAXCARRE + 1), DIMCARRE.y * (MAXCARRE + 1)));
+	Vector2f posAffiche = Vector2f(DIMSALLE.x + LRGPOLICE, LRGPOLICE);
+	RectangleShape boiteStatistiques(Vector2f(300, DIMSALLE.y + LRGPOLICE * 5));
 	boiteStatistiques.setFillColor(Color(255, 255, 255, 80));
 	boiteStatistiques.setOutlineThickness(10);
 	boiteStatistiques.setOutlineColor(Color::Red);
-	boiteStatistiques.setPosition(DIMSALLE.x + 20, 25);
+	boiteStatistiques.setPosition(posAffiche.x - 15, posAffiche.y);
 	window.draw(boiteStatistiques);
 	
 	text.setString("Prochaine piece"); 	// Chaîne de caractères à afficher
-	text.setCharacterSize(24);			// Taille des caractères exprimée en pixels, pas en points !						 
+	text.setCharacterSize(LRGPOLICE);	// Taille des caractères exprimée en pixels, pas en points !						 
 	text.setColor(Color::Black);		// Couleur du texte
 	text.setStyle(Text::Bold);			// Style du texte
-	posAffiche.y += 50;
+	posAffiche.x += LRGPOLICE;
 	text.setPosition(posAffiche);		// Position du texte
 	window.draw(text);
 
+	RectangleShape fenetrePiecesSuivante(Vector2f(DIMCARRE.x * (MAXCARRE + 1), DIMCARRE.y * (MAXCARRE + 1) + LRGPOLICE));
 	fenetrePiecesSuivante.setFillColor(Color::Black);
 	fenetrePiecesSuivante.setOutlineThickness(10);
 	fenetrePiecesSuivante.setOutlineColor(Color::Red);
-	posAffiche.x -= 10;
-	posAffiche.y += DIMCARRE.y * (MAXCARRE + 1) + 40;
+	posAffiche.y += LRGPOLICE*2;
 	fenetrePiecesSuivante.setPosition(posAffiche);
+	posAffiche.x -= LRGPOLICE;
 	window.draw(fenetrePiecesSuivante);
 
-	
 	
 	/// Utiliser ici une fonction pour afficher la prochaine pièce au bon endroit (à réutiliser)
 	
 	Text textLevel;
 	textLevel.setFont(font);  // choix de la police à utiliser				
 	textLevel.setString("Votre level : "); // choix de la chaîne de caractères à afficher
-	textLevel.setCharacterSize(24); //choix de la taille des caractères exprimée en pixels, pas en points !
+	textLevel.setCharacterSize(LRGPOLICE); //choix de la taille des caractères exprimée en pixels, pas en points !
 	textLevel.setColor(Color::Black);    // choix de la couleur du texte
 	textLevel.setStyle(Text::Bold); 	// choix du style du texte
-	posAffiche.y += 50;
+	posAffiche.y += DIMCARRE.y * (MAXCARRE + 1) + LRGPOLICE * 2;
 	textLevel.setPosition(posAffiche);		// position du texte
 	window.draw(textLevel);
 	Text textNom;
 	textLevel.setFont(font);  // choix de la police à utiliser				
 	textLevel.setString(nomJoueur); // choix de la chaîne de caractères à afficher
-	textLevel.setCharacterSize(24); //choix de la taille des caractères exprimée en pixels, pas en points !
+	textLevel.setCharacterSize(LRGPOLICE); //choix de la taille des caractères exprimée en pixels, pas en points !
 	textLevel.setColor(Color::Black);    // choix de la couleur du texte
 	textLevel.setStyle(Text::Bold); 	// choix du style du texte
-	posAffiche.y += 50;
+	posAffiche.y += LRGPOLICE;
 	textLevel.setPosition(posAffiche);		// position du texte
 	window.draw(textLevel);
 	Text textLigne;
 	textLigne.setFont(font);  // choix de la police à utiliser				
 	textLigne.setString("Nombre de ligne \nReussi : "); // choix de la chaîne de caractères à afficher
-	textLigne.setCharacterSize(24); //choix de la taille des caractères exprimée en pixels, pas en points !
+	textLigne.setCharacterSize(LRGPOLICE); //choix de la taille des caractères exprimée en pixels, pas en points !
 	textLigne.setColor(Color::Black);    // choix de la couleur du texte
 	textLigne.setStyle(Text::Bold); 	// choix du style du texte
-	posAffiche.y += 50;
+	posAffiche.y += LRGPOLICE;
 	textLigne.setPosition(posAffiche);		// position du texte
 	window.draw(textLigne);
 	Text textScore;
 	textScore.setFont(font);  // choix de la police à utiliser				
 	textScore.setString("Score : "); // choix de la chaîne de caractères à afficher
-	textScore.setCharacterSize(24); //choix de la taille des caractères exprimée en pixels, pas en points !
+	textScore.setCharacterSize(LRGPOLICE); //choix de la taille des caractères exprimée en pixels, pas en points !
 	textScore.setColor(Color::Black);    // choix de la couleur du texte
 	textScore.setStyle(Text::Bold); 	// choix du style du texte
-	posAffiche.y += 50;
-	textScore.setPosition(posAffiche);		// position du texte
+	posAffiche.y += LRGPOLICE*2;
+	textScore.setPosition(posAffiche);	// position du texte
 	window.draw(textScore);
 	Text textAide;
-	textAide.setFont(font);			// Choix de la police à utiliser				
-	textAide.setString				// Choix de la chaîne de caractères à afficher
+	textAide.setFont(font);				// Choix de la police à utiliser				
+	textAide.setString					// Choix de la chaîne de caractères à afficher
 	("     Commande \n Z : Tourne a gauche \n X : Tourne a droite \n P : Pause \n M : Mute \n T : Prochaine musique \n Q : Unmute \n Esc : Menu");
-	textAide.setCharacterSize(24);	//Choix de la taille des caractères exprimée en pixels, pas en points !
-	textAide.setColor(Color::Black);// Choix de la couleur du texte
-	textAide.setStyle(Text::Bold);	// Choix du style du texte
-	posAffiche.y += 50;
+	textAide.setCharacterSize(LRGPOLICE);	//Choix de la taille des caractères exprimée en pixels, pas en points !
+	textAide.setColor(Color::Black);	// Choix de la couleur du texte
+	textAide.setStyle(Text::Bold);		// Choix du style du texte
+	posAffiche.y += LRGPOLICE * 3;		
 	textAide.setPosition(posAffiche);	// Position du texte
 	window.draw(textAide);
 }

@@ -45,7 +45,7 @@ int main()
 	srand(time(NULL));		// Trouve une source aléatoire
 	
 	int i = 0;
-	RenderWindow window(VideoMode(DIMSALLE.x + 300, DIMSALLE.y + 200), "TETRIS Jeu");
+	RenderWindow window(VideoMode(DIMSALLE.x + 300 + LRGPOLICE, DIMSALLE.y + 200), "TETRIS Jeu");
 	string nomJoueur = "Nouveau Joueur";
 	
 	Music music;
