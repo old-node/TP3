@@ -1,3 +1,4 @@
+//Commentaire inutile 
 /* En-tête du programme
 =======================
 Programme:      tutoGitsSFML.cpp
@@ -22,7 +23,7 @@ Description:	Programme des essais SFML et de connection Git pour le projet final
 #include <SFML/Audio.hpp>
 using namespace std;
 using namespace sf;
-
+//Commentaire inutile 
 struct joueur
 {
 	string nomJoueur;
@@ -1346,3 +1347,4 @@ void afficherMenu(RenderWindow &window, Music &music, Music &music2, Music &musi
 
 
 }
+//Commentaire inutile 

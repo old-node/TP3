@@ -849,7 +849,7 @@ void salle::placeMurs()
 		_occupations[x][0] = 1;
 	}
 }
-
+//Commentaire inutile:)
 /*Change les attributs de la salle*/
 
 // 
