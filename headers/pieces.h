@@ -868,12 +868,6 @@ void salle::modifierInterface(RenderWindow &window,
 	interfacePieceSuivante.setOutlineColor(Color::Red);
 	interfacePieceSuivante.setPosition(740, 125);
 	window.draw(interfacePieceSuivante);
-
-	afficherPieceSuivante.setFillColor(Color::White);
-	afficherPieceSuivante.setOutlineThickness(10);
-	afficherPieceSuivante.setOutlineColor(Color::Red);
-	afficherPieceSuivante.setPosition(685, 25);
-	/*window.draw(afficherPieceSuivante);*/
 	
 	Text textNom;
 	textNom.setFont(font);  // choix de la police à utiliser				
@@ -890,6 +884,9 @@ void salle::modifierInterface(RenderWindow &window,
 	text.setStyle(Text::Bold); 	// choix du style du texte
 	text.setPosition(720, 25);		// position du texte
 	window.draw(text);
+
+	
+
 	Text textLevel;
 	textLevel.setFont(font);  // choix de la police à utiliser				
 	textLevel.setString("Level : "); // choix de la chaîne de caractères à afficher
