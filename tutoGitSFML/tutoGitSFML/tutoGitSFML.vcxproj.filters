@@ -23,7 +23,13 @@
     <ClInclude Include="..\..\headers\saisieSecurisee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\headers\pieces.h">
+    <ClInclude Include="..\..\headers\bloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\headers\carre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\headers\salle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

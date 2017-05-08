@@ -75,6 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\O L D\Desktop\1_Etudes\2s\168_C++\Exams\TP3\headers;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -148,7 +149,9 @@
     <ClCompile Include="tutoGitSFML.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\headers\pieces.h" />
+    <ClInclude Include="..\..\headers\bloc.h" />
+    <ClInclude Include="..\..\headers\carre.h" />
+    <ClInclude Include="..\..\headers\salle.h" />
     <ClInclude Include="..\..\headers\saisieSecurisee.h" />
   </ItemGroup>
   <ItemGroup>
