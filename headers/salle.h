@@ -22,71 +22,24 @@ using namespace sf;
 /* Prototype des fonctions */
 ///======================= */
 class salle;
-const int LRGPOLICE = 24;
-const int NBPIECE = 7;					// Nombre de pièces accessibles au jeu
-bool initPieces(bloc * blocsJeu[NBPIECE], const Vector2i pieces[NBPIECE][4][4]);
+bool initPieces(bloc * blocsJeu, const int & nbPiece, const vector<Vector2i> pieces[NBPIECE][4]);
 int alleatoire(const int & max, const int & indice);
 
 
 /* Constantes de blocs */
 ///=================== */
-/* Les coordonnées de chaque carrés de chaque angles des NBPIECE pièces par défaut du jeu */
-const Vector2i PIECES[NBPIECE][4][4] =
-{		// NBPIECE formes, 4 angles, 4 carrés, pour chaque coordonnées {{{{Vector2i}*4}*4}*NBPIECE}
-	{	// Les angles sont: droite (0), debout (1), gauche (2), renverse (3)
-		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 3,1 } },
-		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 1,1 } },
-		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 1,3 } },
-		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,3 } }
-	},	// Sept (L)
-	{
-		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
-		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,1 } },
-		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 1,1 } },
-		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 1,3 } }
-	},	// Pendu (Mirroir du Sept)
-	{
-		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
-		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
-		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
-		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } }
-	},	// Carré
-	{
-		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 4,2 } },
-		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 2,0 } },
-		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 0,2 } },
-		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 2,4 } }
-	},	// Ligne
-	{
-		{ Vector2i{ 1,2 }, Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 } },
-		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 } },
-		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 } },
-		{ Vector2i{ 1,2 }, Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 3,2 } }
-	},	// Plateau
-	{
-		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 1,3 } },
-		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
-		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 1,3 } },
-		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } }
-	},	//	Croche (S)
-	{
-		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,3 } },
-		{ Vector2i{ 1,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,1 } },
-		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,3 } },
-		{ Vector2i{ 1,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,1 } } } };//	Plié (Z)
-bloc * tetris[NBPIECE];		// Liste de sept blocs à instancier à partir de PIECES
-const bool ok = initPieces(tetris, PIECES);	/// Instancie les blocs
-// Les septs blocs par défauts du jeu: Sept(L), Pendu (Mirroir du Sept), Carré, Ligne, Plateau (T), Croche (S), Plié (Z)
-const bloc * TETRIS[NBPIECE] = { tetris[0], tetris[1], tetris[2], 
-tetris[3], tetris[4], tetris[5], tetris[6] };
+const bool ok = initPieces(tetris, NBPIECE, PIECES);	// Instancie les blocs 'tetris'
+
 
 /* Constantes pour les salles */
 ///========================== */
+const int LRGPOLICE = 24;
 const int NBCHARMAX = 30;				// Nb de caractère maximum dans un message
 const Vector2f DIMSALLE					// Dimmension par défaut de la salle
-/**/		(DIMCARRE.x * LRGJEU, DIMCARRE.y * HAUJEU);
+/**/(DIMCARRE.x * LRGJEU, DIMCARRE.y * HAUJEU);
 const Vector2i PIVOTSALLE				// Point pivot des salles
-/**/		(DIMSALLE.x / 2, DIMSALLE.y / 2);
+/**/(DIMSALLE.x / 2, DIMSALLE.y / 2);
+const Vector2f POSAFFICHE = Vector2f(DIMSALLE.x + POS.x - 40, LRGPOLICE);
 const Keyboard::Key CONTROLES[2][6] =	// Contrôles des joueurs en mode Multijoueur
 {// haut		bas				gauche			droite			tourne gauche	tourne droite
 { Keyboard::W,	Keyboard::S,	Keyboard::A,	Keyboard::D,	Keyboard::F,	Keyboard::G },		// 1er Joueur
@@ -94,52 +47,65 @@ const Keyboard::Key CONTROLES[2][6] =	// Contrôles des joueurs en mode Multijou
 };
 
 
+
 /* Objet salle pour afficher ouvrir, jouer et manipuler le jeu principal */
 ///===================================================================== */
 class salle
 {
 private:
-	Vector2f _pos = POS;				// Position de la salle dans la fenêtre
-	RectangleShape _boite;				// Lieu	où l'on affiche l'espace de jeu
-	RectangleShape _information;		// Section pour affichier les statistiques
 	int _occupations					// Zones où les blocs ne doivent pas pouvoir passer (murs)
-		[HAUJEU][LRGJEU] = { 0 };		
+		[HAUJEU][LRGJEU] = { 0 };
 	vector<carre> _tuiles;				// Carrés formant les zones infranchissables
 	vector<bloc> _blocsFixes;			// Tout les blocs qui d'ont le joueur à perdu le contrôle
-	int _styleBlocs = 1;				// Textures, couleurs, etc. (nécessaire?)
-	int _nbPiece = NBPIECE;			// Nombre de pièces disponible dans le niveau
-	bloc _blocsJeu[NBPIECE];			// La liste des blocs disponibles
-	bloc _blocProchain; 				// Le prochain bloc du jeu
+
+	int _nbPiece = NBPIECE;				// Nombre de pièces disponible dans le niveau
+	bloc *_blocsJeu[NBPIECE];			// La liste des blocs disponibles
 	bloc _blocActif;  					// Le bloc avec lequel on joue présentement
+	bloc _blocProchain; 				// Le prochain bloc du jeu
+
 	int _vitesseBloc = 1;				// Vitesse du bloc actif
 	int _noNiveau = 1;					// Numéro du niveau actuel du jeu
+	int _styleBlocs = 1;				// Textures, couleurs, etc. (nécessaire?)
 	int _orientation = 1;				// Si on fait tourner la salle
+
+	// Utiliser la struct joueur
 	string _nomJoueur = "Joueur";		// Nom du joueur
 	int _noJoueur = 1;					// Si plus qu'un joueur (peut être utilisé pour enregistrer son score)
 	int _points = 0;					// Score que le joueur à accumulé
 	bool _permis = true;				// Si vrai, laisse le joueur faire des actions
 	int _nbBombe = 1;					// Autre option lol
-	
+
+	Vector2f _pos = POS;				// Position de la salle dans la fenêtre
+	RectangleShape _boite;				// Lieu	où l'on affiche l'espace de jeu
+	RectangleShape _information;		// Section pour affichier les statistiques
+
+
+	void videOccupations();
+	void videBlocsJeu();
+
+	void placeMurs();
+
+	bool pivote(int angle);
+	bool colision(const vector<Vector2i>& axes, const int & X, const int & Y);
+
+	void prochain();
 public:
 	// Instanciatieurs
 	salle(string nomJoueur);
 	salle(Vector2f pos, int noNiveau, int orientation, vector<Vector2i> occupation,
 		string nomJoueur, int noJoueur, int points, int nbBombe, int vitesse,
-		const bloc blocsJeu[NBPIECE]);
-	
+		const bloc * blocsJeu);
+
 	// Destructeurs
 	~salle();
-	void videOccupations();
-	void videBlocsJeu();
 
 	// Préparations de la salle
 	void init(Vector2f pos, int noNiveau, int orientation, vector<Vector2i> occupation,
 		string nomJoueur, int noJoueur, int points, int nbBombe, int vitesse,
-		const bloc blocsJeu[NBPIECE]);
-	void initBlocsJeu(const bloc pieces[NBPIECE]);
+		const bloc * blocsJeu);
+	void initBlocsJeu(const bloc * pieces);
 	void recharche(int noNiveau);
 	void demare();
-	void placeMurs();
 
 	// Changements des attributs de la salle
 	void initStatistiques(RenderWindow & window, bloc pieceSuivante, string nomJoueur);
@@ -153,6 +119,7 @@ public:
 	void setVitesse(int vitesse);
 	void setActif(bloc actif);
 	void setProchain(bloc prochain);
+
 	void setOccupationAbsolue(const vector<Vector2i> & axes);
 	void setOccupationRelative(const vector<Vector2i> & axes, Vector2i place);
 	void creeObstacle();
@@ -160,7 +127,6 @@ public:
 	void brasse();
 
 	// Contrôles principales
-	void prochain();
 	void tourne();
 	void pause();
 	void menu();
@@ -171,13 +137,16 @@ public:
 
 	// Déplacements et transformations du bloc actif
 	bool bouge(int X, int Y);
-	bool colision(const vector<Vector2i>& axes, const int & X, const int & Y);
-	bool tourneGauche();
-	bool tourneDroite();
-	bool tourne(int angle);
 	void tombe();
-	void arret(const bool & permis);
+	bool pivoteGauche();
+	bool pivoteDroite();
 	void colle();
+	/// Rallentis la progression du bloc. (augmente le délais avant qu'il continu sa descente)
+	//void bloc::ralenti()
+	//{
+	//}
+	void arret(const bool & permis);
+
 
 	// Récupérations des attributs de la salle
 	string getNomJoueur();
@@ -191,20 +160,30 @@ public:
 	int getVitesse();
 	bloc getBloc();
 	bloc getProchain();
-	void getOccupationTableau();
+
 	void getOccupation(vector<Vector2i> & occupation);
 	void getOccupationAbsolue(vector<int> occupation, const vector<Vector2i> & axes);
-	void getOccupationRelative(vector<int> occupation, const vector<Vector2i> & axes, Vector2i place);
+	void getOccupationRelative(vector<int> occupation,
+		const vector<Vector2i> & axes, Vector2i place);
 	bool checkOccupationAbsolue(const vector<Vector2i> & axes);
 	bool checkOccupationRelative(const vector<Vector2i> & axes, Vector2i place);
 
 	// Affichages
-	void afficherInterface(RenderWindow &window);
-	void afficheBlocsFixes(RenderWindow & window);
+	// Affiche le bloc 
+	void drawActif(RenderWindow & window)
+	{
+		_blocActif.draw(window);
+	}
+	// Affiche le prochain bloc dans la fenêtre des statistiques.
+	void montreProchain(RenderWindow & window)
+	{
+		_blocProchain.montre(window, Vector2f(
+			POSAFFICHE.x + PIVOTBLOC.x,
+			POSAFFICHE.y + PIVOTBLOC.y * 2));
+	}
+	void afficherInterface(RenderWindow & window);
+	void afficheBlocsSalle(RenderWindow & window);
 };
-
-/* Méthodes des salles */
-///=================== */
 
 // Instanciations de base */
 ///====================== */
@@ -212,14 +191,14 @@ public:
 salle::salle(string nomJoueur)
 {
 	setNomJoueur(nomJoueur);
-	initBlocsJeu((*TETRIS));
+	initBlocsJeu(TETRIS);
 	placeMurs();
 }
 
 // Instancie la salle avec toutes ses valeurs.
 salle::salle(Vector2f pos, int noNiveau, int orientation, vector<Vector2i> occupation,
 	string nomJoueur, int noJoueur, int points, int nbBombe, int vitesse,
-	const bloc blocsJeu[NBPIECE])
+	const bloc * blocsJeu)
 {
 	init(pos, noNiveau, orientation, occupation, nomJoueur,
 		noJoueur, points, nbBombe, vitesse, blocsJeu);
@@ -259,6 +238,8 @@ salle::~salle()
 // Destructeur pour _occupations.
 void salle::videOccupations()
 {
+	_tuiles.resize(0);
+	_blocsFixes.resize(0);
 	for (int i = 0; i < HAUJEU; i++)
 		for (int j = 0; j < LRGJEU; j++)
 			_occupations[i][j] = { 0 };
@@ -270,7 +251,7 @@ void salle::videBlocsJeu()
 	vector<carre> vide;
 	vector<Vector2i> axes[4];
 	for (int i = 0; i < NBPIECE; i++)
-		_blocsJeu[i].setFormes(vide, axes);
+		(*_blocsJeu)[i].setFormes(vide, axes);
 }
 
 /* Modificateurs de la salle */
@@ -278,7 +259,7 @@ void salle::videBlocsJeu()
 // Initialise la salle avec toutes ses valeurs.
 void salle::init(Vector2f pos, int noNiveau, int orientation, vector<Vector2i> occupation,
 	string nomJoueur, int noJoueur, int points, int nbBombe, int vitesse,
-	const bloc blocsJeu[NBPIECE])
+	const bloc * blocsJeu)
 {
 	setPos(pos);
 	setNoNiveau(noNiveau);
@@ -297,25 +278,22 @@ void salle::init(Vector2f pos, int noNiveau, int orientation, vector<Vector2i> o
 void salle::recharche(int noNiveau)
 {
 	videOccupations();
-
-	setNoNiveau(noNiveau);
 	placeMurs();
 
-	initBlocsJeu((*TETRIS));
+	setNoNiveau(noNiveau);
+	initBlocsJeu(TETRIS);
 }
 
 // Charge les blocs par défaut dans la salle puis choisi les premiers blocs du jeu.
-void salle::initBlocsJeu(const bloc pieces[NBPIECE])
+void salle::initBlocsJeu(const bloc * pieces)
 {
 	bloc test;
 	for (int i = 0; i < NBPIECE; i++)
 	{
-
-		//new (&_blocsJeu[i]) bloc(pieces[i]);	/// Lequel utiliser? le premier bug après en avoir
-		//_blocsJeu[i] = *new bloc(pieces[i]);	/// effectué un. le deuxième non plus lol
+		*(_blocsJeu + i) = new bloc(*(pieces + i));
 	}
-
-	setActif(_blocsJeu[alleatoire(NBPIECE, -1)]);
+	setActif(**(_blocsJeu + (alleatoire(NBPIECE, -1))));
+	setProchain(_blocActif);
 	prochain();
 }
 
@@ -325,105 +303,90 @@ void salle::demare()
 
 }
 
-// Modifie la salle pour que les murs et la base soit infranchissable.
+// Ajoude des tuiles aux murs et à la base pour qu'ils deviennent infranchissables.
 void salle::placeMurs()
 {
-	RectangleShape tuile = RECT;
-
-	for (int y = 0; y < LRGJEU; y++)
+	// Murs
+	for (int y = 0; y < HAUJEU; y++)
 	{
-		_occupations[HAUJEU - 1][y] = 1;
-
+		_occupations[y][LRGJEU - 1] = 1;
+		_tuiles.push_back(carre(_pos, Vector2i(LRGJEU - 1, y), COIN,
+			PALETTES[2][rand() % 6], 3));
+		_occupations[y][0] = 1;
+		_tuiles.push_back(carre(_pos, Vector2i(0, y), COIN,
+			PALETTES[2][rand() % 6], 3));
 	}
-	for (int x = 0; x < HAUJEU; x++)
+	// Plancher
+	for (int x = 0; x < LRGJEU; x++)
 	{
-		_occupations[x][LRGJEU - 1] = 1;
-		_occupations[x][0] = 1;
+		_occupations[HAUJEU - 1][x] = 1;
+		_tuiles.push_back(carre(_pos, Vector2i(x, HAUJEU - 1), COIN,
+			PALETTES[2][rand() % 6], 3));
 	}
+}
+
+Text initText(Font police, string message, int mesure, 
+	Color couleur, Vector2f & pos, Vector2f decalage)
+{
+	Text text(message, police, mesure);
+	text.setFillColor(couleur);
+	pos.x += decalage.x;
+	pos.y += decalage.y;
+	text.setPosition(pos);
+	return text;
 }
 
 /*Change les attributs de la salle*/
 /// On devrait séparer l'initialisation et l'affichage pur n'avoir qu'à réinitialiser les choses qui changent.
 void salle::initStatistiques(RenderWindow & window, bloc pieceSuivante, string nomJoueur)
 {
-	Font font;
-	font.loadFromFile("font_arial.ttf");// Choix de la police à utiliser
-	Text text;
-	text.setFont(font);
-	Vector2f posAffiche = Vector2f(DIMSALLE.x + LRGPOLICE, LRGPOLICE);
-	RectangleShape boiteStatistiques(Vector2f(300, DIMSALLE.y + LRGPOLICE * 5));
-	boiteStatistiques.setFillColor(Color(255, 255, 255, 80));
-	boiteStatistiques.setOutlineThickness(10);
-	boiteStatistiques.setOutlineColor(Color::Red);
-	boiteStatistiques.setPosition(posAffiche.x - 15, posAffiche.y);
-	window.draw(boiteStatistiques);
-	
-	text.setString("Prochaine piece"); 	// Chaîne de caractères à afficher
-	text.setCharacterSize(LRGPOLICE);	// Taille des caractères exprimée en pixels, pas en points !						 
-	text.setColor(Color::Black);		// Couleur du texte
-	text.setStyle(Text::Bold);			// Style du texte
-	posAffiche.x += LRGPOLICE;
-	text.setPosition(posAffiche);		// Position du texte
-	window.draw(text);
+	Vector2f posAffiche(POSAFFICHE.x - 15, POSAFFICHE.y);
+	Vector2f decalage = BASE;
 
-	RectangleShape fenetrePiecesSuivante(Vector2f(DIMCARRE.x * (MAXCARRE + 1), DIMCARRE.y * (MAXCARRE + 1) + LRGPOLICE));
+	Font police;
+	police.loadFromFile("font_arial.ttf");
+	
+	Color couleurBordStat = Color::Red;
+	Color couleurStat = Color(255, 255, 255, 80);
+	float bordure = 10;
+	
+	RectangleShape boiteStat(Vector2f(300, DIMSALLE.y + LRGPOLICE * 5));
+	boiteStat.setFillColor(couleurStat);
+
+	Text prochaine = initText(police, "Prochaine piece", LRGPOLICE, 
+		Color::Black, posAffiche, decalage);
+
+	decalage = Vector2f(LRGPOLICE, LRGPOLICE * 2);
+	RectangleShape fenetrePiecesSuivante
+		(Vector2f(PIVOTBLOC.x * 2.2, PIVOTBLOC.y * 2.2 + LRGPOLICE));
 	fenetrePiecesSuivante.setFillColor(Color::Black);
-	fenetrePiecesSuivante.setOutlineThickness(10);
-	fenetrePiecesSuivante.setOutlineColor(Color::Red);
-	posAffiche.y += LRGPOLICE*2;
-	fenetrePiecesSuivante.setPosition(posAffiche);
-	posAffiche.x -= LRGPOLICE;
-	window.draw(fenetrePiecesSuivante);
 
-	
 	/// Utiliser ici une fonction pour afficher la prochaine pièce au bon endroit (à réutiliser)
+
+
+	decalage = BASE;
+	decalage.y = PIVOTBLOC.y * 2.2 + LRGPOLICE * 2;
+	Text textLevel = initText(police, "Votre level : ", LRGPOLICE,
+		Color::Black, posAffiche, decalage);
+
+	decalage.y = LRGPOLICE;
+	Text textNom = initText(police, _nomJoueur, LRGPOLICE,
+		Color::Black, posAffiche, decalage);
 	
-	Text textLevel;
-	textLevel.setFont(font);  // choix de la police à utiliser				
-	textLevel.setString("Votre level : "); // choix de la chaîne de caractères à afficher
-	textLevel.setCharacterSize(LRGPOLICE); //choix de la taille des caractères exprimée en pixels, pas en points !
-	textLevel.setColor(Color::Black);    // choix de la couleur du texte
-	textLevel.setStyle(Text::Bold); 	// choix du style du texte
-	posAffiche.y += DIMCARRE.y * (MAXCARRE + 1) + LRGPOLICE * 2;
-	textLevel.setPosition(posAffiche);		// position du texte
-	window.draw(textLevel);
-	Text textNom;
-	textLevel.setFont(font);  // choix de la police à utiliser				
-	textLevel.setString(nomJoueur); // choix de la chaîne de caractères à afficher
-	textLevel.setCharacterSize(LRGPOLICE); //choix de la taille des caractères exprimée en pixels, pas en points !
-	textLevel.setColor(Color::Black);    // choix de la couleur du texte
-	textLevel.setStyle(Text::Bold); 	// choix du style du texte
-	posAffiche.y += LRGPOLICE;
-	textLevel.setPosition(posAffiche);		// position du texte
-	window.draw(textLevel);
-	Text textLigne;
-	textLigne.setFont(font);  // choix de la police à utiliser				
-	textLigne.setString("Nombre de ligne \nReussi : "); // choix de la chaîne de caractères à afficher
-	textLigne.setCharacterSize(LRGPOLICE); //choix de la taille des caractères exprimée en pixels, pas en points !
-	textLigne.setColor(Color::Black);    // choix de la couleur du texte
-	textLigne.setStyle(Text::Bold); 	// choix du style du texte
-	posAffiche.y += LRGPOLICE;
-	textLigne.setPosition(posAffiche);		// position du texte
-	window.draw(textLigne);
-	Text textScore;
-	textScore.setFont(font);  // choix de la police à utiliser				
-	textScore.setString("Score : "); // choix de la chaîne de caractères à afficher
-	textScore.setCharacterSize(LRGPOLICE); //choix de la taille des caractères exprimée en pixels, pas en points !
-	textScore.setColor(Color::Black);    // choix de la couleur du texte
-	textScore.setStyle(Text::Bold); 	// choix du style du texte
-	posAffiche.y += LRGPOLICE*2;
-	textScore.setPosition(posAffiche);	// position du texte
-	window.draw(textScore);
-	Text textAide;
-	textAide.setFont(font);				// Choix de la police à utiliser				
-	textAide.setString					// Choix de la chaîne de caractères à afficher
-	("     Commande \n Z : Tourne a gauche \n X : Tourne a droite \n P : Pause \n M : Mute \n T : Prochaine musique \n Q : Unmute \n Esc : Menu");
-	textAide.setCharacterSize(LRGPOLICE);	//Choix de la taille des caractères exprimée en pixels, pas en points !
-	textAide.setColor(Color::Black);	// Choix de la couleur du texte
-	textAide.setStyle(Text::Bold);		// Choix du style du texte
-	posAffiche.y += LRGPOLICE * 3;		
-	textAide.setPosition(posAffiche);	// Position du texte
-	window.draw(textAide);
+	Text textLigne = initText(police, "Nombre de ligne \nReussi : ", LRGPOLICE,
+		Color::Black, posAffiche, decalage);
+
+	decalage.y = LRGPOLICE * 2;
+	Text textScore = initText(police, "Score : ", LRGPOLICE,
+		Color::Black, posAffiche, decalage);
+
+	decalage.y = LRGPOLICE * 3;
+	Text textAide = initText(police, 
+		"     Commande \n Z : Tourne a gauche \n X : Tourne a droite \n P : Pause \n M : Mute \n T : Prochaine musique \n Q : Unmute \n Esc : Menu", 
+		LRGPOLICE, Color::Black, posAffiche, decalage);
+	
+	// window.draw(text);
+	// window.draw(boiteStatistiques);
 }
 
 // 
@@ -494,9 +457,9 @@ void salle::setOccupationAbsolue(vector<Vector2i> const& axes)
 }
 
 // 
-void salle::setOccupationRelative(vector<Vector2i> const& axes, Vector2i place)
+void salle::setOccupationRelative(vector<Vector2i> const & axes, Vector2i place)
 {
-	for (auto const &element : axes)
+	for (Vector2i const & element : axes)
 		_occupations[place.x + element.x][place.y + element.y] = 1;
 }
 
@@ -504,12 +467,11 @@ void salle::setOccupationRelative(vector<Vector2i> const& axes, Vector2i place)
 void salle::prochain()
 {
 	setActif(_blocProchain);
-
 	int piece = alleatoire(NBPIECE, _blocProchain.getPiece());
 	while (piece == _blocActif.getPiece())
 		piece = alleatoire(NBPIECE, _blocProchain.getPiece());
 
-	setProchain(_blocsJeu[piece]);
+	setProchain(**(_blocsJeu + piece));
 }
 
 /* Récupérations des attributs de la salle */
@@ -676,7 +638,7 @@ bool salle::bouge(int X, int Y)
 
 	for (Vector2i const & element : axes)
 	{	/// Question: Pourquoi quand "element" est constant, on ne peut utiliser de méthodes ?
-		if (_occupations[y + Y + element.y - 1][x + X + element.x - 1] == 1)
+		if (_occupations[y + element.y + Y][x + element.x + X] == 1)
 			return 0;
 	}
 
@@ -692,20 +654,20 @@ bool salle::colision(const vector<Vector2i> & axes, const int & X, const int & Y
 
 	for (Vector2i const & element : axes)
 	{	/// Question: Pourquoi quand "element" est constant, on ne peut utiliser de méthodes ?
-		if (_occupations[y + Y + element.y - 1][x + X + element.x - 1] == 1)
+		if (_occupations[y + element.y + Y][x + element.x + X] == 1)
 			return 1;
 	}
 	return 0;
 }
 
 // Trouve l'angle au sens antihoraire cible et effectue la maneuvre si possible.
-bool salle::tourneGauche()
+bool salle::pivoteGauche()
 {
 	int angle = _blocActif.getAngle();
 	if (++angle > 3)
 		angle = 0;
 
-	if (tourne(angle))
+	if (pivote(angle))
 	{
 		_blocActif.tourneGauche();
 		return 1;
@@ -714,13 +676,13 @@ bool salle::tourneGauche()
 }
 
 // Trouve l'angle au sens horaire cible et effectue la maneuvre si possible.
-bool salle::tourneDroite()
+bool salle::pivoteDroite()
 {
 	int angle = _blocActif.getAngle();
 	if (--angle < 0)
 		angle = 3;
 
-	if (tourne(angle))
+	if (pivote(angle))
 	{
 		_blocActif.tourneDroite();
 		return 1;
@@ -729,14 +691,14 @@ bool salle::tourneDroite()
 }
 
 // Vérifie si le bloc peux tourner dans la salle.
-bool salle::tourne(int angle)
+bool salle::pivote(int angle)
 {
 	int x = _blocActif.getPlace().x,
 		y = _blocActif.getPlace().y;
 	vector<Vector2i>profil;
 	_blocActif.getAxes(profil, angle);
 
-	for (auto const &element : profil)
+	for (Vector2i const & element : profil)
 	{
 		if (_occupations[x + element.x][y + element.y] == 1)
 			return 0;
@@ -753,7 +715,7 @@ void salle::tombe()
 	vector<Vector2i> axes;
 	_blocActif.getAxes(axes, _blocActif.getAngle());
 
-	for (auto const & element : axes)
+	for (Vector2i const & element : axes)
 	{
 		int distanceY = 0;
 		do distanceY++; while
@@ -776,38 +738,48 @@ void salle::arret(const bool & permis)
 void salle::colle()
 {
 	vector<Vector2i> axes;
-	_blocActif.getAxes(axes, _blocActif.getAngle());	
+	_blocActif.getAxes(axes, _blocActif.getAngle());
 	/// À cause de la redondance, mémoriser les axes dans la salle su lieu?
-	// -1 0 1
 	setOccupationRelative(axes, _blocActif.getPlace());
 	_blocsFixes.push_back(_blocActif);
-	setActif(_blocProchain);
-	getProchain();
-	//_blocActif.setPlace();
-	
+	prochain();
 }
 
 // Dessine les composantes de la salle.
 void salle::afficherInterface(RenderWindow & window)
 {
-	
-	window.draw(_boite);
 
-	window.draw(_information);
-	_blocProchain.montre(window, Vector2f(DIMSALLE.x + 30, 120));
+	//window.draw(_boite);
+	//window.draw(_information);
+
+	_blocProchain.montre(window, Vector2f(POSAFFICHE.x, POSAFFICHE.y + 30));
 }
 
 // 
-void salle::afficheBlocsFixes(RenderWindow & window)
+void salle::afficheBlocsSalle(RenderWindow & window)
 {
+	for (carre & element : _tuiles)
+		element.draw(window);
 	for (bloc & element : _blocsFixes)
 		element.draw(window);
 }
 
 
-/* Autres cossins à tests */
-///====================== */
-// Crée des formes pour les manipuler
+/* Autres structures */
+///================= */
+
+// Données relative à un joueur.
+struct identite
+{
+	string nomJoueur;
+	bool nouveauJoueur = true;
+	int level = 1,
+		score = 0,
+		rang = 0;
+};
+
+
+// Crée des formes pour les manipuler des essais, des tests etc.
 struct teStruct
 {
 	int outline = 10;
@@ -892,17 +864,17 @@ void initSalle()
 }
 
 // Construit les pièces par défaut à partir des coordonnées du tableau PIECES.
-bool initPieces(bloc * blocsJeu[NBPIECE], const Vector2i pieces[NBPIECE][4][4])
+bool initPieces(bloc * blocsJeu, const int & nbPiece, const vector<Vector2i> pieces[NBPIECE][4])
 {
 	vector<carre> formes;		// Carrés de la forme
 	vector<Vector2i> axes[4];	// Coordonnées des carrés sous chaque angles
 
 	// Crée un bloc avec les coordonnés du tableau donné
-	for (int f = 0; f < NBPIECE; f++)
+	for (int f = 0; f < nbPiece; f++)
 	{
-		// Forme les carrés de la pièce (selon l'angle 0)
+		// Forme les carrés de la pièce (selon l'angle 1)
 		for (int c = 0; c < 4; c++)
-			formes.push_back(carre(POS, PLACE, pieces[f][0][c]));
+			formes.push_back(carre(POS, PLACE, pieces[f][1][c], PALETTES[2][f], 2));
 
 		// Ajoute les coordonnées des carrés de pièce aux axes
 		for (int a = 0; a < 4; a++)
@@ -910,8 +882,8 @@ bool initPieces(bloc * blocsJeu[NBPIECE], const Vector2i pieces[NBPIECE][4][4])
 				axes[a].push_back(pieces[f][a][c]);
 
 		// Initialise des blocs avec les vectors formés
-		blocsJeu[f] = new bloc(PLACE, -3, 1, -1, f, 1, formes, axes);
-		
+		*(blocsJeu + f) = bloc(PLACE, -3, 1, -1, f, 1, formes, axes);
+
 		// Vide la mémoire des vectors avant la prochaine pièce
 		formes.resize(0);
 		for (int i = 0; i < 4; i++)

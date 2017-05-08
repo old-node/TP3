@@ -1,91 +1,98 @@
-/* En-tÍte du fichier */
+Ôªø/* En-t√™te du fichier */
 ///================== */
 /* Fichier:			carre.h
 // Auteur:			Olivier Lemay Dostie
-// Date crÈation:	30/04/2017
-// Description:		header pour le TP3 de C++ pour la crÈation de blocs manipulables. */
+// Date cr√©ation:	30/04/2017
+// Description:		header pour le TP3 de C++ pour la cr√©ation de blocs manipulables. */
 
 
-/* Directives au prÈ-processeur (voir suite) */
-///========================================= */
+/* Directives au pr√©-processeur */
+///============================ */
 #pragma once								
 #include <assert.h>				
 #include <vector>				
 using namespace std;
 #include <SFML/Graphics.hpp>	
-#include <carre.h>			// Doit Ítre placÈ aprËs certaines constantes (on peut mettre les constantes dans 
-using namespace sf;			// carre.h, mais selon moi ils n'ont pas raison d'Ítre incluent dedant vu leur nature)
+#include <carre.h>			// Doit √™tre plac√© apr√®s certaines constantes (on peut mettre les constantes dans 
+using namespace sf;			// carre.h, mais selon moi ils n'ont pas raison d'√™tre incluent dedant vu leur nature)
 
 
 /* Prototypes des fonctions */
 ///======================== */
 class bloc;
 
-
-/* Objets ‡ manipuler composÈ de carrÈs */
+/* Objets √† manipuler compos√© de carr√©s */
 ///==================================== */
 class bloc
 {
 private:
+	int _morceau = -1;				// Pi√®ce du lot des blocs accessible du jeu (de 0 √† 6)
+	int _id = -2;					// No. associ√© √† son utilisation 
+		// -2 pour fixe, -1 pour prochain, 0 pour actif et les autres sont incr√©ment√©s au jeu
+	int _styleBloc = 0;				// Pour qu'on sache facillement quels attributs ont ses carr√©s 
+		// (Si n√©cessaire) couleur, dimenssions, etc.
+	int _etat = 0;					// Indice de l'√©tat de l'utilisation d bloc
+		// (Si n√©cessaire) 1 pour normal (fixe), 2 pour indestructible, 3 pour fragile, 4 pour mobile
+
+	Vector2i _place = PLACE;		// Endroit situ√© dans la salle
 	Vector2f _encrage = PIVOTBLOC;	// Point pivot du bloc
-	Vector2i _place = PLACE;		// Endroit situÈ dans la salle
-	int _id = -2;					// No. associÈ ‡ son utilisation 
-		// -2 pour fixe, -1 pour prochain, 0 pour actif et les autres sont incrÈmentÈs au jeu
-	int _styleBloc = 0;				// Pour qu'on sache facillement quels attributs ont ses carrÈs 
-		// (Si nÈcessaire) couleur, dimenssions, etc.
-	///int _vitesse = 0;			// Vitesse de dÈplacement vertical (gravitÈ) :: GÈrÈ plustÙt par la salle
-	int _etat = 0;					// Indice de l'Ètat de l'utilisation d bloc
-		// (Si nÈcessaire) 1 pour normal (fixe), 2 pour indestructible, 3 pour fragile, 4 pour mobile
-	int _morceau = -1;				// PiËce du lot des blocs accessible du jeu (de 0 ‡ 6)
+
 	int _angle = 0;					// Orientation actuelle de la forme (quatre angles)
-	vector<carre> _formes;/*{*/		// Les quatres profils en carrÈs de la forme
-		//{ vector<carre>(4) },{ vector<carre>(4) },
-		//{ vector<carre>(4) },{ vector<carre>(4) } };
-	vector<Vector2i> _axes[4]		// CoordonnÈes des carrÈs des profils sous les quatres angles
-	{ { vector<Vector2i>(4) },			// CouchÈ sur la droite
-	  { vector<Vector2i>(4) },			// Debout
-	  { vector<Vector2i>(4) },			// CouchÈ sur la gauche
-	  { vector<Vector2i>(4) }			// ¿ l'envers
+	vector<carre> _forme;			// Le profil en carr√©s du bloc
+	vector<Vector2i> _axes[4]		// Coordonn√©es des carr√©s des profils sous les quatres angles
+	{ { vector<Vector2i>(4) },	// Couch√© sur la droite
+	  { vector<Vector2i>(4) },	// Debout
+	  { vector<Vector2i>(4) },	// Couch√© sur la gauche
+	  { vector<Vector2i>(4) }	// √Ä l'envers
 	};
+
+	void copie(const bloc & copie)
+	{
+		setPiece(copie._morceau);
+		setId(copie._id);
+		setStyleBloc(copie._styleBloc);
+		setEtat(copie._etat);
+		setPlace(copie._place);
+		setEncrage(copie._encrage);
+		setAngle(copie._angle);
+		setFormes(copie._forme, copie._axes);
+	}
 
 public:
 	// Instanciatieurs
 	bloc();
 	bloc(const int & forme, const vector<carre> tours, const vector<Vector2i> axes[4]);
-	bloc(const Vector2i & place, const int & id, const int & styleBloc, const int & etat, const int & forme,
+	bloc(const Vector2i & place, const int & id, const int & styleBloc,
+		const int & etat, const int & forme,
 		const int & angle, const vector<carre> tours, const vector<Vector2i> axes[4]);
-	bloc(const bloc & copie)
+	bloc(const bloc & change)
 	{
-		setEncrage(copie._encrage);
-		setPlace(copie._place);
-		setId(copie._id);
-		setStyleBloc(copie._styleBloc);
-		setEtat(copie._etat);
-		setPiece(copie._morceau);
-		setAngle(copie._angle);
-		setFormes(copie._formes, copie._axes);
+		copie(change);
 	}
-	bloc& operator=(bloc rhs)
+	const bloc & operator=(const bloc & change)
 	{
-		rhs.echange(*this);
-		/// http://stackoverflow.com/questions/255612/dynamically-allocating-an-array-of-objects
-		return *this;
-	}
-	void echange(bloc& s) noexcept
-	{
-		//swap(this._encrage, s._encrage);
-		/// Marche pas... ?
+		copie(change);
+		return change;
+		//rhs.echange(*this);
+		// http://stackoverflow.com/questions/255612/dynamically-allocating-an-array-of-objects
+		//void echange(bloc & s) noexcept
+		//{
+		//	//swap(this._encrage, &s);
+		//	//setEncrage(copie._encrage);
+		//}
 	}
 
 	// Destructeur
 	~bloc();
 
 	// Initialisateurs
-	void initBloc(const Vector2i & place, const int & id, const int & styleBloc, const int & etat, const int & forme,
-		const int & angle, const vector<carre> tours, const vector<Vector2i> axes[4]/*, const int & vitesse*/);
-	void initForme(const int & forme, const vector<carre> tours, const vector<Vector2i> axes[4]);
+	void initBloc(const Vector2i & place, const int & id, const int & styleBloc,
+		const int & etat, const int & forme, const int & angle, const vector<carre> tours,
+		const vector<Vector2i> axes[4]);
+	void initForme(const int & forme, const vector<carre> tours,
+		const vector<Vector2i> axes[4]);
 
-	// Modificateur de coordonÈes
+	// Modificateur de coordon√©es
 	void setPlace(const Vector2i & place);
 	void setEncrage(const Vector2f & pos);
 	void deplace(const int & x, const int & y);
@@ -102,11 +109,11 @@ public:
 
 	// Modification du profil
 	void ajouteCube(carre rect, const Vector2f & coin, const Vector2i axe[4]);
-	void remplaceCube(carre rect, const Vector2f & pos, const Vector2i axes[4], const int & position);
+	void remplaceCube(carre rect, const Vector2f & pos,
+		const Vector2i axes[4], const int & position);
 	void enleveCube(const int & angle);
 
 	/// Transforme les attributs du bloc
-	//void ralenti();
 	//void detruit();
 	//void separe();
 	//void fusionne();
@@ -126,12 +133,12 @@ public:
 	// Rotate
 	void tourneGauche()
 	{
-		for (auto & element : _formes)
+		for (auto & element : _forme)
 			element.rotate(-90);
 	}
 	void tourneDroite()
 	{
-		for (auto & element : _formes)
+		for (auto & element : _forme)
 			element.rotate(90);
 	}
 
@@ -141,13 +148,13 @@ public:
 };
 
 
-/* MÈthodes des blocs */
+/* M√©thodes des blocs */
 ///================== */
 
-// Instancie un bloc par dÈfaut.
+// Instancie un bloc par d√©faut.
 bloc::bloc() {}
 
-// Instancie un bloc selon une forme spÈcifique.
+// Instancie un bloc selon une forme sp√©cifique.
 bloc::bloc(const int & forme, const vector<carre> tours, const vector<Vector2i> axes[4])
 {
 	initForme(forme, tours, axes);
@@ -155,7 +162,8 @@ bloc::bloc(const int & forme, const vector<carre> tours, const vector<Vector2i> 
 
 // Instancie un bloc avec toutes les attributs qu'il peut contenir.
 bloc::bloc(const Vector2i & place, const int & id, const int & styleBloc, const int & etat,
-	const int & forme, const int & angle, const vector<carre> tours, const vector<Vector2i> axes[4])
+	const int & forme, const int & angle, const vector<carre> tours,
+	const vector<Vector2i> axes[4])
 {
 	initBloc(place, id, styleBloc, etat, forme, angle, tours, axes);
 }
@@ -166,12 +174,13 @@ bloc::~bloc()
 	_place.x = _place.y = _encrage.x = _encrage.y = _id =
 		_styleBloc = _morceau = _etat = _angle = 0;
 	for (int i = 0; i < 4; i++)
-		_formes.~vector();
+		_forme.~vector();
 }
 
 // Donne des valeurs de base au bloc.
-void bloc::initBloc(const Vector2i & place, const int & id, const int & styleBloc, const int & etat, const int & piece,
-	const int & angle, const vector<carre> tours, const vector<Vector2i> axes[4]/*, const int & vitesse*/)
+void bloc::initBloc(const Vector2i & place, const int & id, const int & styleBloc,
+	const int & etat, const int & piece, const int & angle,
+	const vector<carre> tours, const vector<Vector2i> axes[4])
 {
 	setPlace(place);
 	setId(id);
@@ -182,17 +191,18 @@ void bloc::initBloc(const Vector2i & place, const int & id, const int & styleBlo
 	setFormes(tours, axes);
 }
 
-// Change le profil et le numÈro de piËce d'un bloc.
-void bloc::initForme(const int & piece, const vector<carre> tours, const vector<Vector2i> axes[4])
+// Change le profil et le num√©ro de pi√®ce d'un bloc.
+void bloc::initForme(const int & piece, const vector<carre> tours,
+	const vector<Vector2i> axes[4])
 {
 	setPiece(piece);
 	setFormes(tours, axes);
 }
 
-// Change les coordonnÈes du bloc dans la piËce.
+// Change les coordonn√©es du bloc dans la pi√®ce.
 void bloc::setPlace(const Vector2i & place)
 {
-	assert(place.x > -1 && place.x <= LRGJEU - 1 &&
+	assert(place.x > -2 && place.x <= LRGJEU - 1 &&
 		place.y >= 0 && place.y < HAUJEU - 1);
 	_place = place;
 }
@@ -201,7 +211,7 @@ void bloc::setPlace(const Vector2i & place)
 void bloc::setEncrage(const Vector2f & encrage)
 {
 	_encrage = encrage;
-	//Changer aussi le point _origine de tout les carrÈs du bloc... sinon Áa fait rien.
+	//Changer aussi le point _origine de tout les carr√©s du bloc... sinon √ßa fait rien.
 }
 
 // Change l'ID du bloc.
@@ -210,19 +220,19 @@ void bloc::setId(const int & id)
 	_id = id;
 }
 
-// Change le numÈro du style du bloc.
+// Change le num√©ro du style du bloc.
 void bloc::setStyleBloc(const int & styleBloc)
 {
 	_styleBloc = styleBloc;
 }
 
-// Change le numÈro de piËce du bloc.
+// Change le num√©ro de pi√®ce du bloc.
 void bloc::setPiece(const int & piece)
 {
 	_morceau = piece;
 }
 
-// Change l'Ètat du bloc.
+// Change l'√©tat du bloc.
 void bloc::setEtat(const int & etat)
 {
 	_etat = etat;
@@ -235,20 +245,20 @@ void bloc::setAngle(const int & angle)
 	_angle = angle;
 }
 
-// Change les carrÈs du bloc. (nÈcessaire? on peut utiliser initPieces p-e)
+// Change les carr√©s du bloc. (n√©cessaire? on peut utiliser initPieces p-e)
 void bloc::setFormes(const vector<carre> & tours, const vector<Vector2i> axes[4])
 {
 	int size = tours.size();
 
-	//Ajoute des carrÈs au profils
-	_formes.resize(0);
+	//Ajoute des carr√©s au profils
+	_forme.resize(0);
 	for (int j = 0; j < size; j++)
 	{
-		_formes.push_back(tours.at(j));
-		_formes.at(j).setPos(POS, _place, axes[0].at(j));
+		_forme.push_back(tours.at(j));
+		_forme.at(j).setPos(POS, _place, axes[0].at(j));
 	}
 
-	//Ajoute les axes des carrÈs au bloc
+	//Ajoute les axes des carr√©s au bloc
 	for (int i = 0; i < 4; i++)
 	{
 		_axes[i].resize(0);
@@ -261,11 +271,11 @@ void bloc::setFormes(const vector<carre> & tours, const vector<Vector2i> axes[4]
 void bloc::deplace(const int & x, const int & y)
 {
 	setPlace(Vector2i(_place.x + x, _place.y + y));
-	for (carre & element : _formes)
+	for (carre & element : _forme)
 		element.deplace(Vector2i(x, y));
 }
 
-/// _En construction_, Trouve automatiquement les axes d'un carrÈ pour chaque angle.
+/// _En construction_, Trouve automatiquement les axes d'un carr√© pour chaque angle.
 bool trouveAxesRotation(Vector2i axes[4], const Vector2i & a, const int & angle)
 {
 	assert(angle >= 0 && angle <= 3);
@@ -290,13 +300,14 @@ bool trouveAxesRotation(Vector2i axes[4], const Vector2i & a, const int & angle)
 void bloc::ajouteCube(carre rect, const Vector2f & coin, const Vector2i axe[4])
 {
 	rect.setPos(coin, _place, axe[0]);
-	_formes.push_back(rect);
+	_forme.push_back(rect);
 	for (int i = 0; i < 4; i++)
 		_axes[i].push_back(axe[i]);
 }
 
 // 
-void bloc::remplaceCube(carre rect, const Vector2f & pos, const Vector2i axes[4], const int & position)
+void bloc::remplaceCube(carre rect, const Vector2f & pos,
+	const Vector2i axes[4], const int & position)
 {
 	//assert(position < _formes[_angle].size() && position >= 0);
 
@@ -357,38 +368,33 @@ int bloc::getAngle()
 	return _angle;
 }
 
-// Retourne les coordonnÈes des carrÈs d'un angle de la forme.
+// Retourne les coordonn√©es des carr√©s d'un angle de la forme.
 void bloc::getAxes(vector<Vector2i> & axes, const int & angle)
 {
 	axes = _axes[angle];
 }
 
-// Retourne le profil en carrÈ de la forme.
+// Retourne le profil en carr√© de la forme.
 void bloc::getProfil(vector<carre> & profil)
 {
-	profil = _formes;
+	profil = _forme;
 }
 
-// Affiche la forme du bloc dans l'Ècran.
+// Affiche la forme du bloc dans l'√©cran.
 void bloc::draw(RenderWindow & window)
 {
-	for (auto & element : _formes)
+	for (auto & element : _forme)
 		element.draw(window);
 }
 
-// Affiche la forme du bloc dans l'Ècran ‡ une position prÈcise.
+// Affiche la forme du bloc dans l'√©cran √† une position pr√©cise.
 void bloc::montre(RenderWindow & window, const Vector2f & coin)
 {
-	for (auto & element : _formes)
+	for (auto & element : _forme)
 		element.montre(window, coin);
 }
 
-/// Rallentis la progression du bloc. (augmente le dÈlais avant qu'il continu sa descente)
-//void bloc::ralenti()
-//{
-//}
-//
-//// 
+/// D√©truit le bloc en cours.
 //void bloc::detruit()
 //{
 //}
@@ -412,3 +418,58 @@ void bloc::montre(RenderWindow & window, const Vector2f & coin)
 /* Fonctions aux blocs */
 ///=================== */
 
+
+
+/* Constantes pour les blocs */
+///======================== */
+/* Les coordonn√©es de chaque carr√©s de chaque angles des NBPIECE pi√®ces par d√©faut du jeu */
+const int NBPIECE = 7;		// Nombre de pi√®ces accessibles au jeu
+bloc tetris[NBPIECE];		// Liste de sept blocs √† instancier √† partir de PIECES
+/// Les septs blocs par d√©fauts du jeu: 
+// 0 (L),	1 (≈ø),		2 (‚¨ú),	3 (|),		4 (T),	 5 (S),		6 (Z)
+// Sept,	Pendu,	Carr√©,	Ligne,	Plateau, Croche,	Pli√©
+const bloc * TETRIS = tetris;
+const vector<Vector2i> PIECES[NBPIECE][4] =
+{		// NBPIECE formes, 4 angles, 4 carr√©s, pour chaque coordonn√©es {{{{Vector2i}*4}*4}*NBPIECE}
+	{	// Les angles sont: droite (0), debout (1), gauche (2), renverse (3)
+		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 3,1 } },
+		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 1,1 } },
+		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 1,3 } },
+		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,3 } }
+	},	// Sept		(L)
+	{
+		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
+		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,1 } },
+		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 1,1 } },
+		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 1,3 } }
+	},	// Pendu	(≈ø)
+	{
+		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
+		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
+		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
+		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } }
+	},	// Carr√©	(‚¨ú)
+	{
+		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 4,2 } },
+		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 2,0 } },
+		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 0,2 } },
+		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 2,4 } }
+	},	// Ligne	(|)
+	{
+		{ Vector2i{ 1,2 }, Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 } },
+		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 } },
+		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 } },
+		{ Vector2i{ 1,2 }, Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 3,2 } }
+	},	// Plateau	(T)
+	{
+		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 1,3 } },
+		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } },
+		{ Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 1,3 } },
+		{ Vector2i{ 2,1 }, Vector2i{ 2,2 }, Vector2i{ 3,2 }, Vector2i{ 3,3 } }
+	},	// Croche	(S)
+	{
+		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,3 } },
+		{ Vector2i{ 1,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,1 } },
+		{ Vector2i{ 1,2 }, Vector2i{ 2,2 }, Vector2i{ 2,3 }, Vector2i{ 3,3 } },
+		{ Vector2i{ 1,2 }, Vector2i{ 2,3 }, Vector2i{ 3,2 }, Vector2i{ 3,1 } }
+	} };// Pli√©		(Z)
