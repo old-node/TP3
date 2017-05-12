@@ -34,106 +34,114 @@ d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(195): warning
 d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(262): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
 d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(265): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(379): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(384): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(399): warning C4244: 'argument' : conversion de 'std::size_t' en 'float', perte possible de données
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(403): warning C4244: 'argument' : conversion de 'std::size_t' en 'float', perte possible de données
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(408): warning C4244: 'argument' : conversion de 'std::size_t' en 'float', perte possible de données
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(364): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(365): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(371): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(396): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(376): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(451): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(456): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+  d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(468): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: voir la déclaration de 'sprintf'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(374): warning C4101: 'event' : variable locale non référencée
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(430): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(443): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(446): warning C4101: 'event' : variable locale non référencée
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(502): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(515): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: voir la déclaration de 'strcat'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(424): warning C4101: 'continuerPartie' : variable locale non référencée
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(480): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(481): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(489): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(496): warning C4101: 'continuerPartie' : variable locale non référencée
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(552): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(553): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(561): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(523): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(531): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
-  d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(701): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(707): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(719): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(725): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
-  d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(734): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(749): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
-  d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(757): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(768): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(599): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(607): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
 d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(777): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(791): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(783): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(795): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(801): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(813): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(810): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(825): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(826): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(833): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(844): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(843): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(849): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(853): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(867): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(857): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(900): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(909): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(889): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(918): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(902): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(927): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(936): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(919): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(925): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(945): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(933): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(976): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(985): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(964): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(969): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(994): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(978): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1003): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1012): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(987): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1021): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1007): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1011): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1040): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1045): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1020): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1054): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1029): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1063): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1046): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1051): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1083): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1087): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1060): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1096): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1069): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1105): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1107): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1122): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1122): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1127): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1129): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1202): warning C4244: 'argument' : conversion de 'float' en 'unsigned int', perte possible de données
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1238): warning C4244: 'argument' : conversion de 'double' en 'float', perte possible de données
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1204): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1208): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1136): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1215): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1145): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1221): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1183): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1198): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1227): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1205): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1278): warning C4244: 'argument' : conversion de 'float' en 'unsigned int', perte possible de données
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1314): warning C4244: 'argument' : conversion de 'double' en 'float', perte possible de données
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1280): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1284): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1233): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1291): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1239): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1297): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1258): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1259): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1272): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1274): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1303): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
   d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1283): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1298): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1312): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1327): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1309): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+  d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1315): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+  d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1334): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1335): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1348): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1350): warning C4996: 'sf::Text::setColor': a été déclaré déconseillé
+  d:\prog\session 2\prog\tp3\tutogitsfml\packages\sfml-system.2.4.0.0\build\native\include\sfml\graphics\text.hpp(177): note: voir la déclaration de 'sf::Text::setColor'
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1359): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1374): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1388): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1403): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
 d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(253): warning C4715: 'questionOuiNonSFML' : les chemins de contrôle ne retournent pas tous une valeur
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1195): warning C4715: 'choixMenu' : les chemins de contrôle ne retournent pas tous une valeur
-d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1143): warning C4715: 'menuOption' : les chemins de contrôle ne retournent pas tous une valeur
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1271): warning C4715: 'choixMenu' : les chemins de contrôle ne retournent pas tous une valeur
+d:\prog\session 2\prog\tp3\tutogitsfml\tutogitsfml\tutogitsfml.cpp(1219): warning C4715: 'menuOption' : les chemins de contrôle ne retournent pas tous une valeur
   tutoGitSFML.vcxproj -> D:\Prog\Session 2\Prog\TP3\tutoGitSFML\Debug\tutoGitSFML.exe
   tutoGitSFML.vcxproj -> D:\Prog\Session 2\Prog\TP3\tutoGitSFML\Debug\tutoGitSFML.pdb (Full PDB)

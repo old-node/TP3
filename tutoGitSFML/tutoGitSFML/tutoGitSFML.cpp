@@ -91,7 +91,7 @@ int main()
 			score = 0;
 		}
 	} while (reponse != 1);
-	enregistrerScore(window2, joueur);
+	
 	window2.close();
 
 	RenderWindow window(VideoMode(1000, 800), "TETRIS Jeu");
@@ -357,19 +357,87 @@ void enregistrerScore(RenderWindow &window, joueur &joueur) {
 }
 void afficherScore(RenderWindow &windowMenu)
 {
-	Text text;
 
+	Text text;
+	Font font;
+	Texture texture;
+	if (!font.loadFromFile("font_arial.ttf"));		//va chercher la police pour le texte
+	if (!texture.loadFromFile("Tetris-Background.jpg"));	//va chercher le fond d'écran
+
+	Sprite background(texture);
+	windowMenu.draw(background);		//affiche le fond d'écran	
+
+	text.setFont(font);
+	text.setColor(Color::Red);
+	string nomJoueur;
+	int lvl;
+	int score;
+	ifstream fichierScore;
+	if (!ouvrirFichier(fichierScore, "score.txt", cout));
+
+	text.setOutlineThickness(2);
+	text.setOutlineColor(Color::Black);
 	text.setPosition(400, 50);
 	text.setString("10 Meilleurs score!");
 	windowMenu.draw(text);
 
+	text.setPosition(300, 100);
+	text.setString("Joueur");
+	windowMenu.draw(text);
+
+	text.setPosition(475, 100);
+	text.setString("Level");
+	windowMenu.draw(text);
+	text.setPosition(675, 100);
+	text.setString("Score");
+	windowMenu.draw(text);
+
 	for (size_t i = 0; i < 10; i++)
 	{
+		fichierScore >> nomJoueur >> lvl >> score;
 
+		text.setPosition(300, 150 + (50 * i));
+		text.setString(nomJoueur);
+		windowMenu.draw(text);
+
+		text.setPosition(500, 150 + (50 * i));
+
+		text.setString(to_string(lvl));
+		windowMenu.draw(text);
+
+		text.setPosition(700, 150 + (50 * i));
+		text.setString(to_string(score));
+		windowMenu.draw(text);
 	}
+	windowMenu.display();
+
+	Event event;
+	while (windowMenu.isOpen())
+	{
 
 
+		while (windowMenu.pollEvent(event))
+		{
+			// check the type of the event...
+			switch (event.type)
+			{
+				// window closed
+			case Event::Closed:
+			{
+				exit(0);
+			}
+			// key pressed
+			case Event::KeyPressed:
 
+				if (event.key.code == Keyboard::Escape) // Pour quitter
+				{
+					return;
+
+				}
+
+			}
+		}
+	}
 }
 int questionEnregistrement(RenderWindow &window2, Font font, joueur &joueur)
 {
@@ -490,7 +558,9 @@ void saisirNomJoueur(RenderWindow &window2, Font font, Texture texture, joueur &
 	text.setFont(font);
 	text.setString("Quel est votre nom?"); 	// choix de la chaîne de caractères à afficher
 	text.setPosition(100, 15);		// position du texte
-	text.setColor(Color::Green);   // choix de la couleur du texte
+	text.setColor(Color::Red);   // choix de la couleur du texte
+	text.setOutlineColor(Color::Black);
+	text.setOutlineThickness(2);
 
 	window2.draw(text);
 	window2.display();
@@ -501,6 +571,8 @@ void saisirNomJoueur(RenderWindow &window2, Font font, Texture texture, joueur &
 	{
 		//Event processing.
 		Event event;
+		while (window2.pollEvent(event)) {
+		}
 		while (window2.waitEvent(event)) {
 			if (event.type == Event::Closed)
 				window2.close();
@@ -524,7 +596,7 @@ void saisirNomJoueur(RenderWindow &window2, Font font, Texture texture, joueur &
 				RectangleShape nomJoueur(Vector2f(400, 50));
 				window2.display();
 
-				if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(400, 50, 100, 50)));
+				if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(100, 50, 500, 50)));
 				nomJoueur.setTexture(&texture);
 
 				nomJoueur.setPosition(100, 50);
