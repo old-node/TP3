@@ -21,26 +21,27 @@
 using namespace std;
 #include <SFML/Graphics.hpp>	
 #include <SFML/Audio.hpp>		
-#include <salle.h>				// Contient bloc.h qui contient carre.h
+#include <salle.h>				// Contiens bloc.h qui contiens carre.h
 using namespace sf;
 
 
 /* Prototypes des fonctions */
-struct info;
-//int saisie(RenderWindow & window, Music & music, string & nomJoueur, int & i);
-//int menuOption(RenderWindow & window, Music & music, string & nomJoueur);
-//int choixMenu(RenderWindow & windowMenu, RenderWindow & window, Music & music, string & nomJoueur);
-//void afficherMenu(RenderWindow & window, Music & music, string & nomJoueur);
 
-int saisie(RenderWindow & window, Music & music, Music & music2, Music & music3, identite & identite);
-int menuOption(RenderWindow & window, Music & music, Music & music2, Music & music3, identite & identite);
-int choixMenu(RenderWindow & windowMenu, RenderWindow & window, Music & music, Music & music2, Music & music3, identite & identite);
-void afficherMenu(RenderWindow & window, Music & music, Music & music2, Music & music3, Texture & texture, Font & font, identite & identite);
+int saisie(RenderWindow & window, Text titre[6],
+	Music & music, Music & music2, Music & music3, identite & identite);
+int menuOption(RenderWindow & window, Text titre[6],
+	Music & music, Music & music2, Music & music3, identite & identite);
+int choixMenu(RenderWindow & windowMenu, RenderWindow & window, Text titre[6],
+	Music & music, Music & music2, Music & music3, identite & identite);
+void afficherMenu(RenderWindow & window, Text titre[6],
+	Music & music, Music & music2, Music & music3, 
+	Texture & texture, Font & font, identite & identite);
 
-void titreTetris(RenderWindow & windowMenu, Font font, float posx, float posy, float size);
+void initTitre(Text titre[6], Font & font, float posx, float posy, float size);
+void afficheTitre(RenderWindow & window, Text titre[6]);
 
 int listeEnregistrement(RenderWindow & windowMenu, identite & identite);
-void saisirNomJoueur(RenderWindow & window, Font & font, Texture & texture, identite & identite);
+void saisirNomJoueur(RenderWindow &window2, Font font, Texture texture, identite & joueur);
 int questionOuiNonSFML(RenderWindow & window2, identite & identite);
 int questionEnregistrement(RenderWindow & window2, Font font, identite & identite);
 void afficherScore(RenderWindow & windowMenu);
@@ -66,26 +67,37 @@ int main()
 	//bloc active = espace.getBloc();
 	//int angle = active.getAngle();
 
-	Font font;
-	font.loadFromFile("font_arial.ttf");// Choix de la police à utiliser
-	
-	Text text;
-	text.setFont(font);
-	text.setCharacterSize(LRGPOLICE);	// Taille des caractères exprimée en pixels, pas en points !						 
-	text.setColor(Color::Black);		// Couleur du texte
-	text.setPosition(Vector2f(60,DIMSALLE.y + 150));		// Position du texte
-
 	setlocale(LC_CTYPE, "fra");
 	srand(time(NULL));		// Trouve une source aléatoire
 
-	identite identite;
+	RenderWindow window;
+	RenderWindow window2;
+
+	Font font;
+	
+	if (!font.loadFromFile("hemi_head_bd_it.ttf"))
+		cout << "Erreur à afficher pour chaque font, quitter le programme en plus?";
+	Text titre[6];
+	initTitre(titre, font, 110, 10, 60);
+
+	font.loadFromFile("font_arial.ttf");// Choix de la police à utiliser
+	Text textAngle;
+	textAngle.setFont(font);
+	textAngle.setCharacterSize(LRGPOLICE);	// Taille des caractères exprimée en pixels, pas en points !						 
+	textAngle.setColor(Color::Black);		// Couleur du texte
+	textAngle.setPosition(Vector2f(60,DIMSALLE.y + 150));		// Position du texte
+	Text textPos = textAngle;
+	textPos.setPosition(Vector2f(120, DIMSALLE.y + 150));
+	
+	//RenderWindow windowTest(VideoMode(500, 500), "TETRIS v1.2 Nom du identite");
+	
+	//windowTest.display();
+
+	string nomJoueur;
 	Music music2;
 	Music music3;
 	vector<Vector2i> occupations;
-	salle espace(POS, 1, 1, occupations, identite.nomJoueur, 1, 0, 0, 1, TETRIS);
-
-	RenderWindow window;
-	RenderWindow window2;
+	salle espace(window, "font_arial.ttf", POS, 1, 1, occupations, nomJoueur, 1, 0, 0, milliseconds(800), tetris, 7);
 	
 	Music music;
 	music.stop();
@@ -95,13 +107,12 @@ int main()
 	if (!texture.loadFromFile("Tetris-Background.jpg"));
 	Sprite background(texture);
 	window.draw(background);
-	
+
 	Event event;
 	Time moment;
 	unsigned seed = time(0);			/// Même chose que srand ?
 	Clock tempsEcoule;
 
-	bool colision = false;
 	int mouvement = -1;
 
 	int i = 0;
@@ -109,16 +120,16 @@ int main()
 		score = 0;
 	int identiteEnregistrer, reponse = 1;
 	
+	font.loadFromFile("font_arial.ttf");// Choix de la police à utiliser
 
 	// Fenêtre d'enregistrements
 	window2.create(VideoMode(500, 500), "TETRIS v1.2 Nom du identite");
 	do
 	{
-		saisirNomJoueur(window2, font, texture, identite);
-		identiteEnregistrer = listeEnregistrement(window2, identite);
-		font.loadFromFile("font_arial.ttf");// Choix de la police à utiliser
+		saisirNomJoueur(window2, font, texture, espace.getJoueur());
+		identiteEnregistrer = listeEnregistrement(window2, espace.getJoueur());
 		if (identiteEnregistrer == 1)
-			reponse = questionEnregistrement(window2, font, identite);
+			reponse = questionEnregistrement(window2, font, espace.getJoueur());
 		else
 		{
 			reponse = 1;
@@ -134,7 +145,7 @@ int main()
 	icon.loadFromFile("icon.png");
 	window.setIcon(128, 128, icon.getPixelsPtr()); //Affiche l'icone de Tétris
 
-	afficherMenu(window, music, music2, music3, texture, font, identite);
+	afficherMenu(window, titre, music, music2, music3, texture, font, espace.getJoueur());
 
 	/// Peut être gossant quand on fait des tests XD
 	//if (music.getStatus() == false)	
@@ -160,92 +171,96 @@ int main()
 			Sprite background(texture);
 			window.draw(background);
 
-			espace.afficherInterface(window);
+			espace.afficherInterface();
 			//espace.modifierInterface(window, prochain, profil, identite.nomJoueur, identite.level, identite.score);
 			//active.drawBloc(window, active.getAngle());
 
-			mouvement = saisie(window, music, music2, music3, identite);
-			titreTetris(window, font, 150, 20, 60);
-			nbY++;
-			window.display();
+			if (tempsEcoule.getElapsedTime() > espace.getVitesse())
+			{
+				tempsEcoule.restart();
+				moment.asMilliseconds();	/// Utile ? Clock peut faire la job je crois
+				mouvement = 0;
+			}
+			else
+			{
+				mouvement = saisie(window, titre, music, music2, music3, espace.getJoueur());
+				nbY++;
+			}
 
 			switch (mouvement)
 			{
-			case 2:	// Avec Z		(Tourner vers la gauche)
-				espace.pivoteGauche();
+				/// Utiliser Enum pour les valeurs
+			case 2:	// Avec Z		(Tourner vers la gauche)		
+				espace.pivoteActifGauche();
 				break;
 			case 3:	// Haut ou X	(Tourner vers la droite)
-				espace.pivoteDroite();
-				//espace.bouge(0, -1);
+				espace.pivoteActifDroite();
+				/// espace.bouge(0, -1);
 				f.move(Vector2f(0, -20));					/////
 				break;
+			case 0: // Descente du bloc automatique
+				espace.setColle(!espace.bougeActif(0, 1));
+				break;
 			case 5:	// Bas			(Faire tomber)
-				colision = espace.bouge(0, 1);
+				espace.tombeActif();
 				f.move(Vector2f(0, 20));					/////
 				break;
 			case 4:	// Gauche		(Bouger)
-				espace.bouge(-1, 0);
+				espace.bougeActif(-1, 0);
 				f.move(Vector2f(-20, 0));					/////
 				break;
 			case 6:	// Droite		(Bouger)
-				espace.bouge(1, 0);
+				espace.bougeActif(1, 0);
 				f.move(Vector2f(20, 0));					/////
 				break;
-			case 7:	//Esc ?
-				afficherMenu(window, music, music2, music3, texture, font, identite);
-			case 1:		/// Par défaut? on devrait utiliser default pour ça 
-						///		(j'ai mit le retour comme -1 pour voir)
+			case 7:	// P
+				menuOption(window, titre, music, music2, music3, espace.getJoueur());
+				break;
+			case 1:	// Esc
+				afficherMenu(window, titre, music, music2, music3, texture, font, espace.getJoueur());
 				break;
 			default:
 				break;
 			}
 
-			if (colision)
+			// Si une colision est présente
+			if (espace.getColle())
 			{
-				espace.colle();
-				colision = false;
+				// Ajoute le bloc actif aux occupation de la salle 
+				// Démare ensuite le prochain bloc tout en trouvant le bloc suivant
+				espace.colleActif();
+				espace.setColle(false);
 			}
+
 			//window.clear();
 			window.draw(background);
-			espace.initStatistiques(window, espace.getProchain(), identite.nomJoueur);
-			//espace.afficherInterface(window);
-			espace.montreProchain(window);
-
+			//afficheTitre(window, titre);
 			window.draw(f);
-			espace.afficheBlocsSalle(window);
-			espace.getBloc().draw(window);
-			text.setString(to_string(espace.getBloc().getAngle())); 	// Chaîne de caractères à afficher
-			window.draw(text);
+			espace.afficherInterface();
+			//espace.montreProchain();
+			espace.afficheBlocsSalle();
+			afficheTitre(window, titre);
 
-			nbY++;
+			espace.drawActif();
+			//espace.getBloc().draw(window);
+			textPos.setString(to_string(espace.getActif().getAngle())); 	// Chaîne de caractères à afficher
+			window.draw(textPos);
+			string place = to_string(espace.getActif().getPlace().x) 
+				+ "," + to_string(espace.getActif().getPlace().y);
+			textAngle.setString(place); 	// Chaîne de caractères à afficher
+			window.draw(textAngle);
+
 			window.display();
 			sleep(seconds(0));
-		} while (nbY < 18);
 
-		//RectangleShape piecePlacer;
-		//piecePlacer.setSize(Vector2f(600, 763));
-		//piecePlacer.setFillColor(Color::Transparent);
-		//piecePlacer.setOutlineThickness(0);
-		//piecePlacer.setOutlineColor(Color::Red);
-		//piecePlacer.setPosition(20,20);
-		//window.draw(piecePlacer);
-		//window.display();
-		//??
-		//blocActif.setId(blocSuivant.getId());
-		//blocActif.getProfil(profil);
-		//posActif2.x = -3;;
-		//piece = blocSuivant.getId();
-		//blocActif.setPosX(debut);
-		//blocActif.setPosY(debut);
-		//formePiece(pieceSuivante, profil, blocActif.getPlace());
-		//window.display();
+		} while (ok);
 
 	} while (ok);
-	enregistrerScore(window2, identite);
+	enregistrerScore(window2, espace.getJoueur());
 	return 0;
 }
 
-// 
+// Trie en ordre croissant les scores des joueurs.
 void trierInsertion(char nomJoueur[][20], int scoreMax[], int taille)
 {
 	char nomJoueurTemp[20];
@@ -263,7 +278,7 @@ void trierInsertion(char nomJoueur[][20], int scoreMax[], int taille)
 	}
 }
 
-// 
+// Retourne une valeur correspondant au choix saisi entre 'o' et 'n'
 int questionOuiNonSFML(RenderWindow & window2, identite &joueur)
 {
 	Event event;
@@ -361,24 +376,7 @@ void enregistrerScore(RenderWindow & window, identite &joueur) {
 
 			trierInsertion(listeNomJoueur, scoreMax, cptJoueur);
 
-			/*char nomJoueurTemp[20];
-			int scoreJoueur[20];
-			int i, j;
-			for (i = 1; i < conteur; ++i) {
-			int elem = scoreMax[i];
-			for (j = i; j > 0; j--) {
-			if (elem < scoreMax[j - 1])
-			break;
-			else
-			{
-			scoreMax[j+1] = scoreMax[j];
-			strcpy_s(nomJoueurTemp, 20, listeNomJoueur[j]);
-			strcpy_s(listeNomJoueur[j], 20, listeNomJoueur[j - 1]);
-			strcpy_s(listeNomJoueur[j - 1], 20, nomJoueurTemp);
-			}
-			}
-			scoreMax[j+1] = elem;
-			}*/
+			
 
 
 			for (int i = 0; i < joueur.rang - 1; i++)		// Écrit tout les autre identite avant
@@ -403,17 +401,89 @@ void enregistrerScore(RenderWindow & window, identite &joueur) {
 }
 
 // 
-void afficherScore(RenderWindow & windowMenu)
+void afficherScore(RenderWindow &windowMenu)
 {
-	Text text;
 
+	Text text;
+	Font font;
+	Texture texture;
+	if (!font.loadFromFile("font_arial.ttf"));		//va chercher la police pour le texte
+	if (!texture.loadFromFile("Tetris-Background.jpg"));	//va chercher le fond d'écran
+
+	Sprite background(texture);
+	windowMenu.draw(background);		//affiche le fond d'écran	
+
+	text.setFont(font);
+	text.setColor(Color::Red);
+	string nomJoueur;
+	int lvl;
+	int score;
+	ifstream fichierScore;
+	if (!ouvrirFichier(fichierScore, "score.txt", cout));
+
+	text.setOutlineThickness(2);
+	text.setOutlineColor(Color::Black);
 	text.setPosition(400, 50);
 	text.setString("10 Meilleurs score!");
 	windowMenu.draw(text);
 
+	text.setPosition(300, 100);
+	text.setString("Joueur");
+	windowMenu.draw(text);
+
+	text.setPosition(475, 100);
+	text.setString("Level");
+	windowMenu.draw(text);
+	text.setPosition(675, 100);
+	text.setString("Score");
+	windowMenu.draw(text);
+
+	for (size_t i = 0; i < 10; i++)
+	{
+		fichierScore >> nomJoueur >> lvl >> score;
+
+		text.setPosition(300, 150 + (50 * i));
+		text.setString(nomJoueur);
+		windowMenu.draw(text);
+
+		text.setPosition(500, 150 + (50 * i));
+
+		text.setString(to_string(lvl));
+		windowMenu.draw(text);
+
+		text.setPosition(700, 150 + (50 * i));
+		text.setString(to_string(score));
+		windowMenu.draw(text);
+	}
+	windowMenu.display();
+
+	Event event;
+	while (windowMenu.isOpen())
+	{
 
 
+		while (windowMenu.pollEvent(event))
+		{
+			// check the type of the event...
+			switch (event.type)
+			{
+				// window closed
+			case Event::Closed:
+			{
+				exit(0);
+			}
+			// key pressed
+			case Event::KeyPressed:
 
+				if (event.key.code == Keyboard::Escape) // Pour quitter
+				{
+					return;
+
+				}
+
+			}
+		}
+	}
 }
 
 // 
@@ -523,82 +593,84 @@ int listeEnregistrement(RenderWindow & window2, identite & identite)
 }
 
 // 
-void saisirNomJoueur(RenderWindow & window2, Font & font, Texture & texture, identite & identite)
+void saisirNomJoueur(RenderWindow &window2, Font font, Texture texture, identite & joueur)
 {
+
 	Image icon;
 	Text text;
-	//icon.loadFromFile("icon.png");			//va chercher l'image de l'icone
-	//window2.setIcon(128, 128, icon.getPixelsPtr()); // Affiche l'icone
+	icon.loadFromFile("icon.png");			//va chercher l'image de l'icone
+	window2.setIcon(128, 128, icon.getPixelsPtr()); // Affiche l'icone
 
-	/// Cette partie cause mon programme d'arrêter, je n'ai pas le droit d'accéder au fichier?
-	//if (!font.loadFromFile("font_arial.ttf"));		//va chercher la police pour le texte
-	//if (!texture.loadFromFile("Tetris-Background_2.jpg"));	//va chercher le fond d'écran
-	//
-	//Sprite background(texture);
-	//window2.draw(background);		//affiche le fond d'écran	
-	//
-	//text.setFont(font);
-	//text.setString("Quel est votre nom?"); 	// choix de la chaîne de caractères à afficher
-	//text.setPosition(100, 15);		// position du texte
-	//text.setColor(Color::Green);   // choix de la couleur du texte
-	//
-	//window2.draw(text);
-	//window2.display();
-	//
-	//string s;
-	//
-	//while (window2.isOpen())
-	//{
-	//	//Event processing.
-	//	Event event;
-	//	while (window2.waitEvent(event)) {
-	//		if (event.type == Event::Closed)
-	//			window2.close();
-	//		if (event.type == Event::TextEntered) {
-	//			if (event.key.code == 8 && s.size() != 0)		//touche backspace
-	//			{
-	//				s.pop_back();  //Enleve le dernier char dans la string
-	//			}
-	//			else if (event.key.code == 13 && s.size() != 0) //touche enter
-	//			{
-	//				identite.nomJoueur = s;
-	//				return;
-	//			}
-	//			else if ((event.key.code >= 97 && event.key.code <= 122)
-	//				|| event.key.code == 32
-	//				|| (event.key.code >= 48 && event.key.code <= 57))	// caractere ASCII (A - Z, 0 - 9 )
-	//			{
-	//				s.push_back((char)event.text.unicode); // ajoute un char a la string
-	//			}
-	//
-	//			RectangleShape nomJoueur(Vector2f(400, 50));
-	//			window2.display();
-	//
-	//			if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(400, 50, 100, 50)));
-	//			nomJoueur.setTexture(& texture);
-	//
-	//			nomJoueur.setPosition(100, 50);
-	//			window2.draw(nomJoueur);	//Affiche un rectangle vide
-	//
-	//			text.setString(s); 	// choix de la chaîne de caractères à afficher
-	//			text.setPosition(100, 50);		// position du texte
-	//			text.setColor(Color::Green);   // choix de la couleur du texte
-	//
-	//			window2.draw(text);
-	//
-	//			window2.display();
-	//		}
-	//
-	//	}
-	//
-	//}
+	if (!font.loadFromFile("font_arial.ttf"));		//va chercher la police pour le texte
+	if (!texture.loadFromFile("Tetris-Background_2.jpg"));	//va chercher le fond d'écran
+
+	Sprite background(texture);
+	window2.draw(background);		//affiche le fond d'écran	
+
+	text.setFont(font);
+	text.setString("Quel est votre nom?"); 	// choix de la chaîne de caractères à afficher
+	text.setPosition(100, 15);		// position du texte
+	text.setColor(Color::Red);   // choix de la couleur du texte
+	text.setOutlineColor(Color::Black);
+	text.setOutlineThickness(2);
+
+	window2.draw(text);
+	window2.display();
+
+	std::string s;
+
+	while (window2.isOpen())
+	{
+		//Event processing.
+		Event event;
+		while (window2.pollEvent(event)) {
+		}
+		while (window2.waitEvent(event)) {
+			if (event.type == Event::Closed)
+				window2.close();
+			if (event.type == Event::TextEntered) {
+				if (event.key.code == 8 && s.size() != 0)		//touche backspace
+				{
+					s.pop_back();  //Enleve le dernier char dans la string
+				}
+				else if (event.key.code == 13 && s.size() != 0) //touche enter
+				{
+					joueur.nomJoueur = s;
+					return;
+				}
+				else if ((event.key.code >= 97 && event.key.code <= 122)
+					|| event.key.code == 32
+					|| (event.key.code >= 48 && event.key.code <= 57))	// caractere ASCII (A - Z, 0 - 9 )
+				{
+					s.push_back((char)event.text.unicode); // ajoute un char a la string
+				}
+
+				RectangleShape nomJoueur(Vector2f(400, 50));
+				window2.display();
+
+				if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(100, 50, 500, 50)));
+				nomJoueur.setTexture(&texture);
+
+				nomJoueur.setPosition(100, 50);
+				window2.draw(nomJoueur);	//Affiche un rectangle vide
+
+				text.setString(s); 	// choix de la chaîne de caractères à afficher
+				text.setPosition(100, 50);		// position du texte
+				text.setColor(Color::Green);   // choix de la couleur du texte
+
+				window2.draw(text);
+
+				window2.display();
+			}
+
+		}
+
+	}
 
 }
 
-/* Fonctions */
-///========= */
 // Saisies durant le jeu.
-int saisie(RenderWindow & window, 
+int saisie(RenderWindow & window, Text titre[6],
 	Music & music, Music & music2, Music & music3, identite & joueur)
 {
 	Event event;
@@ -649,7 +721,7 @@ int saisie(RenderWindow & window,
 			else if (event.key.code == Keyboard::Pause || event.key.code == Keyboard::P)
 			{
 				/// Pause if false; if true: Unpause
-				menuOption(window, music, music2, music3, joueur);
+				menuOption(window, titre, music, music2, music3, joueur);
 			}
 			// Met la musique sur stop
 			else if (event.key.code == Keyboard::M)
@@ -698,7 +770,8 @@ int saisie(RenderWindow & window,
 }
 
 // Affiche le menu des option
-int menuOption(RenderWindow & window, Music & music, Music & music2, Music & music3, identite &joueur)
+int menuOption(RenderWindow & window, Text titre[6],
+	Music & music, Music & music2, Music & music3, identite &joueur)
 {
 	window.setVisible(false);	//Cache le Menu principal;
 
@@ -731,7 +804,7 @@ int menuOption(RenderWindow & window, Music & music, Music & music2, Music & mus
 
 	if (!font.loadFromFile("font_arial.ttf")); // choix de la police à utiliser
 
-	titreTetris(windowOption, font, 340, 50, 60); // Affiche le le titre TETRIS
+	//afficheTitre(windowOption, titre);	/// changer les valeur pour 340, 50, 60 avant
 
 	text.setFont(font);
 	text.setCharacterSize(30); // choix de la taille des caractères exprimée en pixels, pas en points !					
@@ -1168,7 +1241,7 @@ int menuOption(RenderWindow & window, Music & music, Music & music2, Music & mus
 }
 
 // Selectionne le choix de l'utilisateur
-int choixMenu(RenderWindow & windowMenu, RenderWindow & window, 
+int choixMenu(RenderWindow & windowMenu, RenderWindow & window, Text titre[6],
 	Music & music, Music & music2, Music & music3, identite & joueur)
 {
 	Event event;
@@ -1194,7 +1267,7 @@ int choixMenu(RenderWindow & windowMenu, RenderWindow & window,
 				if ((event.mouseButton.x > 350 && event.mouseButton.x < 650) && (event.mouseButton.y > 300 && event.mouseButton.y < 400))
 				{
 					window.clear();
-					menuOption(windowMenu, music, music2, music3, joueur);
+					menuOption(windowMenu, titre, music, music2, music3, joueur);
 					return 0;
 				}
 				else if ((event.mouseButton.x > 350 && event.mouseButton.x < 650) && (event.mouseButton.y > 450 && event.mouseButton.y < 550))
@@ -1220,54 +1293,40 @@ int choixMenu(RenderWindow & windowMenu, RenderWindow & window,
 	}
 }
 
-//Affiche le Titre de Tétris
-void titreTetris(RenderWindow & windowMenu, Font font, float posx, float posy, float size)
+// Affiche le titre du jeu
+void afficheTitre(RenderWindow & window, Text titre[6])
 {
-	Text text;
+	for (int i = 0; i < 6; i++)
+		window.draw(titre[i]);
+}
 
-	text.setCharacterSize(size);
-	text.setStyle(sf::Text::Bold);
-	if (!font.loadFromFile("hemi_head_bd_it.ttf"));
-	text.setFont(font);
-	text.setString("T"); 			// choix de la chaîne de caractères à afficher
-	text.setPosition(posx, posy);		// position du texte
-	text.setColor(Color::Cyan);		// choix de la couleur du texte
-	windowMenu.draw(text);
-
-	/*if (!font.loadFromFile("font_arial.ttf"));*/
-	text.setFont(font);
-	text.setString("E"); 			// choix de la chaîne de caractères à afficher
-	text.setPosition(posx + (size * 1), posy);		// position du texte
-	text.setColor(Color::Red);		// choix de la couleur du texte
-	windowMenu.draw(text);
-	/*	if (!font.loadFromFile("font_arial.ttf"));*/
-	text.setFont(font);
-	text.setString("T"); 			// choix de la chaîne de caractères à afficher
-	text.setPosition(posx + (size * 2), posy);		// position du texte
-	text.setColor(Color::Green);	// choix de la couleur du texte
-	windowMenu.draw(text);
-	/*if (!font.loadFromFile("font_arial.ttf"));*/
-	text.setFont(font);
-	text.setString("R"); 			// choix de la chaîne de caractères à afficher
-	text.setPosition(posx + (size * 3), posy);		// position du texte
-	text.setColor(Color::Cyan);		// choix de la couleur du texte
-	windowMenu.draw(text);
-	/*if (!font.loadFromFile("font_arial.ttf"));*/
-	text.setFont(font);
-	text.setString("I"); 			// choix de la chaîne de caractères à afficher
-	text.setPosition(posx + (size * 4), posy);		// position du texte
-	text.setColor(Color::White);	// choix de la couleur du texte
-	windowMenu.draw(text);
-	/*if (!font.loadFromFile("font_arial.ttf"));*/
-	text.setFont(font);
-	text.setString("S"); 			// choix de la chaîne de caractères à afficher
-	text.setPosition(posx + (size*4.65), posy);		// position du texte
-	text.setColor(Color::Yellow);   // choix de la couleur du texte
-	windowMenu.draw(text);
+// Initialise le titre du jeu "Tetris"
+void initTitre(Text titre[6], Font & font, float posx, float posy, float size)
+{
+	for (int i = 0; i < 6; i++)
+	{
+		titre[i].setCharacterSize(size);
+		titre[i].setStyle(sf::Text::Bold);
+		titre[i].setFont(font);
+		titre[i].setPosition(posx + (size * i), posy);
+	}
+	titre[0].setString("T");
+	titre[0].setColor(Color::Cyan);
+	titre[1].setString("E");
+	titre[1].setColor(Color::Red);
+	titre[2].setString("T");
+	titre[2].setColor(Color::Green);
+	titre[3].setString("R");
+	titre[3].setColor(Color::Cyan);
+	titre[4].setString("I");
+	titre[4].setColor(Color::White);
+	titre[5].setString("S");
+	titre[5].setPosition(posx + size * 4.65, posy);
+	titre[5].setColor(Color::Yellow);
 }
 
 //Affiche le menu et les options
-void afficherMenu(RenderWindow & window, 
+void afficherMenu(RenderWindow & window, Text titre[6],
 	Music & music, Music & music2, Music & music3, 
 	Texture & texture, Font & font, identite & joueur)
 {
@@ -1294,7 +1353,7 @@ void afficherMenu(RenderWindow & window,
 	{
 		windowMenu.draw(background);
 
-		titreTetris(windowMenu, font, 340, 50, 60);
+		//afficheTitre(windowMenu, titre);
 		Texture textureBouton;
 
 		if (!font.loadFromFile("font_arial.ttf"));
@@ -1364,7 +1423,7 @@ void afficherMenu(RenderWindow & window,
 
 		windowMenu.display();
 
-		BtnMenuChoisi = choixMenu(windowMenu, window, music, music2, music3, joueur);
+		BtnMenuChoisi = choixMenu(windowMenu, window, titre, music, music2, music3, joueur);
 
 
 	} while (BtnMenuChoisi != 1 && BtnMenuChoisi != -1);
@@ -1373,22 +1432,8 @@ void afficherMenu(RenderWindow & window,
 }
 
 
-/* Structure pour l'affichage d'informations relative au jeu */ /// Au lieu d'utiliser des fonction?
-//========================================================== */
-struct info
-{
-private:
-
-
-public:
-
-
-};
-
-
-/// Faire en sorte que les murs de la salle soient formés de carrés de couleurs unie ou non
-/// Appliquer l'une des palettes de couleurs aux blocs du jeu (une différente pour chaque)
-/// Réparer l'allocation de la classe des blocs avec new, *, &, etc ? j'ai de la difficulté à rendre ça fonctionnel
+/// Réparer l'allocation de la classe des blocs avec new, *, &, etc ? 
+/// j'ai de la difficulté à rendre ça fonctionnel
 /// ???
 /// Profit
 /// 
