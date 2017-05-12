@@ -392,6 +392,9 @@ void afficherScore(RenderWindow &windowMenu)
 	text.setString("Score");
 	windowMenu.draw(text);
 
+	//int number_of_lines = 0;
+	//while (std::getline(myfile, line))
+	//	++number_of_lines;
 	for (size_t i = 0; i < 10; i++)
 	{
 		fichierScore >> nomJoueur >> lvl >> score;
