@@ -34,7 +34,7 @@ int menuOption(RenderWindow & window, Text titre[6],
 int choixMenu(RenderWindow & windowMenu, RenderWindow & window, Text titre[6],
 	Music & music, Music & music2, Music & music3, identite & identite);
 void afficherMenu(RenderWindow & window, Text titre[6],
-	Music & music, Music & music2, Music & music3,
+	Music & music, Music & music2, Music & music3, 
 	Texture & texture, Font & font, identite & identite);
 
 void initTitre(Text titre[6], Font & font, float posx, float posy, float size);
@@ -74,7 +74,7 @@ int main()
 	RenderWindow window2;
 
 	Font font;
-
+	
 	if (!font.loadFromFile("hemi_head_bd_it.ttf"))
 		cout << "Erreur à afficher pour chaque font, quitter le programme en plus?";
 	Text titre[6];
@@ -85,12 +85,12 @@ int main()
 	textAngle.setFont(font);
 	textAngle.setCharacterSize(LRGPOLICE);	// Taille des caractères exprimée en pixels, pas en points !						 
 	textAngle.setColor(Color::Black);		// Couleur du texte
-	textAngle.setPosition(Vector2f(60, DIMSALLE.y + 150));		// Position du texte
+	textAngle.setPosition(Vector2f(60,DIMSALLE.y + 150));		// Position du texte
 	Text textPos = textAngle;
 	textPos.setPosition(Vector2f(120, DIMSALLE.y + 150));
-
+	
 	//RenderWindow windowTest(VideoMode(500, 500), "TETRIS v1.2 Nom du identite");
-
+	
 	//windowTest.display();
 
 	string nomJoueur;
@@ -98,11 +98,11 @@ int main()
 	Music music3;
 	vector<Vector2i> occupations;
 	salle espace(window, "font_arial.ttf", POS, 1, 1, occupations, nomJoueur, 1, 0, 0, milliseconds(800), tetris, 7);
-
+	
 	Music music;
 	music.stop();
 	music.openFromFile("music3.ogg");
-
+	
 	Texture texture;
 	if (!texture.loadFromFile("Tetris-Background.jpg"));
 	Sprite background(texture);
@@ -119,7 +119,7 @@ int main()
 	int lvl = 1,
 		score = 0;
 	int identiteEnregistrer, reponse = 1;
-
+	
 	font.loadFromFile("font_arial.ttf");// Choix de la police à utiliser
 
 	// Fenêtre d'enregistrements
@@ -139,7 +139,7 @@ int main()
 	} while (reponse != 1);
 
 	window2.close();
-
+	
 	window.create(VideoMode(POSAFFICHE.x + 300 + LRGPOLICE, DIMSALLE.y + 200), "TETRIS Jeu");
 	Image icon;
 	icon.loadFromFile("icon.png");
@@ -214,7 +214,6 @@ int main()
 				f.move(Vector2f(20, 0));					/////
 				break;
 			case 7:	// P
-				/// Message d'avertissement (Vous allez abandoner votre partie)
 				menuOption(window, titre, music, music2, music3, espace.getJoueur());
 				break;
 			case 1:	// Esc
@@ -246,7 +245,7 @@ int main()
 			//espace.getBloc().draw(window);
 			textPos.setString(to_string(espace.getActif().getAngle())); 	// Chaîne de caractères à afficher
 			window.draw(textPos);
-			string place = to_string(espace.getActif().getPlace().x)
+			string place = to_string(espace.getActif().getPlace().x) 
 				+ "," + to_string(espace.getActif().getPlace().y);
 			textAngle.setString(place); 	// Chaîne de caractères à afficher
 			window.draw(textAngle);
@@ -377,7 +376,7 @@ void enregistrerScore(RenderWindow & window, identite &joueur) {
 
 			trierInsertion(listeNomJoueur, scoreMax, cptJoueur);
 
-
+			
 
 
 			for (int i = 0; i < joueur.rang - 1; i++)		// Écrit tout les autre identite avant
@@ -816,7 +815,7 @@ int menuOption(RenderWindow & window, Text titre[6],
 	btnMusique.setPosition(350, 150); //défini la position de la bordure
 
 	if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(0, 190, 300, 100))); // Si la texture ne peux etre 'loader' effiche un message d'erreur dans la console
-	btnMusique.setTexture(&texture);	//défini la texture du bouton
+	btnMusique.setTexture(& texture);	//défini la texture du bouton
 	texture.setSmooth(true);			//addoucie la texture de l'image
 
 	text.setString("Musique"); 	// choix de la chaîne de caractères à afficher
@@ -831,7 +830,7 @@ int menuOption(RenderWindow & window, Text titre[6],
 	btnMusiquePowerOn.setPosition(350, 275);
 
 	if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(150, 150, 50, 50)));
-	btnMusiquePowerOn.setTexture(&texture);
+	btnMusiquePowerOn.setTexture(& texture);
 	texture.setSmooth(true);
 	if (music.getVolume() == 0)
 	{
@@ -853,13 +852,14 @@ int menuOption(RenderWindow & window, Text titre[6],
 	btnMusiquePowerOff.setOutlineThickness(5);
 	btnMusiquePowerOff.setOutlineColor(Color::Red);
 	btnMusiquePowerOff.setPosition(600, 275);
-	if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(150, 150, 50, 50)))
-		;
+	if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(150, 150, 50, 50)));
 	texture.setSmooth(true);
 
-	btnMusiquePowerOff.setTexture(&texture);
+	btnMusiquePowerOff.setTexture(& texture);
 	if (music.getVolume() == 0)
+	{
 		btnMusiquePowerOff.setFillColor(Color::Magenta);
+	}
 
 	text.setString("Off"); 	// choix de la chaîne de caractères à afficher
 	text.setPosition(605, 278);		// position du texte
@@ -874,12 +874,15 @@ int menuOption(RenderWindow & window, Text titre[6],
 
 	if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(450, 450, 200, 50)));
 	texture.setSmooth(true);
-	btnMusiqueChoix1.setTexture(&texture);
-
+	btnMusiqueChoix1.setTexture(& texture);
 	if (music.getStatus() == sf::Music::Playing)
+	{
 		btnMusiqueChoix1.setFillColor(Color::Magenta);
+	}
 	else
+	{
 		btnMusiqueChoix1.setFillColor(Color::White);
+	}
 
 	text.setString("Musique 1"); 	// choix de la chaîne de caractères à afficher
 	text.setPosition(355, 355);		// position du texte
@@ -892,12 +895,16 @@ int menuOption(RenderWindow & window, Text titre[6],
 	btnMusiqueChoix2.setOutlineThickness(5);
 	btnMusiqueChoix2.setOutlineColor(Color::Red);
 	btnMusiqueChoix2.setPosition(350, 420);
-	btnMusiqueChoix2.setTexture(&texture);
+	btnMusiqueChoix2.setTexture(& texture);
 
 	if (music2.getStatus() == sf::Music::Playing)
+	{
 		btnMusiqueChoix2.setFillColor(Color::Magenta);
+	}
 	else
+	{
 		btnMusiqueChoix2.setFillColor(Color::White);
+	}
 
 	text.setString("Musique 2"); 	// choix de la chaîne de caractères à afficher
 	text.setPosition(355, 420);		// position du texte
@@ -910,17 +917,20 @@ int menuOption(RenderWindow & window, Text titre[6],
 	btnMusiqueChoix3.setOutlineThickness(5);
 	btnMusiqueChoix3.setOutlineColor(Color::Red);
 	btnMusiqueChoix3.setPosition(350, 485);
-	btnMusiqueChoix3.setTexture(&texture);
+	btnMusiqueChoix3.setTexture(& texture);
 
 	text.setString("Musique 3"); 	// choix de la chaîne de caractères à afficher
 	text.setPosition(355, 485);		// position du texte
 	text.setColor(Color::Black);   // choix de la couleur du texte
 
 	if (music3.getStatus() == sf::Music::Playing)
+	{
 		btnMusiqueChoix3.setFillColor(Color::Magenta);
+	}
 	else
+	{
 		btnMusiqueChoix3.setFillColor(Color::White);
-
+	}
 	windowOption.draw(btnMusiqueChoix3);
 	windowOption.draw(text);
 
@@ -930,7 +940,7 @@ int menuOption(RenderWindow & window, Text titre[6],
 
 	if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(190, 310, 50, 50)));
 	texture.setSmooth(true);
-	btnRetour.setTexture(&texture);
+	btnRetour.setTexture(& texture);
 
 	text.setString("Retour"); 	// choix de la chaîne de caractères à afficher
 	text.setPosition(10, 15);		// position du texte
@@ -944,11 +954,12 @@ int menuOption(RenderWindow & window, Text titre[6],
 	btnNomJoueur.setPosition(350, 550);
 	if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(90, 290, 300, 100)));
 	texture.setSmooth(true);
-	btnNomJoueur.setTexture(&texture);
+	btnNomJoueur.setTexture(& texture);
 
 	if (joueur.nomJoueur != "Nouveau Joueur")
+	{
 		btnNomJoueur.setFillColor(Color::Magenta);
-
+	}
 	text.setString("Nom du joueur :"); 	// choix de la chaîne de caractères à afficher
 	text.setPosition(375, 565);		// position du texte
 	windowOption.draw(btnNomJoueur);
@@ -990,7 +1001,7 @@ int menuOption(RenderWindow & window, Text titre[6],
 					music2.setVolume(100);
 					music3.setVolume(100);
 					btnMusiquePowerOn.setFillColor(Color::Magenta);
-					btnMusiquePowerOn.setTexture(&texture);
+					btnMusiquePowerOn.setTexture(& texture);
 					text.setString("On"); 	// choix de la chaîne de caractères à afficher
 					text.setPosition(352, 278);		// position du texte
 					text.setColor(Color::Black);   // choix de la couleur du texte
@@ -998,7 +1009,7 @@ int menuOption(RenderWindow & window, Text titre[6],
 					windowOption.draw(text);
 
 					btnMusiquePowerOff.setFillColor(Color::White);
-					btnMusiquePowerOff.setTexture(&texture);
+					btnMusiquePowerOff.setTexture(& texture);
 					/*if (!texture.loadFromFile("image.jpg", IntRect(0, 0, 300, 100)));*/
 					text.setString("Off"); 	// choix de la chaîne de caractères à afficher
 					text.setPosition(605, 278);		// position du texte
@@ -1012,7 +1023,7 @@ int menuOption(RenderWindow & window, Text titre[6],
 				else if ((event.mouseButton.x > 600 && event.mouseButton.x < 650) && (event.mouseButton.y > 275 && event.mouseButton.y < 325))
 				{
 					if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(150, 150, 50, 50)));
-					btnMusiquePowerOn.setTexture(&texture);
+					btnMusiquePowerOn.setTexture(& texture);
 					windowOption.display();
 					music.setVolume(0);
 					music2.setVolume(0);
@@ -1024,7 +1035,7 @@ int menuOption(RenderWindow & window, Text titre[6],
 					windowOption.draw(btnMusiquePowerOn);
 					windowOption.draw(text);
 
-					btnMusiquePowerOff.setTexture(&texture);
+					btnMusiquePowerOff.setTexture(& texture);
 					btnMusiquePowerOff.setFillColor(Color::Magenta);
 					/*if (!texture.loadFromFile("image.jpg", IntRect(0, 0, 300, 100)));*/
 					text.setString("Off"); 	// choix de la chaîne de caractères à afficher
@@ -1169,11 +1180,13 @@ int menuOption(RenderWindow & window, Text titre[6],
 					int reponse = 1;
 					do
 					{
+
 						saisirNomJoueur(window2, font, texture, joueur);
 
 						joueurEnregistrer = listeEnregistrement(window2, joueur);
 						if (joueurEnregistrer == 1)
 						{
+
 							reponse = questionEnregistrement(window2, font, joueur);
 						}
 						else
@@ -1184,10 +1197,13 @@ int menuOption(RenderWindow & window, Text titre[6],
 					} while (reponse != 1);
 
 
+
+
+
 					windowOption.display();
 
 					if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(90, 290, 300, 100)));
-					btnNomJoueur.setTexture(&texture);
+					btnNomJoueur.setTexture(& texture);
 					texture.setSmooth(true);
 
 					btnNomJoueur.setFillColor(Color::Magenta);
@@ -1209,7 +1225,7 @@ int menuOption(RenderWindow & window, Text titre[6],
 					windowOption.display();
 
 					if (!texture.loadFromFile("Tetris-Background_2.jpg", IntRect(450, 450, 200, 50)));
-					btnMusique.setTexture(&texture);
+					btnMusique.setTexture(& texture);
 				}
 				// Si le joueur appuie sur le bouton retour
 				else if ((event.mouseButton.x > 15 && event.mouseButton.x < 105) && (event.mouseButton.y > 15 && event.mouseButton.y < 65))
@@ -1311,7 +1327,7 @@ void initTitre(Text titre[6], Font & font, float posx, float posy, float size)
 
 //Affiche le menu et les options
 void afficherMenu(RenderWindow & window, Text titre[6],
-	Music & music, Music & music2, Music & music3,
+	Music & music, Music & music2, Music & music3, 
 	Texture & texture, Font & font, identite & joueur)
 {
 	window.setVisible(false);
@@ -1352,7 +1368,7 @@ void afficherMenu(RenderWindow & window, Text titre[6],
 		windowMenu.draw(btnCommencer);
 
 		if (!textureBouton.loadFromFile("image.jpg", IntRect(0, 0, 200, 100)));
-		btnCommencer.setTexture(&textureBouton);
+		btnCommencer.setTexture(& textureBouton);
 		textureBouton.setSmooth(true);
 
 		windowMenu.draw(btnCommencer);
@@ -1367,7 +1383,7 @@ void afficherMenu(RenderWindow & window, Text titre[6],
 		btnOption.setPosition(350, 300);
 
 		if (!textureBouton.loadFromFile("image.jpg", IntRect(200, 500, 300, 100)));
-		btnOption.setTexture(&textureBouton);
+		btnOption.setTexture(& textureBouton);
 
 		windowMenu.draw(btnOption);
 
@@ -1381,7 +1397,7 @@ void afficherMenu(RenderWindow & window, Text titre[6],
 		btnScore.setPosition(350, 450);
 
 		if (!textureBouton.loadFromFile("image.jpg", IntRect(300, 300, 300, 100)));
-		btnScore.setTexture(&textureBouton);
+		btnScore.setTexture(& textureBouton);
 		textureBouton.setSmooth(true);
 
 		windowMenu.draw(btnScore);
@@ -1396,7 +1412,7 @@ void afficherMenu(RenderWindow & window, Text titre[6],
 		btnQuitter.setPosition(350, 600);
 
 		if (!textureBouton.loadFromFile("image.jpg", IntRect(100, 500, 300, 100)));
-		btnQuitter.setTexture(&textureBouton);
+		btnQuitter.setTexture(& textureBouton);
 		textureBouton.setSmooth(true);
 
 		windowMenu.draw(btnQuitter);
