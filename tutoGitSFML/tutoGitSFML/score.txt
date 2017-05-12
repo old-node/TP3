@@ -8,10 +8,7 @@ patate              1                   9
 asd                 1                   9
 ja                  1                   6
 asd                 0                   5
-ja                  1                   5
-q                   0                   1
 q                   0                   1
 pl                  0                   0
 bertrand            1                   0
-auly                1                   -5
 auly                1                   -5

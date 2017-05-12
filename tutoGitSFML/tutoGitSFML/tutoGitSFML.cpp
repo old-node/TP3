@@ -49,6 +49,7 @@ int questionEnregistrement(RenderWindow &window2, Font font, joueur &joueur);
 void afficherScore(RenderWindow &windowMenu);
 void trierInsertion(char nomJoueur[][20], int scoreMax[], int taille);
 void enregistrerScore(RenderWindow &window, joueur &joueur);
+
 /* Programme principal.
 ===================== */
 int main()
@@ -90,7 +91,7 @@ int main()
 			score = 0;
 		}
 	} while (reponse != 1);
-
+	enregistrerScore(window2, joueur);
 	window2.close();
 
 	RenderWindow window(VideoMode(1000, 800), "TETRIS Jeu");
@@ -362,6 +363,10 @@ void afficherScore(RenderWindow &windowMenu)
 	text.setString("10 Meilleurs score!");
 	windowMenu.draw(text);
 
+	for (size_t i = 0; i < 10; i++)
+	{
+
+	}
 
 
 
