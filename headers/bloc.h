@@ -63,8 +63,8 @@ public:
 	bloc();
 	bloc(const int & forme, const vector<carre> tours, const vector<Vector2i> axes[4]);
 	bloc(const Vector2i & place, const int & id, const int & styleBloc,
-		const int & etat, const int & forme,
-		const int & angle, const vector<carre> tours, const vector<Vector2i> axes[4]);
+		const int & etat, const int & forme, const int & angle, 
+		const vector<carre> tours, const vector<Vector2i> axes[4]);
 	bloc(const bloc & change)
 	{
 		copie(change);
@@ -87,8 +87,8 @@ public:
 
 	// Initialisateurs
 	void initBloc(const Vector2i & place, const int & id, const int & styleBloc,
-		const int & etat, const int & forme, const int & angle, const vector<carre> tours,
-		const vector<Vector2i> axes[4]);
+		const int & etat, const int & forme, const int & angle, 
+		const vector<carre> tours, const vector<Vector2i> axes[4]);
 	void initForme(const int & forme, const vector<carre> tours,
 		const vector<Vector2i> axes[4]);
 
@@ -108,7 +108,7 @@ public:
 	void setFormes(const vector<carre> & tours, const vector<Vector2i> axes[4]);
 
 	// Modification du profil
-	void ajouteCube(carre rect, const Vector2f & coin, const Vector2i axe[4]);
+	void ajouteCarre(carre rect, const Vector2f & coin, const Vector2i axe[4]);
 	void remplaceCube(carre rect, const Vector2f & pos,
 		const Vector2i axes[4], const int & position);
 	void enleveCube(const int & angle);
@@ -161,9 +161,9 @@ bloc::bloc(const int & forme, const vector<carre> tours, const vector<Vector2i> 
 }
 
 // Instancie un bloc avec toutes les attributs qu'il peut contenir.
-bloc::bloc(const Vector2i & place, const int & id, const int & styleBloc, const int & etat,
-	const int & forme, const int & angle, const vector<carre> tours,
-	const vector<Vector2i> axes[4])
+bloc::bloc(const Vector2i & place, const int & id, const int & styleBloc, 
+	const int & etat, const int & forme, const int & angle, 
+	const vector<carre> tours, const vector<Vector2i> axes[4])
 {
 	initBloc(place, id, styleBloc, etat, forme, angle, tours, axes);
 }
@@ -207,11 +207,18 @@ void bloc::setPlace(const Vector2i & place)
 	_place = place;
 }
 
-// Change le point de pivot pour toutes les modifications
+// Change le point de pivot des carrés du bloc pour toutes les modifications.
 void bloc::setEncrage(const Vector2f & encrage)
 {
 	_encrage = encrage;
-	//Changer aussi le point _origine de tout les carrés du bloc... sinon ça fait rien.
+	int size = _forme.size();
+
+	// Pour chaque carré dans le bloc
+	for (int i = 0; i < size; i++)
+	{
+		/// PIECES[noPiece][1]
+		_forme.at(i).setEncrage(encrage);
+	}
 }
 
 // Change l'ID du bloc.
@@ -285,7 +292,7 @@ bool trouveAxesRotation(Vector2i axes[4], const Vector2i & a, const int & angle)
 
 	if (a == Vector2i(2, 2))
 		return 0;
-	else if (gabarit[a.x][a.y] == 1)
+	else if (gabarit[a.y][a.x] == 1)
 		;//axes = { {0,0},{},{},{} };
 	for (int i = 0; i < 4; i++)
 	{
@@ -297,7 +304,7 @@ bool trouveAxesRotation(Vector2i axes[4], const Vector2i & a, const int & angle)
 }
 
 // Ajoute un cube dans la liste.
-void bloc::ajouteCube(carre rect, const Vector2f & coin, const Vector2i axe[4])
+void bloc::ajouteCarre(carre rect, const Vector2f & coin, const Vector2i axe[4])
 {
 	rect.setPos(coin, _place, axe[0]);
 	_forme.push_back(rect);
@@ -305,7 +312,7 @@ void bloc::ajouteCube(carre rect, const Vector2f & coin, const Vector2i axe[4])
 		_axes[i].push_back(axe[i]);
 }
 
-// 
+// Remplace un des carrés du bloc par un autre.
 void bloc::remplaceCube(carre rect, const Vector2f & pos,
 	const Vector2i axes[4], const int & position)
 {
@@ -319,50 +326,50 @@ void bloc::remplaceCube(carre rect, const Vector2f & pos,
 	//}
 }
 
-// 
+// Retire le dernier des carrés ajouté au bloc.
 void bloc::enleveCube(const int & angle)
 {
 	//Est-ce vraiment le dernier qu'on veut enlever?
 	//_formes[angle].pop_back();
 }
 
-// 
+// Retourne l'endroit du bloc dans la salle.
 Vector2i bloc::getPlace()
 {
 	return _place;
 }
 
-// 
+// Retourne l'encrage du bloc.
 Vector2f bloc::getEncrage()
 {
 	return _encrage;
 }
 
-// 
+// Retourne l'ID du bloc.
 int bloc::getId()
 {
 	return _id;
 }
 
-// 
+// Retourne le style du bloc.
 int bloc::getStyleBloc()
 {
 	return _styleBloc;
 }
 
-// 
+// Retourne le numéro de la pièce du bloc.
 int bloc::getPiece()
 {
 	return _morceau;
 }
 
-// 
+// Retourne le numéro de l'état du bloc.
 int bloc::getEtat()
 {
 	return _etat;
 }
 
-// 
+// Retourne l'orrientation du bloc.
 int bloc::getAngle()
 {
 	return _angle;
@@ -425,10 +432,6 @@ void bloc::montre(RenderWindow & window, const Vector2f & coin)
 /* Les coordonnées de chaque carrés de chaque angles des NBPIECE pièces par défaut du jeu */
 const int NBPIECE = 7;		// Nombre de pièces accessibles au jeu
 bloc tetris[NBPIECE];		// Liste de sept blocs à instancier à partir de PIECES
-/// Les septs blocs par défauts du jeu: 
-// 0 (L),	1 (ſ),		2 (⬜),	3 (|),		4 (T),	 5 (S),		6 (Z)
-// Sept,	Pendu,	Carré,	Ligne,	Plateau, Croche,	Plié
-const bloc * TETRIS = tetris;
 const vector<Vector2i> PIECES[NBPIECE][4] =
 {		// NBPIECE formes, 4 angles, 4 carrés, pour chaque coordonnées {{{{Vector2i}*4}*4}*NBPIECE}
 	{	// Les angles sont: droite (0), debout (1), gauche (2), renverse (3)

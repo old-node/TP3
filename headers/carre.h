@@ -42,7 +42,7 @@ const Vector2f PIVOTBLOC =			// Point central des blocs
 ///========================== */
 const int LRGJEU = 20;				// Largeur par défaut de l'occupation des salles
 const int HAUJEU = 20;				// Hauteur par défaut de l'occupation des salles
-const Vector2i PLACE((LRGJEU / 2) - 1, 0);	// Position par défaut des blocs dans la salle
+const Vector2i PLACE((LRGJEU - 2) / 2 - 1, 0);	// Position par défaut des blocs dans la salle
 const Vector2f POS =				// Position par défaut de la salle
 /**/		Vector2f(DIMCARRE.x + 45, DIMCARRE.y + 100);
 const Vector2i COIN(0, 0);			// Position par défaut en int
@@ -110,6 +110,7 @@ public:
 	void setCouleur(const Color & couleur, const Color & couleurBord);
 	void setVue(const RectangleShape & rect);
 	void setOrigine(const Vector2i & origine);
+	void setEncrage(const Vector2f & origine);
 	void setEtat(const int & etat);
 	void cache();
 	void montre();
@@ -221,9 +222,20 @@ void carre::setVue(const RectangleShape & rect)
 	_couleurBord = rect.getOutlineColor();
 }
 
+// Change les coordonnés du carré dans le bloc.
 void carre::setOrigine(const Vector2i & origine)
 {
 	_origine = origine;
+}
+
+// Change le point des transformations faites sur le carré.
+void carre::setEncrage(const Vector2f & origine)
+
+{
+	// Point d'encrage du carré dans le bloc
+	_vue.setOrigin(Vector2f(
+		DIMCARRE.x * origine.x + 100,
+		DIMCARRE.y * origine.y));
 }
 
 // Change l'état du carré.
